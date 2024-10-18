@@ -1,0 +1,14 @@
+.App {
+  text-align: center;
+  padding: 40px;
+  background-color: #f0f2f5;
+  min-height: 100vh;
+}
+
+.news-section {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: center;
+  margin-top: 20px;
+}
