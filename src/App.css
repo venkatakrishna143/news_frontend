@@ -1,14 +1,31 @@
 .App {
-  text-align: center;
-  padding: 40px;
-  background-color: #f0f2f5;
-  min-height: 100vh;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  gap: 20px;
 }
 
-.news-section {
+.main-layout {
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr;
+  gap: 20px;
+}
+
+.topnav {
+  background-color: #1a1a1a;
+  color: white;
+  padding: 10px;
   display: flex;
-  flex-wrap: wrap;
-  gap: 30px;
-  justify-content: center;
-  margin-top: 20px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.left-sidebar,
+.right-sidebar {
+  padding: 20px;
+  background: #f1f1f1;
+}
+
+.main-feed {
+  padding: 20px;
+  background: white;
 }

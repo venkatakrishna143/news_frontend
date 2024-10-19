@@ -1,11 +1,10 @@
 .news-card {
   border: 1px solid #ccc;
-  padding: 20px;
+  padding: 15px;
   border-radius: 10px;
-  max-width: 350px;
+  background: white;
   cursor: pointer;
   transition: box-shadow 0.3s ease, transform 0.3s ease;
-  background: white;
 }
 
 .news-card:hover {
@@ -19,7 +18,7 @@
 }
 
 .news-card h3 {
-  margin: 15px 0 10px;
+  margin: 10px 0 5px;
   font-size: 1.5em;
 }
 
