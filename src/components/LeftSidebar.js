@@ -6,7 +6,7 @@ function LeftSidebar() {
     <div className="left-sidebar">
       <div className="profile-card">
         <img src="/assets/images/profile.jpg" alt="Profile" className="profile-pic" />
-        <h3>John Doe</h3>
+        <h3>sri Krishna</h3>
         <p>Software Architect</p>
         <button className="sidebar-button">View Profile</button>
       </div>

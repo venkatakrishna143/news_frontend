@@ -11,6 +11,7 @@ function TopNav() {
         <button className="nav-button">Top Headlines</button>
         <button className="nav-button">Current Affairs</button>
         <button className="nav-button">Sports</button>
+        <button className="nav-button">Technology</button>
         <button className="nav-button">Notifications</button>
       </div>
     </nav>
