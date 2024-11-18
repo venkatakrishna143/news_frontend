@@ -11,6 +11,10 @@ function NavMenu() {
 
   const handleAPICall = (item) => {
     console.log(item);
+
+    // const apiOject = {
+    //   page:ite
+    // }
   };
 
   return (

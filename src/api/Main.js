@@ -4,12 +4,14 @@ import { newslinks } from "./urls";
 // get All News
 
 export const getNews = async (pagedata, limitdata) => {
-  // console.log(pagedata,limitdata)
+  console.log(pagedata, limitdata);
   const response = await api.get(
     newslinks.allnews,
     JSON.stringify({
-      page: pagedata,
-      limit: limitdata,
+      body: {
+        page: 1,
+        limit: 10,
+      },
     }),
     {
       headers: {
@@ -32,7 +34,8 @@ export const getnewsbyId = async (data) => {
     }),
     {
       headers: {
-        "Content-Type": "application/json",
+        "Content-Type": "application/JSON",
+        "Access-Control-Allow-Origin": "*",
       },
     }
   );
@@ -51,7 +54,8 @@ export const getfilters = async (data) => {
     }),
     {
       headers: {
-        "Content-Type": "application/json",
+        "Content-Type": "application/JSON",
+        "Access-Control-Allow-Origin": "*",
       },
     }
   );
@@ -70,7 +74,8 @@ export const getnewsCategories = async (data) => {
     }),
     {
       headers: {
-        "Content-Type": "application/json",
+        "Content-Type": "application/JSON",
+        "Access-Control-Allow-Origin": "*",
       },
     }
   );

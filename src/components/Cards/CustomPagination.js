@@ -2,7 +2,7 @@ import { TablePagination } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { getNews } from '../../api/Main';
 
-const CustomPagination = ({ DataRetrive }) => {
+const CustomPagination = () => {
   const [page, setPage] = React.useState(1);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
