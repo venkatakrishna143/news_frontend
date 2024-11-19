@@ -43,8 +43,9 @@ function Navbar() {
 </Typography>
 
         </Stack>
-       <Search />
+       
         <NavMenu />
+        {/* <Search /> */}
       </Nav>
     </NavHeader>
   );

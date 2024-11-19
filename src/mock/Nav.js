@@ -1,5 +1,5 @@
 import { FaHome } from "react-icons/fa";
-import { Home, SearchIcon } from "../assets/Icons";
+import { Business, CurrentA, Entertainment, Health, Home, Notification, Science, SearchIcon, Sport, Technology ,} from "../assets/Icons";
 
 export const NavData = [
   // {
@@ -16,36 +16,51 @@ export const NavData = [
   },
   {
     id: 2,
-    title: "Top Headlines",
-    icon: <FaHome />,
-    apiid: "top headlines",
-    path: "/top-headlines",
+    title: "Sports",
+    icon: <Sport />,
+    apiid: "sports",
+    path: "/sports",
   },
   {
     id: 3,
-    title: "Current Affairs",
-    icon: <FaHome />,
-    apiid: "current affairs",
-    path: "/current-affairs",
+    title: "Health",
+    icon: <Health />,
+    apiid: "health",
+    path: "/heath",
   },
   {
     id: 4,
-    title: "Sports",
-    icon: <FaHome />,
-    apiid: "sports",
-    path: "/sport",
+    title: "Science",
+    icon: <Science />,
+    apiid: "science",
+    path: "/science",
   },
+   
   {
     id: 5,
+    title: "Business",
+    icon: <Business />,
+    apiid: "business",
+    path: "/business",
+  },
+  {
+    id: 6,
+    title: "Entertainment",
+    icon: <Entertainment />,
+    apiid: "entertainment",
+    path: "/entertainment",
+  },
+  {
+    id: 7,
     title: "Technology",
-    icon: <FaHome />,
+    icon: <Technology />,
     apiid: "technology",
     path: "/technology",
   },
   {
-    id: 6,
+    id: 8,
     title: "Notifications",
-    icon: <FaHome />,
+    icon: <Notification />,
     apiid: "notifications",
     path: "/notifications",
   },

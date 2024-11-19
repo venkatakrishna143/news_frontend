@@ -10,22 +10,27 @@ import Navbar from "./components/Navbar";
 import { Box, Card } from "@mui/material";
 import Grid from "@mui/material/Grid";
 import PageRoutes from "./router/PageRoutes";
-
-
+import { Provider as ReduxProvider } from "react-redux";
+import { persistor, store } from "./redux/store";
+import { PersistGate } from "redux-persist/integration/react";
 
 function App() {
   const apiurl = process.env.REACT_APP_API_URL;
-  console.log(apiurl);
+  // console.log(apiurl);
 
   return (
-    <ThemeProvider theme={customeStyles}>
-      <MainContainer>
-        <Navbar />
-        <BodyOuterContainer>
-          <PageRoutes />
-        </BodyOuterContainer>
-      </MainContainer>
-    </ThemeProvider>
+    <ReduxProvider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        <ThemeProvider theme={customeStyles}>
+          <MainContainer>
+            <Navbar />
+            <BodyOuterContainer>
+              <PageRoutes />
+            </BodyOuterContainer>
+          </MainContainer>
+        </ThemeProvider>
+      </PersistGate>
+    </ReduxProvider>
 
     // <div className="App">
     //   <TopNav />
@@ -41,7 +46,6 @@ function App() {
 export default App;
 
 // Styling
-
 
 const MainContainer = styled(Box)(({ theme }) => ({
   width: "100%",
@@ -66,7 +70,6 @@ const BodyOuterContainer = styled(Box)(({ theme }) => ({
 
   // margin:'10px'
 }));
-
 
 export const BodyInnerContainer = styled(Grid)(({ theme }) => ({
   width: "90%",

@@ -4,14 +4,12 @@ import { newslinks } from "./urls";
 // get All News
 
 export const getNews = async (pagedata, limitdata) => {
-  console.log(pagedata, limitdata);
-  const response = await api.get(
+  // console.log(pagedata, limitdata);
+  const response = await api.post(
     newslinks.allnews,
     JSON.stringify({
-      body: {
-        page: 1,
-        limit: 10,
-      },
+      page: pagedata,
+      limit: limitdata,
     }),
     {
       headers: {
@@ -20,17 +18,17 @@ export const getNews = async (pagedata, limitdata) => {
       },
     }
   );
-  console.log(pagedata, limitdata);
+  // console.log(pagedata, limitdata);
   return response;
 };
 
 // get news by id
 
-export const getnewsbyId = async (data) => {
-  const response = await axios.post(
+export const getnewsbyId = async (id) => {
+  const response = await api.post(
     newslinks.getnewsbyid,
     JSON.stringify({
-      newsId: data,
+      newsId: id,
     }),
     {
       headers: {
@@ -45,7 +43,7 @@ export const getnewsbyId = async (data) => {
 // filters
 
 export const getfilters = async (data) => {
-  const response = await axios.post(
+  const response = await api.post(
     newslinks.filters,
     JSON.stringify({
       search_key: data,
@@ -65,12 +63,12 @@ export const getfilters = async (data) => {
 // Categories
 
 export const getnewsCategories = async (data) => {
-  const response = await axios.post(
+  const response = await api.post(
     newslinks.categories,
     JSON.stringify({
-      page: data,
-      limit: data,
-      categories: data,
+      page: data.page,
+      limit: data.limit,
+      categories: data.categorie,
     }),
     {
       headers: {

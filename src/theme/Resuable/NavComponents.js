@@ -63,6 +63,7 @@ export const NavLinks = styled(NavLink)(({ theme }) => ({
   alignItems: "center",
   justifyContent: "center",
   flexDirection: "column",
+  gap:"6px",
   // padding: "4px",
   fontFamily:theme.typography.fontFamily,
   
