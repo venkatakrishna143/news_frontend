@@ -80,4 +80,10 @@ export const BodyInnerContainer = styled(Grid)(({ theme }) => ({
   display: "flex",
   alignItems: "flex-start",
   justifyContent: "space-between",
+
+  [theme.breakpoints.between("xs", "sm")]: {
+    width: "100%",
+  padding: "8px",
+    
+  }
 }));

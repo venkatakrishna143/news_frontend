@@ -34,3 +34,36 @@
   padding: 20px;
   background: white;
 }
+
+
+/* Custom Scrollbar Styling */
+/* Custom Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 4px; /* Scrollbar width */
+  height: 10px; /* Horizontal scrollbar height */
+}
+
+::-webkit-scrollbar:hover{
+  width: 10px; /* Scrollbar width */
+  height: 10px; /* Horizontal scrollbar height */
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Light background for the track */
+  border-radius: 5px; /* Rounded corners for the track */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #43C6AC; /* Thumb color */
+  border-radius: 5px; /* Rounded corners for the thumb */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #43C6AC; /* Thumb color on hover */
+  /* width: 10px;  */
+}
+
+::-webkit-scrollbar-button {
+  display: none; /* Hide scrollbar buttons */
+}
+

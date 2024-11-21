@@ -10,18 +10,27 @@ import {
   IconButton,
   Stack,
   Box,
+  Button,
+  useMediaQuery,
+  // Button
 } from "@mui/material";
 import Grid from "@mui/material/Grid";
 import CustomPagination from "./CustomPagination";
 import { useDispatch, useSelector } from "react-redux";
-import { newsData } from "../../redux/slices/News";
+// import { newsData } from "../../redux/slices/News";
 import { getnewsbyId } from "../../api/Main";
-import { Close } from "../../assets/Icons";
+import { Add, Close } from "../../assets/Icons";
 import { useParams } from "react-router-dom";
+import ScrollPagination from "./ScrollPagination";
+import { useTheme } from "@emotion/react";
+import ResponsivePagination from "./ResponsivePagination";
 
 function NewsCards() {
   const { id } = useParams();
-  console.log(id);
+  // console.log(id);
+  const theme = useTheme()
+
+  const Mobile = useMediaQuery(theme.breakpoints.between("xs","sm"))
   const [newsidData, setnewsidData] = useState([]);
 
   const { newsdata } = useSelector((state) => state.news);
@@ -104,10 +113,24 @@ function NewsCards() {
               flexDirection: "column",
               mb: "10px",
               cursor: "pointer",
-              // height:"100px"
+              height: "450px",
+              gap:"10px"
             }}
             onClick={() => handleViewNews(item.news_id)}
           >
+            <Stack direction="row" alignItems="center" justifyContent="space-between" sx={{width:"100%"}}>
+              <Stack>
+              <Typography variant="body1" sx={{ fontWeight: "bolder" }}>
+              {item.news_author ? item.news_author : "Author"}
+                </Typography>
+                <Typography variant="body2" sx={{ fontSize:"12px" }}>
+              categorie
+              </Typography>
+            </Stack>
+              <Button variant="outlined" color="secondary" startIcon={<Add />} size="small">
+                Follow
+             </Button>
+            </Stack>
             <Typography variant="body1" sx={{ fontWeight: "bolder" }}>
               {item.news_title}
             </Typography>
@@ -116,7 +139,7 @@ function NewsCards() {
       ) : (
         <Typography>No News Found !</Typography>
       )}
-      <CustomPagination />
+   <CustomPagination />
       {newsidData.map((item) => (
         <Dialog
           open={open}

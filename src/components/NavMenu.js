@@ -13,14 +13,14 @@ function NavMenu() {
   const {pathname} = useLocation()
   const { pagedata, limitdata } = useSelector((state) => state.news);
 
-  console.log(pathname)
+  // console.log(pathname)
 
   const dispatch = useDispatch();
 
   const Mobile = useMediaQuery(theme.breakpoints.between("xs", "sm"));
 
   const handleAPICall = (item) => {
-    console.log(item);
+    // console.log(item);
 
     const apiOject = {
       page: pagedata,

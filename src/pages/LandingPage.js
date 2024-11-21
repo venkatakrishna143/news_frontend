@@ -3,7 +3,9 @@ import { BodyInnerContainer } from "../App";
 import ProfileCards from "../components/Cards/ProfileCards";
 import NewsCards from "../components/Cards/NewsCards";
 import TrendingNews from "../components/Cards/TrendingNews";
-import { useMediaQuery, useTheme } from "@mui/material";
+import { Stack, useMediaQuery, useTheme } from "@mui/material";
+import ResponsivePagination from "../components/Cards/ResponsivePagination";
+import CustomPagination from "../components/Cards/CustomPagination";
 
 function LandingPage() {
   const theme = useTheme();
@@ -11,8 +13,11 @@ function LandingPage() {
   const Mobile = useMediaQuery(theme.breakpoints.between("xs", "sm"));
   return (
     <BodyInnerContainer container columnGap={2} rowGap={2}>
-   {Mobile ? null :    <ProfileCards />}
-      <NewsCards />
+      <ProfileCards />
+              <NewsCards />
+        {Mobile ? <ResponsivePagination /> : null}
+    
+
       <TrendingNews />
     </BodyInnerContainer>
   );

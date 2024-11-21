@@ -11,6 +11,7 @@ import {
   FiHeadphones,
   FiDollarSign,
   FiSliders,
+  FiPlus,
 } from "react-icons/fi";
 
 export const Home = styled(FiHome)(({ theme }) => ({
@@ -81,6 +82,14 @@ export const Health = styled(FiActivity)(({ theme }) => ({
 }));
 
 export const Science = styled(FiSliders)(({ theme }) => ({
+  fontSize: "22px",
+
+  //  Responsive
+
+  [theme.breakpoints.between("xs", "sm")]: {},
+}));
+
+export const Add = styled(FiPlus)(({ theme }) => ({
   fontSize: "22px",
 
   //  Responsive
