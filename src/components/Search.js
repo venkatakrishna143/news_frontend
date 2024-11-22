@@ -1,39 +1,76 @@
-import { Stack, TextField, useMediaQuery, useTheme } from "@mui/material";
 import React from "react";
-import { SearchIcon } from "../assets/Icons";
+import {
+  Button,
+  InputAdornment,
+  Stack,
+  TextField,
+  useMediaQuery,
+  useTheme,
+} from "@mui/material";
+import { Close, SearchIcon } from "../assets/Icons";
 
-function Search() {
+function Search({ toggle, closeSearch }) {
   const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.between("xs", "md"));
 
-  const Mobile = useMediaQuery(theme.breakpoints.between("xs", "sm"));
   return (
     <Stack
       direction="row"
       alignItems="center"
-      justifyContent="center"
-      sx={{ py: "4px", width: "auto" }}
-    >
-      {Mobile ? <SearchIcon /> : (<TextField
-      size="small"
-      fullWidth
-      autoComplete="off" // Disable autocomplete
+      justifyContent="space-evenly"
       sx={{
-        "& .MuiOutlinedInput-root": {
-          "& fieldset": {
-            borderColor: "white", // Normal state
-          },
-          "&:hover fieldset": {
-            borderColor: "white", // Hover state
-          },
-          "&.Mui-focused fieldset": {
-            borderColor: "white", // Focused state
-          },
-        },
-        input: {
-          color: "white", // Optional: text color inside the input
-        },
+        width: isMobile ? "100%" : "89%",
+        position: "absolute",
+        top: toggle ? "80px" : "-120%",
+        bgcolor: "secondary.main",
+        py: 2,
+        px: 1,
+        transition: "all 0.5s ease",
+        zIndex: -1,
       }}
-    />)}
+    >
+      <TextField
+        size="small"
+        variant="standard"
+        autoComplete="off" // Disable autocomplete
+        placeholder="Search..."
+        sx={{
+          width: "50%",
+          "& .MuiOutlinedInput-root": {
+            "& fieldset": {
+              borderColor: "white", // Normal state
+            },
+            "&:hover fieldset": {
+              borderColor: "white", // Hover state
+            },
+            "&.Mui-focused fieldset": {
+              borderColor: "white", // Focused state
+            },
+          },
+          input: {
+            color: "white", // Input text color
+          },
+          "& .MuiInputBase-input::placeholder": {
+            color: "primary.main", // Placeholder color
+            opacity: 1, // Ensure placeholder is visible
+          },
+        }}
+        InputProps={{
+          startAdornment: (
+            <InputAdornment position="start">
+              <SearchIcon />
+            </InputAdornment>
+          ),
+        }}
+      />
+      <Button
+        variant="outlined"
+        startIcon={<Close />}
+        onClick={closeSearch}
+        color="primary"
+      >
+        Cancel
+      </Button>
     </Stack>
   );
 }

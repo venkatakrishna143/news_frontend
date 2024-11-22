@@ -13,6 +13,7 @@ import PageRoutes from "./router/PageRoutes";
 import { Provider as ReduxProvider } from "react-redux";
 import { persistor, store } from "./redux/store";
 import { PersistGate } from "redux-persist/integration/react";
+import Search from "./components/Search";
 
 function App() {
   const apiurl = process.env.REACT_APP_API_URL;
@@ -24,6 +25,7 @@ function App() {
         <ThemeProvider theme={customeStyles}>
           <MainContainer>
             <Navbar />
+            {/* <Search /> */}
             <BodyOuterContainer>
               <PageRoutes />
             </BodyOuterContainer>
@@ -56,6 +58,7 @@ const MainContainer = styled(Box)(({ theme }) => ({
   alignItems: "start",
   justifyContent: "flex-start",
   flexDirection: "column",
+  position: "relative",
 }));
 
 const BodyOuterContainer = styled(Box)(({ theme }) => ({
@@ -66,9 +69,15 @@ const BodyOuterContainer = styled(Box)(({ theme }) => ({
   display: "flex",
   alignItems: "start",
   justifyContent: "center",
+  position: "absolute",
+    bottom: 0,
   // border: "1px solid blue",
 
   // margin:'10px'
+
+  [theme.breakpoints.between("xs", "md")]: {
+    
+  },
 }));
 
 export const BodyInnerContainer = styled(Grid)(({ theme }) => ({
@@ -83,7 +92,6 @@ export const BodyInnerContainer = styled(Grid)(({ theme }) => ({
 
   [theme.breakpoints.between("xs", "sm")]: {
     width: "100%",
-  padding: "8px",
-    
-  }
+    padding: "8px",
+  },
 }));

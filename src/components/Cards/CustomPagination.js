@@ -51,7 +51,7 @@ const CustomPagination = () => {
 
   useEffect(() => {
     if (id === "home") {
-      getNews(page, rowsPerPage) // Assuming API expects 1-based page numbers
+      getNews(page + 1, rowsPerPage) // Assuming API expects 1-based page numbers
       .then((res) => {
         const data = res.data.newsfeed || [];
         dispatch(newsData(data));

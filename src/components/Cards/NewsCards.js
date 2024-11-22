@@ -24,13 +24,16 @@ import { useParams } from "react-router-dom";
 import ScrollPagination from "./ScrollPagination";
 import { useTheme } from "@emotion/react";
 import ResponsivePagination from "./ResponsivePagination";
+import Title from "../Title";
+import ViewNews from "./ViewNews";
+import AgoTimeStamp from "../AgoTimeStamp";
 
 function NewsCards() {
   const { id } = useParams();
   // console.log(id);
-  const theme = useTheme()
+  const theme = useTheme();
 
-  const Mobile = useMediaQuery(theme.breakpoints.between("xs","sm"))
+  const Mobile = useMediaQuery(theme.breakpoints.between("xs", "md"));
   const [newsidData, setnewsidData] = useState([]);
 
   const { newsdata } = useSelector((state) => state.news);
@@ -93,7 +96,11 @@ function NewsCards() {
         >
           <Typography
             variant="body1"
-            sx={{ color: "secondary.main", fontWeight: "bold",textTransform:"capitalize" }}
+            sx={{
+              color: "secondary.main",
+              fontWeight: "bold",
+              textTransform: "capitalize",
+            }}
           >
             {id === "home" ? "All News" : id}
           </Typography>
@@ -113,83 +120,56 @@ function NewsCards() {
               flexDirection: "column",
               mb: "10px",
               cursor: "pointer",
-              height: "450px",
-              gap:"10px"
+              height: "500px",
+              gap: "10px",
             }}
-            onClick={() => handleViewNews(item.news_id)}
           >
-            <Stack direction="row" alignItems="center" justifyContent="space-between" sx={{width:"100%"}}>
-              <Stack>
-              <Typography variant="body1" sx={{ fontWeight: "bolder" }}>
-              {item.news_author ? item.news_author : "Author"}
+            <Stack
+              direction="row"
+              alignItems="center"
+              justifyContent="space-between"
+              sx={{ width: "100%" }}
+            >
+              <Stack direction="column" alignItems="left">
+                <Typography variant="body1" sx={{ fontWeight: "bolder" }}>
+                  {item.news_author ? item.news_author : "Author"}
                 </Typography>
-                <Typography variant="body2" sx={{ fontSize:"12px" }}>
-              categorie
-              </Typography>
-            </Stack>
-              <Button variant="outlined" color="secondary" startIcon={<Add />} size="small">
+                <Typography variant="body2" sx={{ fontSize: "14px" }}>
+                  categorie
+                </Typography>
+                <AgoTimeStamp time={item.news_published_at} />
+              </Stack>
+              <Button
+                variant="outlined"
+                color="secondary"
+                startIcon={<Add />}
+                size="small"
+              >
                 Follow
-             </Button>
+              </Button>
             </Stack>
-            <Typography variant="body1" sx={{ fontWeight: "bolder" }}>
+            {/* <Typography variant="body1" sx={{ fontWeight: "bolder" }}>
               {item.news_title}
-            </Typography>
+            </Typography> */}
+
+            <Title text={item.news_title} />
+            <Stack
+              direction="column"
+              alignItems="center"
+              justifyContent="center"
+              sx={{ width: "100%", border: "1px solid blue", height: "450px" }}
+              onClick={() => handleViewNews(item.news_id)}
+            >
+              Image
+            </Stack>
           </Card>
         ))
       ) : (
         <Typography>No News Found !</Typography>
       )}
-   <CustomPagination />
+      {Mobile ? null : <CustomPagination />}
       {newsidData.map((item) => (
-        <Dialog
-          open={open}
-          key={item.news_id}
-          PaperProps={{
-            sx: { width: "80%", maxWidth: "600px", margin: "auto" }, // Responsive sizing
-          }}
-        >
-          <DialogTitle
-            id={`alert-dialog-title-${item.news_id}`}
-            sx={{
-              // color: "secondary.main",
-
-              textAlign: "left", // Aligns title to the left
-              display: "flex", // Allows the title and close button to appear inline
-              justifyContent: "space-between", // Pushes the close button to the right
-              alignItems: "flex-start", // Vertically centers the content
-            }}
-          >
-            <Typography
-              variant="h6"
-              sx={{ color: "secondary.main", fontWeight: "bold" }}
-            >
-              {item.news_title}
-            </Typography>
-            <IconButton
-              aria-label="close"
-              onClick={handleClose} // Replace with your close handler
-              sx={{
-                color: "primary.main",
-              }}
-            >
-              <Close />
-            </IconButton>
-          </DialogTitle>
-
-          <DialogContent>
-            {item.news_url_to_image ? (
-              <iframe
-                src={item.news_url_to_image}
-                title={item.news_title}
-                style={{
-                  width: "100%",
-                  height: "450px",
-                  border: "none",
-                }}
-              />
-            ) : null}
-          </DialogContent>
-        </Dialog>
+        <ViewNews news={item} openDialog={open} closeDialog={handleClose} />
       ))}
     </News>
   );

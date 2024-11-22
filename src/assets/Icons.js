@@ -12,6 +12,7 @@ import {
   FiDollarSign,
   FiSliders,
   FiPlus,
+  FiMenu,
 } from "react-icons/fi";
 
 export const Home = styled(FiHome)(({ theme }) => ({
@@ -23,7 +24,8 @@ export const Home = styled(FiHome)(({ theme }) => ({
 
 export const SearchIcon = styled(FiSearch)(({ theme }) => ({
   //  Responsive
-
+  fontSize: "24px",
+  cursor:'pointer',
   [theme.breakpoints.between("xs", "sm")]: {},
 }));
 
@@ -91,6 +93,24 @@ export const Science = styled(FiSliders)(({ theme }) => ({
 
 export const Add = styled(FiPlus)(({ theme }) => ({
   fontSize: "22px",
+
+  //  Responsive
+
+  [theme.breakpoints.between("xs", "sm")]: {},
+}));
+
+export const MenuBars = styled(FiMenu)(({ theme }) => ({
+  fontSize: "28px",
+  color: "white",
+
+  //  Responsive
+
+  [theme.breakpoints.between("xs", "sm")]: {},
+}));
+
+export const CloseMenu = styled(FiX)(({ theme }) => ({
+  fontSize: "28px",
+  color: "white",
 
   //  Responsive
 

@@ -8,7 +8,7 @@ import { getNews, getnewsCategories } from "../api/Main";
 import { newsData } from "../redux/slices/News";
 import { useLocation } from "react-router-dom";
 
-function NavMenu() {
+function NavMenu({click,closeMenu}) {
   const theme = useTheme();
   const {pathname} = useLocation()
   const { pagedata, limitdata } = useSelector((state) => state.news);
@@ -21,6 +21,8 @@ function NavMenu() {
 
   const handleAPICall = (item) => {
     // console.log(item);
+
+    closeMenu()
 
     const apiOject = {
       page: pagedata,
@@ -55,15 +57,12 @@ function NavMenu() {
   };
 
   return (
-    <NavList>
+    <NavList toggle={click}>
       {NavData.map((item) => (
         <NavItem key={item.id}>
           <NavLinks to={item.path} onClick={() => handleAPICall(item.apiid)}>
             {item.icon}
-            {!Mobile
-              ? // <Typography variant="body2">{item.title}</Typography>
-                item.title
-              : null}
+           {item.title}
           </NavLinks>
         </NavItem>
       ))}

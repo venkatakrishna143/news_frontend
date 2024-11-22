@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { Nav, NavHeader } from "../theme/Resuable/NavComponents";
 import {
+  Avatar,
   Stack,
   Typography,
   useMediaQuery,
@@ -8,26 +9,46 @@ import {
 } from "@mui/material";
 import Search from "./Search";
 import NavMenu from "./NavMenu";
+import { Close, CloseMenu, MenuBars, SearchIcon } from "../assets/Icons";
 
 function Navbar() {
   //  MediaQueries For Themes
   const theme = useTheme();
   // const BelowMobile = useMediaQuery(theme.breakpoints.up("xs"));
-  const Mobile = useMediaQuery(theme.breakpoints.between("xs", "sm"));
+  const Mobile = useMediaQuery(theme.breakpoints.between("xs", "md"));
+
+  const [toggle, setToggle] = useState(false);
+
+  const handleOpen = () => setToggle(!toggle);
+
+  const handleClose = () => setToggle(false);
+
+  // Search Bar
+
+  const [click, setClick] = useState(false);
+
+  const handleSearchOpen = () => {
+    setClick(!click);
+  };
+
+  const handleSearchClose = () => {
+    setClick(false);
+  };
 
   return (
     <NavHeader>
       <Nav>
-        {/* {Mobile ? (
+        {Mobile ? (
           <Stack
             direction="row"
             alignItems="center"
             justifyContent="center"
-            sx={{ padding: "4px" }}
+            sx={{ padding: "4px", cursor: "pointer" }}
+            onClick={handleOpen}
           >
-            Responsive
+            {toggle ? <CloseMenu /> : <MenuBars />}
           </Stack>
-        ) : null} */}
+        ) : null}
         <Stack
           direction="row"
           alignItems="center"
@@ -35,17 +56,27 @@ function Navbar() {
           width="auto"
           sx={{ padding: "8px" }}
         >
-         <Typography 
-  variant={Mobile ? "body2" : "h4"} 
-  sx={{ fontWeight: "bold", width: 'auto' }}
->
-  Official News
-</Typography>
-
+          <Typography
+            variant={Mobile ? "h5" : "h4"}
+            sx={{ fontWeight: "bold", width: "auto" }}
+          >
+            Official News
+          </Typography>
         </Stack>
-       
-        <NavMenu />
-        {/* <Search /> */}
+
+        <NavMenu click={toggle} closeMenu={handleClose} />
+        <Search toggle={click} closeSearch={handleSearchClose} />
+
+        <Stack
+          direction="row"
+          alignItems="center"
+          justifyContent="center"
+          spacing={2}
+          sx={{p:1}}
+        >
+          <SearchIcon onClick={handleSearchOpen} />
+          <Avatar sx={{ width: 30, height: 30 }} />
+        </Stack>
       </Nav>
     </NavHeader>
   );

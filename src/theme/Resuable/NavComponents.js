@@ -1,4 +1,5 @@
 import { styled } from "@mui/material";
+import zIndex from "@mui/material/styles/zIndex";
 import { NavLink } from "react-router-dom";
 
 export const NavHeader = styled("header")(({ theme }) => ({
@@ -10,6 +11,16 @@ export const NavHeader = styled("header")(({ theme }) => ({
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
+  zIndex: 1,
+  position: "fixed",
+
+    
+
+  [theme.breakpoints.between("xs", "md")]: {
+    // position: "fixed",
+    top: 0,
+    zIndex: 1,
+  },
 }));
 
 export const Nav = styled("nav")(({ theme }) => ({
@@ -26,23 +37,29 @@ export const Nav = styled("nav")(({ theme }) => ({
 
   [theme.breakpoints.between("xs", "sm")]: {
     width: "100%",
-    justifyContent: "space-evenly",
-
+    justifyContent: "space-between",
   },
 }));
 
-export const NavList = styled("ul")(({ theme }) => ({
+export const NavList = styled("ul")(({ theme, toggle }) => ({
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  padding:0
-,
-
-  [theme.breakpoints.between("xs", "sm")]: {
+  padding: 0,
+  [theme.breakpoints.between("xs", "md")]: {
     // border:'1px solid blue'
-    padding:0
-
-
+    padding: 0,
+    position: "fixed",
+    top: "60px",
+    backgroundColor: theme.palette.primary.main,
+    width: "auto",
+    height: "100%",
+    zIndex: 1,
+    flexDirection: "column",
+    justifyContent: "left",
+    alignItems: "left",
+    left: toggle ? 0 : "-120%",
+    transition: "all 1s ease;",
   },
 }));
 
@@ -51,8 +68,8 @@ export const NavItem = styled("li")(({ theme }) => ({
   listStyle: "none",
   padding: "8px",
   [theme.breakpoints.between("xs", "sm")]: {
-  // border:'1px solid blue'
-
+    // border:'1px solid blue'
+    padding: "10px",
   },
 }));
 
@@ -63,14 +80,19 @@ export const NavLinks = styled(NavLink)(({ theme }) => ({
   alignItems: "center",
   justifyContent: "center",
   flexDirection: "column",
-  gap:"6px",
+  gap: "6px",
   // padding: "4px",
-  fontFamily:theme.typography.fontFamily,
-  
-  '&.active': {
+  fontFamily: theme.typography.fontFamily,
+
+  "&.active": {
     color: theme.palette.secondary.main, // Or any color you prefer for the active state
     // fontWeight: 'bold', // Make active link bold (optional)
   },
 
-  [theme.breakpoints.between("xs", "sm")]: {},
+  [theme.breakpoints.between("xs", "sm")]: {
+    flexDirection: "row",
+    alignItems: "left",
+    justifyContent: "left",
+    padding: "4px",
+  },
 }));
