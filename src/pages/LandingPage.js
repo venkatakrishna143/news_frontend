@@ -15,7 +15,7 @@ function LandingPage() {
     <BodyInnerContainer container columnGap={2} rowGap={2}>
       <ProfileCards />
       <NewsCards />
-      {Mobile ? <ResponsivePagination /> : null}
+      {/* {Mobile ? <ResponsivePagination /> : null} */}
 
       <TrendingNews />
     </BodyInnerContainer>

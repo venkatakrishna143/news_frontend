@@ -15,54 +15,54 @@ function LinkedInStyleScrollPagination() {
   const { id } = useParams();
 
   // Fetch data based on the current page
-  const fetchData = async () => {
-    if (!hasMore || isLoading) return; // Prevent unnecessary API calls
+  // const fetchData = async () => {
+  //   if (!hasMore || isLoading) return; // Prevent unnecessary API calls
 
-    setIsLoading(true); // Set loading state
-    try {
-      if (id === 'home') {
-        const response = await getNews(page, limitdata);
-        const data = response.data.newsfeed || [];
-        if (data.length < limitdata) setHasMore(false); // No more data to load
-        dispatch(newsData(data));
-      } else {
-        const apiObject = {
-          page: page,
-          limit: limitdata,
-          categorie: 'item', // Replace with the actual category value
-        };
-        const response = await getnewsCategories(apiObject);
-        const data = response.data.newsfeed || [];
-        if (data.length < limitdata) setHasMore(false); // No more data to load
-        dispatch(newsData(data));
-      }
-    } catch (error) {
-      console.error('Error fetching data:', error);
-    } finally {
-      setIsLoading(false); // Reset loading state
-    }
-  };
+  //   setIsLoading(true); // Set loading state
+  //   try {
+  //     if (id === 'home') {
+  //       const response = await getNews(page, limitdata);
+  //       const data = response.data.newsfeed || [];
+  //       if (data.length < limitdata) setHasMore(false); // No more data to load
+  //       dispatch(newsData(data));
+  //     } else {
+  //       const apiObject = {
+  //         page: page,
+  //         limit: limitdata,
+  //         categorie: 'item', // Replace with the actual category value
+  //       };
+  //       const response = await getnewsCategories(apiObject);
+  //       const data = response.data.newsfeed || [];
+  //       if (data.length < limitdata) setHasMore(false); // No more data to load
+  //       dispatch(newsData(data));
+  //     }
+  //   } catch (error) {
+  //     console.error('Error fetching data:', error);
+  //   } finally {
+  //     setIsLoading(false); // Reset loading state
+  //   }
+  // };
 
-  // Handle scroll events for infinite scrolling
-  const handleScroll = () => {
-    const container = containerRef.current;
-    if (
-      container &&
-      container.scrollTop + container.clientHeight >= container.scrollHeight - 50 // Trigger near the bottom
-    ) {
-      setPage((prevPage) => prevPage + 1); // Increment page number
-    }
-  };
+  // // Handle scroll events for infinite scrolling
+  // const handleScroll = () => {
+  //   const container = containerRef.current;
+  //   if (
+  //     container &&
+  //     container.scrollTop + container.clientHeight >= container.scrollHeight - 50 // Trigger near the bottom
+  //   ) {
+  //     setPage((prevPage) => prevPage + 1); // Increment page number
+  //   }
+  // };
 
-  // Trigger data fetch when the page changes
-  useEffect(() => {
-    fetchData();
-  }, [page]);
+  // // Trigger data fetch when the page changes
+  // useEffect(() => {
+  //   fetchData();
+  // }, [page]);
 
   return (
     <Stack
       ref={containerRef}
-      onScroll={handleScroll}
+      // onScroll={handleScroll}
       sx={{
         width: '100%',
         height: '80vh',

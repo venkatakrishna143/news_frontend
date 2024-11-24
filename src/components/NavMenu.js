@@ -5,8 +5,9 @@ import { Typography, useMediaQuery } from "@mui/material";
 import { useTheme } from "@emotion/react";
 import { useDispatch, useSelector } from "react-redux";
 import { getNews, getnewsCategories } from "../api/Main";
-import { newsData } from "../redux/slices/News";
+import { appendNewsData, newsData, resetState } from "../redux/slices/News";
 import { useLocation } from "react-router-dom";
+import { resetAppState } from "../redux/store";
 
 function NavMenu({click,closeMenu}) {
   const theme = useTheme();
@@ -20,7 +21,7 @@ function NavMenu({click,closeMenu}) {
   const Mobile = useMediaQuery(theme.breakpoints.between("xs", "sm"));
 
   const handleAPICall = (item) => {
-    // console.log(item);
+    console.log(item);
 
     closeMenu()
 
@@ -31,21 +32,23 @@ function NavMenu({click,closeMenu}) {
     };
 
     if (item === "home") {
+      // resetAppState()
       getNews(pagedata, limitdata) // Assuming API expects 1-based page numbers
       .then((res) => {
         const data = res.data.newsfeed || [];
-        dispatch(newsData(data));
+        dispatch(appendNewsData(data));
       })
       .catch((err) => {
         console.error("Error fetching news data:", err);
       });
     } else {
+      resetAppState()
       getnewsCategories(apiOject)
       .then((res) => {
         console.log(res);
         const data = res.data.newsfeed || [];
         // setNews(data);
-        dispatch(newsData(data));
+        dispatch(appendNewsData(data));
 
         // Determine if it's the last page
         // setIsLastPage(data.length < rowsPerPage);

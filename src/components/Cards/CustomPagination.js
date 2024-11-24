@@ -2,7 +2,7 @@ import { Stack, TablePagination } from "@mui/material";
 import React, { useEffect, useState, useRef } from "react";
 import { getNews, getnewsCategories } from "../../api/Main";
 import { useDispatch } from "react-redux";
-import { DataLimit, newsData, PageData } from "../../redux/slices/News";
+import { appendNewsData, DataLimit, newsData, PageData } from "../../redux/slices/News";
 import { useParams } from "react-router-dom";
 
 const CustomPagination = () => {
@@ -50,11 +50,14 @@ const CustomPagination = () => {
   };
 
   useEffect(() => {
+    // dispatch(PageData(page + 1));
+    // dispatch(DataLimit(rowsPerPage));
     if (id === "home") {
       getNews(page + 1, rowsPerPage) // Assuming API expects 1-based page numbers
-      .then((res) => {
+        .then((res) => {
+
         const data = res.data.newsfeed || [];
-        dispatch(newsData(data));
+        dispatch(appendNewsData(data));
       })
       .catch((err) => {
         console.error("Error fetching news data:", err);
@@ -65,7 +68,7 @@ const CustomPagination = () => {
         console.log(res);
         const data = res.data.newsfeed || [];
         // setNews(data);
-        dispatch(newsData(data));
+        dispatch(appendNewsData(data));
   
         // Determine if it's the last page
         // setIsLastPage(data.length < rowsPerPage);

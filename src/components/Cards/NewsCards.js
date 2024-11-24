@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 // import { News } from "../../theme/Resuable/CardComponents";
 import {
   Card,
@@ -18,7 +18,7 @@ import Grid from "@mui/material/Grid";
 import CustomPagination from "./CustomPagination";
 import { useDispatch, useSelector } from "react-redux";
 // import { newsData } from "../../redux/slices/News";
-import { getnewsbyId } from "../../api/Main";
+import { getNews, getnewsbyId } from "../../api/Main";
 import { Add, Close } from "../../assets/Icons";
 import { useParams } from "react-router-dom";
 import ScrollPagination from "./ScrollPagination";
@@ -27,6 +27,8 @@ import ResponsivePagination from "./ResponsivePagination";
 import Title from "../Title";
 import ViewNews from "./ViewNews";
 import AgoTimeStamp from "../AgoTimeStamp";
+import { appendNewsData } from "../../redux/slices/News";
+import { resetAppState } from "../../redux/store";
 
 function NewsCards() {
   const { id } = useParams();
@@ -36,7 +38,9 @@ function NewsCards() {
   const Mobile = useMediaQuery(theme.breakpoints.between("xs", "md"));
   const [newsidData, setnewsidData] = useState([]);
 
-  const { newsdata } = useSelector((state) => state.news);
+  const { newsdata, pagedata, limitdata } = useSelector((state) => state.news);
+  
+  const dispatch = useDispatch()
 
   // const dispatch = useDispatch()
 
@@ -49,6 +53,23 @@ function NewsCards() {
   const handleClose = () => {
     setOpen(false);
   };
+
+  useEffect(() => {
+    resetAppState()
+    if (id === "home") {
+      getNews(pagedata, limitdata) // Assuming API expects 1-based page numbers
+        .then((res) => {
+
+        const data = res.data.newsfeed || [];
+        dispatch(appendNewsData(data));
+      })
+      .catch((err) => {
+        console.error("Error fetching news data:", err);
+      });
+    } else {
+    null
+   }
+  },[])
 
   const handleViewNews = (id) => {
     // console.log(id);
@@ -106,7 +127,7 @@ function NewsCards() {
           </Typography>
         </Box>
       </Stack>
-      {newsdata ? (
+      {newsdata.length !== 0 ? (
         newsdata.map((item, index) => (
           <Card
             key={index}
@@ -126,17 +147,34 @@ function NewsCards() {
           >
             <Stack
               direction="row"
-              alignItems="center"
+              alignItems="flex-start"
               justifyContent="space-between"
               sx={{ width: "100%" }}
             >
               <Stack direction="column" alignItems="left">
-                <Typography variant="body1" sx={{ fontWeight: "bolder" }}>
-                  {item.news_author ? item.news_author : "Author"}
+                <Stack direction="row" alignItems="center" spacing={1}>
+                <Typography variant="body2" sx={{ fontWeight: "bolder" }}>
+                 Author
+                  </Typography>
+                  <Typography variant="body2" sx={{ fontWeight: "bolder" }}>
+                  :
                 </Typography>
-                <Typography variant="body2" sx={{ fontSize: "14px" }}>
-                  categorie
+                <Typography variant="body2" sx={{ fontWeight: "normal" }}>
+                  {item.news_author ? item.news_author : "Anonymous"}
                 </Typography>
+                </Stack>
+                <Stack direction="row" alignItems="center" spacing={1}>
+                <Typography variant="body2" sx={{ fontWeight: "bolder" }}>
+                 Category
+                  </Typography>
+                  <Typography variant="body2" sx={{ fontWeight: "bolder" }}>
+                  :
+                </Typography>
+                <Typography variant="body2" sx={{ fontWeight: "normal" }}>
+                  {item.news_category ? item.news_category : "Anonymous"}
+                </Typography>
+               </Stack>
+                
                 <AgoTimeStamp time={item.news_published_at} />
               </Stack>
               <Button
@@ -167,7 +205,8 @@ function NewsCards() {
       ) : (
         <Typography>No News Found !</Typography>
       )}
-      {Mobile ? null : <CustomPagination />}
+      <ResponsivePagination />
+      {/* {Mobile ? null : <CustomPagination />} */}
       {newsidData.map((item) => (
         <ViewNews news={item} openDialog={open} closeDialog={handleClose} />
       ))}

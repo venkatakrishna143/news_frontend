@@ -12,6 +12,7 @@ import React from "react";
 import { Add, Close } from "../../assets/Icons";
 import { useTheme } from "@emotion/react";
 import AgoTimeStamp from "../AgoTimeStamp";
+import { Link } from "react-router-dom";
 
 function ViewNews({ news, openDialog, closeDialog }) {
   const theme = useTheme();
@@ -39,7 +40,7 @@ function ViewNews({ news, openDialog, closeDialog }) {
       <DialogContent
         sx={{
           width: "100%",
-          height:  "500px",
+          height: "500px",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
@@ -152,16 +153,34 @@ function ViewNews({ news, openDialog, closeDialog }) {
                   direction="column"
                   alignItems="start"
                   justifyContent="left"
-                  sx={{ width: Mobile ? "100%" : "50%" ,py:"4px"}}
+                  sx={{ width: Mobile ? "100%" : "50%", py: "4px" }}
                 >
-                  <Typography variant="body1" sx={{ fontWeight: "bolder" }}>
-                    {news.news_author ? news.news_author : "Author"}
-                  </Typography>
-                  <Typography variant="body2" sx={{ fontSize: "12px",textTransform:"capitalize" }}>
-                    {news.news_category}
-                                  </Typography>
-                <AgoTimeStamp time={news.news_published_at}  />
-                                  
+                  <Stack direction="row" alignItems="center" spacing={1}>
+                    <Typography variant="body2" sx={{ fontWeight: "bolder" }}>
+                      Author
+                    </Typography>
+                    <Typography variant="body2" sx={{ fontWeight: "bolder" }}>
+                      :
+                    </Typography>
+                    <Typography variant="body2" sx={{ fontWeight: "normal" }}>
+                      {news.news_author ? news.news_author : "Anonymous"}
+                    </Typography>
+                  </Stack>
+                  <Stack direction="row" alignItems="center" spacing={1}>
+                    <Typography variant="body2" sx={{ fontWeight: "bolder" }}>
+                      Category
+                    </Typography>
+                    <Typography variant="body2" sx={{ fontWeight: "bolder" }}>
+                      :
+                    </Typography>
+                    <Typography
+                      variant="body2"
+                      sx={{ fontWeight: "normal", textTransform: "capitalize" }}
+                    >
+                      {news.news_category ? news.news_category : "Anonymous"}
+                    </Typography>
+                  </Stack>
+                  <AgoTimeStamp time={news.news_published_at} />
                 </Stack>
                 <Button
                   variant="text"
@@ -193,6 +212,21 @@ function ViewNews({ news, openDialog, closeDialog }) {
               >
                 {news.news_description}
               </Typography>
+
+              <Stack
+                direction="row"
+                alignItems="center"
+                justifyContent="left"
+                spacing={1}
+              >
+                {/* <Typography variant="body1">
+                  Source
+                </Typography>
+                <Typography>
+                  :
+                </Typography> */}
+                <Link to={news.news_url}>Source</Link>
+              </Stack>
             </Stack>
           </Stack>
         </Stack>

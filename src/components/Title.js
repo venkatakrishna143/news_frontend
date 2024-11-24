@@ -1,8 +1,12 @@
-import { Button, Stack, Typography } from "@mui/material";
+import { useTheme } from "@emotion/react";
+import { Button, Stack, Typography, useMediaQuery } from "@mui/material";
 import React, { useState } from "react";
 
 function Title({ text }) {
-  const limit = 30; // Character limit for truncation
+  const theme = useTheme()
+  const Mobile = useMediaQuery(theme.breakpoints.between("xs","md"))
+
+  const limit = Mobile ? 25 :30; // Character limit for truncation
   const [showFullText, setShowFullText] = useState(false);
 
   const toggleText = () => {
