@@ -46,9 +46,9 @@ export const getfilters = async (data) => {
   const response = await api.post(
     newslinks.filters,
     JSON.stringify({
-      search_key: data,
-      enddate: data,
-      startdate: data,
+      search_key: data.searchdata,
+      enddate: data.enddate,
+      startdate: data.startdate,
     }),
     {
       headers: {

@@ -1,19 +1,10 @@
-import React from "react";
-// import { Trending } from "../../theme/Resuable/CardComponents";
-import { Card, styled } from "@mui/material";
-import Grid from "@mui/material/Grid";
-
+import React from 'react'
+import { MainCardContainer } from './ProfileCards'
 
 function TrendingNews() {
   return (
-    <Trending item component={Card} xs={12} md={3.5}>
-      TrendingNews
-    </Trending>
-  );
+    <MainCardContainer>TrendingNews</MainCardContainer>
+  )
 }
 
-export default TrendingNews;
-
-const Trending= styled(Grid)(({ theme }) => ({
-  padding: "10px",
-}));
+export default TrendingNews

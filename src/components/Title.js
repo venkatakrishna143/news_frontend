@@ -21,7 +21,7 @@ function Title({ text }) {
       spacing={2}
       style={{ width: "100%" }}
     >
-      <Typography variant="h6" sx={{ fontWeight: "bold" }}>
+      <Typography variant="body1" sx={{ fontWeight: "bold" }}>
         {showFullText ? text : `${text.slice(0, limit)}`}
       </Typography>
 

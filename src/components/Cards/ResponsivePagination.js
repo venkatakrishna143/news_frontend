@@ -33,7 +33,7 @@ function ResponsivePagination() {
           console.error("Error fetching news data:", err);
         });
     } else {
-      resetAppState()
+      // resetAppState()
       getnewsCategories(apiOject)
         .then((res) => {
           console.log(res);

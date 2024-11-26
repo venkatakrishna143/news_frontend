@@ -32,7 +32,7 @@ function NavMenu({click,closeMenu}) {
     };
 
     if (item === "home") {
-      // resetAppState()
+      resetAppState()
       getNews(pagedata, limitdata) // Assuming API expects 1-based page numbers
       .then((res) => {
         const data = res.data.newsfeed || [];

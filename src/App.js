@@ -1,8 +1,4 @@
 import React from "react";
-import TopNav from "./components/others/TopNav";
-import LeftSidebar from "./components/others/LeftSidebar";
-import MainFeed from "./components/others/MainFeed";
-import RightSidebar from "./components/others/RightSidebar";
 import "./App.css";
 import { styled, ThemeProvider } from "@mui/material/styles";
 import customeStyles from "./theme/CustomeStlyles";
@@ -14,6 +10,8 @@ import { Provider as ReduxProvider } from "react-redux";
 import { persistor, store } from "./redux/store";
 import { PersistGate } from "redux-persist/integration/react";
 import Search from "./components/Search";
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 
 function App() {
   const apiurl = process.env.REACT_APP_API_URL;
@@ -22,6 +20,7 @@ function App() {
   return (
     <ReduxProvider store={store}>
       <PersistGate loading={null} persistor={persistor}>
+      <LocalizationProvider dateAdapter={AdapterDayjs}>
         <ThemeProvider theme={customeStyles}>
           <MainContainer>
             <Navbar />
@@ -30,18 +29,10 @@ function App() {
               <PageRoutes />
             </BodyOuterContainer>
           </MainContainer>
-        </ThemeProvider>
+          </ThemeProvider>
+          </LocalizationProvider>
       </PersistGate>
     </ReduxProvider>
-
-    // <div className="App">
-    //   <TopNav />
-    //   <div className="main-layout">
-    //     <LeftSidebar />
-    //     <MainFeed />
-    //     <RightSidebar />
-    //   </div>
-    // </div>
   );
 }
 
@@ -70,14 +61,12 @@ const BodyOuterContainer = styled(Box)(({ theme }) => ({
   alignItems: "start",
   justifyContent: "center",
   position: "absolute",
-    bottom: 0,
+  bottom: 0,
   // border: "1px solid blue",
 
   // margin:'10px'
 
-  [theme.breakpoints.between("xs", "md")]: {
-    
-  },
+  [theme.breakpoints.between("xs", "md")]: {},
 }));
 
 export const BodyInnerContainer = styled(Grid)(({ theme }) => ({
@@ -89,9 +78,13 @@ export const BodyInnerContainer = styled(Grid)(({ theme }) => ({
   display: "flex",
   alignItems: "flex-start",
   justifyContent: "space-between",
+  position: "relative",
+  // border:'1px solid blue',
 
   [theme.breakpoints.between("xs", "sm")]: {
     width: "100%",
     padding: "8px",
+  justifyContent: "center",
+
   },
 }));

@@ -1,17 +1,19 @@
-import React from 'react'
-// import { Profile } from '../../theme/Resuable/CardComponents'
-import { Card } from '@mui/material'
-import styled from 'styled-components';
-import Grid from '@mui/material/Grid'
+import { Card, styled } from "@mui/material";
+import React from "react";
 
 function ProfileCards() {
-  return (
-    <Profile item component={Card} xs={12} md={2.8}>ProfileCards</Profile>
-  )
+  return <MainCardContainer >ProfileCards</MainCardContainer>;
 }
 
-export default ProfileCards
+export default ProfileCards;
 
-const Profile = styled(Grid)(({ theme }) => ({
-  padding: "10px",
-}));
+export const MainCardContainer = styled(Card)(({theme }) => ({
+  width: '100%',
+  display: 'flex',
+  alignItems: 'flex-start',
+  justifyContent: "start",
+  flexDirection: 'column',
+  gap: "8px",
+  padding: "8px",
+  // height:"100px"
+}))

@@ -18,7 +18,7 @@ import Grid from "@mui/material/Grid";
 import CustomPagination from "./CustomPagination";
 import { useDispatch, useSelector } from "react-redux";
 // import { newsData } from "../../redux/slices/News";
-import { getNews, getnewsbyId } from "../../api/Main";
+import { getNews, getnewsbyId, getnewsCategories } from "../../api/Main";
 import { Add, Close } from "../../assets/Icons";
 import { useParams } from "react-router-dom";
 import ScrollPagination from "./ScrollPagination";
@@ -27,8 +27,9 @@ import ResponsivePagination from "./ResponsivePagination";
 import Title from "../Title";
 import ViewNews from "./ViewNews";
 import AgoTimeStamp from "../AgoTimeStamp";
-import { appendNewsData } from "../../redux/slices/News";
+import { appendNewsData, PageData } from "../../redux/slices/News";
 import { resetAppState } from "../../redux/store";
+import NewsImage from "../../assets/images/news.jpg";
 
 function NewsCards() {
   const { id } = useParams();
@@ -39,8 +40,8 @@ function NewsCards() {
   const [newsidData, setnewsidData] = useState([]);
 
   const { newsdata, pagedata, limitdata } = useSelector((state) => state.news);
-  
-  const dispatch = useDispatch()
+
+  const dispatch = useDispatch();
 
   // const dispatch = useDispatch()
 
@@ -55,31 +56,50 @@ function NewsCards() {
   };
 
   useEffect(() => {
-    resetAppState()
+    const pages = pagedata + 1;
+    // dispatch(PageData(pages));
+    const apiOject = {
+      page: pagedata,
+      limit: limitdata,
+      categorie: id,
+    };
+
+    resetAppState();
     if (id === "home") {
       getNews(pagedata, limitdata) // Assuming API expects 1-based page numbers
         .then((res) => {
-
-        const data = res.data.newsfeed || [];
-        dispatch(appendNewsData(data));
-      })
-      .catch((err) => {
-        console.error("Error fetching news data:", err);
-      });
+          const data = res.data.newsfeed || [];
+          dispatch(appendNewsData(data));
+        })
+        .catch((err) => {
+          console.error("Error fetching news data:", err);
+        });
     } else {
-    null
-   }
-  },[])
+      getnewsCategories(apiOject)
+        .then((res) => {
+          console.log(res);
+          const data = res.data.newsfeed || [];
+          // setNews(data);
+          dispatch(appendNewsData(data));
+
+          // Determine if it's the last page
+          // setIsLastPage(data.length < rowsPerPage);
+        })
+        .catch((err) => {
+          console.error("Error fetching news data:", err);
+        });
+    }
+  }, []);
 
   const handleViewNews = (id) => {
     // console.log(id);
     handleClickOpen();
     getnewsbyId(id)
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         const status = res.status;
         if (status === 200) {
-          console.log(res.data.values);
+          // console.log(res.data.values);
           setnewsidData(res.data.values);
         } else setnewsidData(false);
       })
@@ -130,7 +150,7 @@ function NewsCards() {
       {newsdata.length !== 0 ? (
         newsdata.map((item, index) => (
           <Card
-            key={index}
+            key={item.news_id}
             sx={{
               width: "100%",
               p: "10px",
@@ -141,7 +161,7 @@ function NewsCards() {
               flexDirection: "column",
               mb: "10px",
               cursor: "pointer",
-              height: "500px",
+              height: "510px",
               gap: "10px",
             }}
           >
@@ -153,28 +173,28 @@ function NewsCards() {
             >
               <Stack direction="column" alignItems="left">
                 <Stack direction="row" alignItems="center" spacing={1}>
-                <Typography variant="body2" sx={{ fontWeight: "bolder" }}>
-                 Author
+                  <Typography variant="body2" sx={{ fontWeight: "bolder" }}>
+                    Author
                   </Typography>
                   <Typography variant="body2" sx={{ fontWeight: "bolder" }}>
-                  :
-                </Typography>
-                <Typography variant="body2" sx={{ fontWeight: "normal" }}>
-                  {item.news_author ? item.news_author : "Anonymous"}
-                </Typography>
+                    :
+                  </Typography>
+                  <Typography variant="body2" sx={{ fontWeight: "normal" }}>
+                    {item.news_author ? item.news_author : "Anonymous"}
+                  </Typography>
                 </Stack>
                 <Stack direction="row" alignItems="center" spacing={1}>
-                <Typography variant="body2" sx={{ fontWeight: "bolder" }}>
-                 Category
+                  <Typography variant="body2" sx={{ fontWeight: "bolder" }}>
+                    Category
                   </Typography>
                   <Typography variant="body2" sx={{ fontWeight: "bolder" }}>
-                  :
-                </Typography>
-                <Typography variant="body2" sx={{ fontWeight: "normal" }}>
-                  {item.news_category ? item.news_category : "Anonymous"}
-                </Typography>
-               </Stack>
-                
+                    :
+                  </Typography>
+                  <Typography variant="body2" sx={{ fontWeight: "normal" }}>
+                    {item.news_category ? item.news_category : "Anonymous"}
+                  </Typography>
+                </Stack>
+
                 <AgoTimeStamp time={item.news_published_at} />
               </Stack>
               <Button
@@ -195,10 +215,15 @@ function NewsCards() {
               direction="column"
               alignItems="center"
               justifyContent="center"
-              sx={{ width: "100%", border: "1px solid blue", height: "450px" }}
+              sx={{ width: "100%", height: "450px", p: "10px" }}
               onClick={() => handleViewNews(item.news_id)}
             >
-              Image
+              <ImageComponent
+                src={
+                  item.news_url_to_image ? item.news_url_to_image : NewsImage
+                }
+                alt={item.news_title}
+              />
             </Stack>
           </Card>
         ))
@@ -208,7 +233,12 @@ function NewsCards() {
       <ResponsivePagination />
       {/* {Mobile ? null : <CustomPagination />} */}
       {newsidData.map((item) => (
-        <ViewNews news={item} openDialog={open} closeDialog={handleClose} />
+        <ViewNews
+          key={item.news_id}
+          news={item}
+          openDialog={open}
+          closeDialog={handleClose}
+        />
       ))}
     </News>
   );
@@ -240,4 +270,16 @@ const News = styled(Grid)(({ theme }) => ({
   justifyContent: "center",
   flexDirection: "column ",
   gap: 2,
+  position: "relative",
+  left: "320px",
+
+  [theme.breakpoints.between("xs", "md")]: {
+    left: 0,
+  },
+}));
+
+export const ImageComponent = styled("img")(({ theme }) => ({
+  width: "350px",
+  height: "350px",
+  // objectFit: "fill", // Image will scale to fit, leaving empty space if necessary
 }));

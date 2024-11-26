@@ -5,6 +5,7 @@ import {
   DialogTitle,
   IconButton,
   Stack,
+  styled,
   Typography,
   useMediaQuery,
 } from "@mui/material";
@@ -13,6 +14,8 @@ import { Add, Close } from "../../assets/Icons";
 import { useTheme } from "@emotion/react";
 import AgoTimeStamp from "../AgoTimeStamp";
 import { Link } from "react-router-dom";
+// import { ImageComponent } from "./NewsCards";
+import NewsImage from "../../assets/images/news.jpg";
 
 function ViewNews({ news, openDialog, closeDialog }) {
   const theme = useTheme();
@@ -29,8 +32,8 @@ function ViewNews({ news, openDialog, closeDialog }) {
           //   margin: "auto",
           height: Mobile ? "500px" : "500px",
           display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
+          alignItems: "flex-start",
+          justifyContent: "start",
           //   py: 0,
         }, // Responsive sizing
       }}
@@ -44,7 +47,7 @@ function ViewNews({ news, openDialog, closeDialog }) {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          p: "6px",
+          // p: "6px",
           position: "relative",
         }}
       >
@@ -77,7 +80,7 @@ function ViewNews({ news, openDialog, closeDialog }) {
           direction={Mobile ? "column" : "row"}
           alignItems="center"
           justifyContent={Mobile ? "center" : "space-between"}
-          sx={{ width: "100%", height: "480px" }}
+          sx={{ width: "100%", height: "450px" }}
           //   spacing={2}
         >
           <Stack
@@ -85,9 +88,9 @@ function ViewNews({ news, openDialog, closeDialog }) {
             alignItems="center"
             justifyContent="center"
             sx={{
-              width: Mobile ? "100%" : "60%",
+              width: Mobile ? "100%" : "50%",
               //   border: "1px solid blue",
-              height: Mobile ? "450px" : "450px",
+              height: Mobile ? "400px" : "450px",
               //   p: 1,
               bgcolor: "black",
               position: "relative",
@@ -110,7 +113,10 @@ function ViewNews({ news, openDialog, closeDialog }) {
                 <Close />
               </IconButton>
             ) : null}
-            Image
+            <ImageComponent
+              src={news.news_url_to_image ? news.news_url_to_image : NewsImage}
+              alt={news.news_title}
+            />
           </Stack>
           <Stack
             direction="column"
@@ -118,11 +124,11 @@ function ViewNews({ news, openDialog, closeDialog }) {
             justifyContent="start"
             flexDirection="column"
             sx={{
-              width: Mobile ? "100%" : "40%",
+              width: Mobile ? "100%" : "50%",
               // border: "1px solid blue",
               height: Mobile ? "200px" : "450px",
               //   overflowY: "scroll",
-              p: "8px",
+              p: "6px",
             }}
           >
             <DialogTitle
@@ -236,3 +242,15 @@ function ViewNews({ news, openDialog, closeDialog }) {
 }
 
 export default ViewNews;
+
+const ImageComponent = styled("img")(({ theme }) => ({
+  width: "350px",
+  height: "350px",
+  // objectFit: "contain", // Image will scale to fit, leaving empty space if necessary
+
+  [theme.breakpoints.between("xs", "md")]: {
+    width: "200px",
+    height: "200px",
+    objectFit: "scale-down",
+  },
+}));
