@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import { MainCardContainer } from './ProfileCards'; // Assuming you have a styled component for cards
+import { MainCardContainer } from './ProfileCards'; // Assuming this is your styled component
 
 function WeatherCard() {
   const [weather, setWeather] = useState(null);
+  const [location, setLocation] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const fetchWeather = async () => {
+    const fetchWeather = async (lat, lon) => {
       try {
         const response = await fetch(
-          `https://api.openweathermap.org/data/2.5/weather?id=1269843&appid=afddce78ee5ce9c1ca52a7a85f7cbac9&units=metric`
+          `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=afddce78ee5ce9c1ca52a7a85f7cbac9&units=metric`
         );
 
         if (!response.ok) {
@@ -26,7 +27,22 @@ function WeatherCard() {
       }
     };
 
-    fetchWeather();
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const { latitude, longitude } = position.coords;
+          setLocation({ latitude, longitude });
+          fetchWeather(latitude, longitude);
+        },
+        (err) => {
+          setError('Failed to get location: ' + err.message);
+          setLoading(false);
+        }
+      );
+    } else {
+      setError('Geolocation is not supported by your browser.');
+      setLoading(false);
+    }
   }, []);
 
   if (loading) return <MainCardContainer>Loading weather data...</MainCardContainer>;
