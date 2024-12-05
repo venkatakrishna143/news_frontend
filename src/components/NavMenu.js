@@ -4,14 +4,14 @@ import { NavData } from "../mock/Nav";
 import { Typography, useMediaQuery } from "@mui/material";
 import { useTheme } from "@emotion/react";
 import { useDispatch, useSelector } from "react-redux";
-import { getNews, getnewsCategories } from "../api/Main";
+import { getNews, getnewsCategories } from "../api/News";
 import { appendNewsData, newsData, resetState } from "../redux/slices/News";
 import { useLocation } from "react-router-dom";
 import { resetAppState } from "../redux/store";
 
-function NavMenu({click,closeMenu}) {
+function NavMenu({ click, closeMenu }) {
   const theme = useTheme();
-  const {pathname} = useLocation()
+  const { pathname } = useLocation();
   const { pagedata, limitdata } = useSelector((state) => state.news);
 
   // console.log(pathname)
@@ -23,7 +23,7 @@ function NavMenu({click,closeMenu}) {
   const handleAPICall = (item) => {
     console.log(item);
 
-    closeMenu()
+    closeMenu();
 
     const apiOject = {
       page: pagedata,
@@ -32,31 +32,32 @@ function NavMenu({click,closeMenu}) {
     };
 
     if (item === "home") {
-      resetAppState()
-      getNews(pagedata, limitdata) // Assuming API expects 1-based page numbers
-      .then((res) => {
-        const data = res.data.newsfeed || [];
-        dispatch(appendNewsData(data));
-      })
-      .catch((err) => {
-        console.error("Error fetching news data:", err);
-      });
-    } else {
-      resetAppState()
-      getnewsCategories(apiOject)
-      .then((res) => {
-        console.log(res);
-        const data = res.data.newsfeed || [];
-        // setNews(data);
-        dispatch(appendNewsData(data));
+      resetAppState();
 
-        // Determine if it's the last page
-        // setIsLastPage(data.length < rowsPerPage);
-      })
-      .catch((err) => {
-        console.error("Error fetching news data:", err);
-      });
-   }
+      getNews(pagedata, limitdata) // Assuming API expects 1-based page numbers
+        .then((res) => {
+          const data = res.data.newsfeed || [];
+          dispatch(appendNewsData(data));
+        })
+        .catch((err) => {
+          console.error("Error fetching news data:", err);
+        });
+    } else {
+      resetAppState();
+      getnewsCategories(apiOject)
+        .then((res) => {
+          console.log(res);
+          const data = res.data.newsfeed || [];
+          // setNews(data);
+          dispatch(appendNewsData(data));
+
+          // Determine if it's the last page
+          // setIsLastPage(data.length < rowsPerPage);
+        })
+        .catch((err) => {
+          console.error("Error fetching news data:", err);
+        });
+    }
   };
 
   return (
@@ -65,7 +66,7 @@ function NavMenu({click,closeMenu}) {
         <NavItem key={item.id}>
           <NavLinks to={item.path} onClick={() => handleAPICall(item.apiid)}>
             {item.icon}
-           {item.title}
+            {item.title}
           </NavLinks>
         </NavItem>
       ))}

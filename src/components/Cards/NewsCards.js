@@ -18,7 +18,7 @@ import Grid from "@mui/material/Grid";
 import CustomPagination from "./CustomPagination";
 import { useDispatch, useSelector } from "react-redux";
 // import { newsData } from "../../redux/slices/News";
-import { getNews, getnewsbyId, getnewsCategories } from "../../api/Main";
+import { getNews, getnewsbyId, getnewsCategories } from "../../api/News";
 import { Add, Close } from "../../assets/Icons";
 import { useParams } from "react-router-dom";
 import ScrollPagination from "./ScrollPagination";
@@ -275,6 +275,10 @@ const News = styled(Grid)(({ theme }) => ({
 
   [theme.breakpoints.between("xs", "md")]: {
     left: 0,
+  },
+
+  [theme.breakpoints.between("md", "lg")]: {
+    left: "230px",
   },
 }));
 

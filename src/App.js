@@ -10,27 +10,32 @@ import { Provider as ReduxProvider } from "react-redux";
 import { persistor, store } from "./redux/store";
 import { PersistGate } from "redux-persist/integration/react";
 import Search from "./components/Search";
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { useLocation } from "react-router-dom";
 
 function App() {
-  const apiurl = process.env.REACT_APP_API_URL;
-  // console.log(apiurl);
+  const { pathname } = useLocation();
+
+  const NavCondition =
+    pathname === "/user/login" ||
+    pathname === "/user/register" ||
+    pathname === "/pagenotfound";
 
   return (
     <ReduxProvider store={store}>
       <PersistGate loading={null} persistor={persistor}>
-      <LocalizationProvider dateAdapter={AdapterDayjs}>
-        <ThemeProvider theme={customeStyles}>
-          <MainContainer>
-            <Navbar />
-            {/* <Search /> */}
-            <BodyOuterContainer>
-              <PageRoutes />
-            </BodyOuterContainer>
-          </MainContainer>
+        <LocalizationProvider dateAdapter={AdapterDayjs}>
+          <ThemeProvider theme={customeStyles}>
+            <MainContainer>
+              {NavCondition ? null : <Navbar />}
+              {/* <Search /> */}
+              <BodyOuterContainer Nav={NavCondition}>
+                <PageRoutes />
+              </BodyOuterContainer>
+            </MainContainer>
           </ThemeProvider>
-          </LocalizationProvider>
+        </LocalizationProvider>
       </PersistGate>
     </ReduxProvider>
   );
@@ -44,7 +49,7 @@ const MainContainer = styled(Box)(({ theme }) => ({
   width: "100%",
   height: "100vh",
   backgroundColor: theme.palette.background.main,
-  color: theme.palette.background.main,
+  // color: theme.palette.background.main,
   display: "flex",
   alignItems: "start",
   justifyContent: "flex-start",
@@ -52,9 +57,9 @@ const MainContainer = styled(Box)(({ theme }) => ({
   position: "relative",
 }));
 
-const BodyOuterContainer = styled(Box)(({ theme }) => ({
+const BodyOuterContainer = styled(Box)(({ theme, Nav }) => ({
   width: "100%",
-  height: "calc(100vh - 80px)",
+  height: Nav ? "100vh" : "calc(100vh - 80px)",
   backgroundColor: theme.palette.background.main,
   // color: theme.palette.background.main,
   display: "flex",
@@ -84,7 +89,6 @@ export const BodyInnerContainer = styled(Grid)(({ theme }) => ({
   [theme.breakpoints.between("xs", "sm")]: {
     width: "100%",
     padding: "8px",
-  justifyContent: "center",
-
+    justifyContent: "center",
   },
 }));

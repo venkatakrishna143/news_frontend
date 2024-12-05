@@ -2,23 +2,15 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   isLoading: false,
-  pagedata: 1,
-  limitdata: 10,
-  newsdata: [],
-  categories: null,
+  bookmarks: [],
   isError: null,
 };
 
 const slice = createSlice({
-  name: "news",
+  name: "bookmarks",
   initialState,
   reducers: {
-    appendNewsData: (state, action) => {
-      state.newsdata = [...state.newsdata, ...action.payload]; // Append new data
-    },
-    replaceNewsData: (state, action) => {
-      state.newsdata = action.payload; // Replace with new data
-    },
+   
     PageData: (state, action) => {
       state.pagedata = action.payload; // Update pagedata
     },

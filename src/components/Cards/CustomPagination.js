@@ -1,8 +1,13 @@
 import { Stack, TablePagination } from "@mui/material";
 import React, { useEffect, useState, useRef } from "react";
-import { getNews, getnewsCategories } from "../../api/Main";
+import { getNews, getnewsCategories } from "../../api/News";
 import { useDispatch } from "react-redux";
-import { appendNewsData, DataLimit, newsData, PageData } from "../../redux/slices/News";
+import {
+  appendNewsData,
+  DataLimit,
+  newsData,
+  PageData,
+} from "../../redux/slices/News";
 import { useParams } from "react-router-dom";
 
 const CustomPagination = () => {
@@ -10,8 +15,7 @@ const CustomPagination = () => {
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [news, setNews] = useState([]);
   const [isLastPage, setIsLastPage] = useState(false); // To track the last page
-  const {id} =useParams()
-
+  const { id } = useParams();
 
   const dispatch = useDispatch();
   const prevPageRef = useRef(page); // Ref to track previous page
@@ -55,29 +59,28 @@ const CustomPagination = () => {
     if (id === "home") {
       getNews(page + 1, rowsPerPage) // Assuming API expects 1-based page numbers
         .then((res) => {
-
-        const data = res.data.newsfeed || [];
-        dispatch(appendNewsData(data));
-      })
-      .catch((err) => {
-        console.error("Error fetching news data:", err);
-      });
+          const data = res.data.newsfeed || [];
+          dispatch(appendNewsData(data));
+        })
+        .catch((err) => {
+          console.error("Error fetching news data:", err);
+        });
     } else {
       getnewsCategories(apiOject)
-      .then((res) => {
-        console.log(res);
-        const data = res.data.newsfeed || [];
-        // setNews(data);
-        dispatch(appendNewsData(data));
-  
-        // Determine if it's the last page
-        // setIsLastPage(data.length < rowsPerPage);
-      })
-      .catch((err) => {
-        console.error("Error fetching news data:", err);
-      });
-   }
-  },[])
+        .then((res) => {
+          console.log(res);
+          const data = res.data.newsfeed || [];
+          // setNews(data);
+          dispatch(appendNewsData(data));
+
+          // Determine if it's the last page
+          // setIsLastPage(data.length < rowsPerPage);
+        })
+        .catch((err) => {
+          console.error("Error fetching news data:", err);
+        });
+    }
+  }, []);
 
   return (
     <Stack
@@ -111,11 +114,6 @@ const CustomPagination = () => {
 
 export default CustomPagination;
 
+const ResponsivePagination = () => {};
 
-const ResponsivePagination = () => {
-  
-}
-
-const DesktopPagination = () => {
-  
-}
+const DesktopPagination = () => {};

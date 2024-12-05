@@ -46,7 +46,7 @@ export const NavList = styled("ul")(({ theme, toggle }) => ({
   alignItems: "center",
   justifyContent: "center",
   padding: 0,
-  [theme.breakpoints.between("xs", "md")]: {
+  [theme.breakpoints.between("xs", "lg")]: {
     // border:'1px solid blue'
     padding: 0,
     position: "fixed",

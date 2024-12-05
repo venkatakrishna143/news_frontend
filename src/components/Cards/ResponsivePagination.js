@@ -1,7 +1,7 @@
 import { Button, Stack } from "@mui/material";
 import React from "react";
 import { useParams } from "react-router-dom";
-import { getNews, getnewsCategories } from "../../api/Main";
+import { getNews, getnewsCategories } from "../../api/News";
 import { useDispatch, useSelector } from "react-redux";
 import { appendNewsData, PageData } from "../../redux/slices/News";
 import { resetAppState } from "../../redux/store";
@@ -12,16 +12,15 @@ function ResponsivePagination() {
 
   const dispatch = useDispatch();
 
- 
   const handleApiCall = () => {
-    const pages = pagedata + 1
+    const pages = pagedata + 1;
     dispatch(PageData(pages));
     const apiOject = {
       page: pages,
       limit: limitdata,
       categorie: id,
     };
-  
+
     if (id === "home") {
       // resetAppState()
       getNews(pagedata + 1, limitdata) // Assuming API expects 1-based page numbers

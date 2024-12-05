@@ -15,7 +15,7 @@ function Navbar() {
   //  MediaQueries For Themes
   const theme = useTheme();
   // const BelowMobile = useMediaQuery(theme.breakpoints.up("xs"));
-  const Mobile = useMediaQuery(theme.breakpoints.between("xs", "md"));
+  const Mobile = useMediaQuery(theme.breakpoints.between("xs", "lg"));
 
   const [toggle, setToggle] = useState(false);
 
@@ -72,7 +72,7 @@ function Navbar() {
           alignItems="center"
           justifyContent="center"
           spacing={2}
-          sx={{p:1}}
+          sx={{ p: 1 }}
         >
           <SearchIcon onClick={handleSearchOpen} />
           <Avatar sx={{ width: 30, height: 30 }} />

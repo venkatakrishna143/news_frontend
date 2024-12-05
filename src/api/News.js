@@ -1,12 +1,12 @@
 import api from "./axios";
-import { newslinks } from "./urls";
+import { apilinks } from "./urls";
 
 // get All News
 
 export const getNews = async (pagedata, limitdata) => {
   // console.log(pagedata, limitdata);
   const response = await api.post(
-    newslinks.allnews,
+    apilinks.news.allnews,
     JSON.stringify({
       page: pagedata,
       limit: limitdata,
@@ -26,7 +26,7 @@ export const getNews = async (pagedata, limitdata) => {
 
 export const getnewsbyId = async (id) => {
   const response = await api.post(
-    newslinks.getnewsbyid,
+    apilinks.news.getnewsbyid,
     JSON.stringify({
       newsId: id,
     }),
@@ -44,7 +44,7 @@ export const getnewsbyId = async (id) => {
 
 export const getfilters = async (data) => {
   const response = await api.post(
-    newslinks.filters,
+    apilinks.news.filters,
     JSON.stringify({
       search_key: data.searchdata,
       enddate: data.enddate,
@@ -64,7 +64,7 @@ export const getfilters = async (data) => {
 
 export const getnewsCategories = async (data) => {
   const response = await api.post(
-    newslinks.categories,
+    apilinks.news.categories,
     JSON.stringify({
       page: data.page,
       limit: data.limit,

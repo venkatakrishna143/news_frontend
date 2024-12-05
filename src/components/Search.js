@@ -13,7 +13,7 @@ import * as yup from "yup";
 import { Controller, useForm } from "react-hook-form";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import dayjs from "dayjs";
-import { getfilters } from "../api/Main";
+import { getfilters } from "../api/News";
 import { appendNewsData } from "../redux/slices/News";
 import { useDispatch } from "react-redux";
 import { resetAppState } from "../redux/store";

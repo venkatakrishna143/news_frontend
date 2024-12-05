@@ -1,9 +1,9 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { getNews, getnewsCategories } from '../../api/Main';
-import { Stack, Typography, CircularProgress } from '@mui/material';
-import { newsData } from '../../redux/slices/News';
-import { useParams } from 'react-router-dom';
+import React, { useEffect, useRef, useState } from "react";
+import { useDispatch } from "react-redux";
+import { getNews, getnewsCategories } from "../../api/News";
+import { Stack, Typography, CircularProgress } from "@mui/material";
+import { newsData } from "../../redux/slices/News";
+import { useParams } from "react-router-dom";
 
 function LinkedInStyleScrollPagination() {
   const containerRef = useRef(null);
@@ -64,11 +64,11 @@ function LinkedInStyleScrollPagination() {
       ref={containerRef}
       // onScroll={handleScroll}
       sx={{
-        width: '100%',
-        height: '80vh',
-        overflowY: 'auto',
-        padding: '10px',
-        backgroundColor: '#f9f9f9',
+        width: "100%",
+        height: "80vh",
+        overflowY: "auto",
+        padding: "10px",
+        backgroundColor: "#f9f9f9",
       }}
     >
       <Typography variant="h6" gutterBottom>
@@ -84,7 +84,7 @@ function LinkedInStyleScrollPagination() {
       {isLoading && (
         <CircularProgress
           size={24}
-          sx={{ display: 'block', margin: '20px auto' }}
+          sx={{ display: "block", margin: "20px auto" }}
         />
       )}
 
@@ -92,7 +92,7 @@ function LinkedInStyleScrollPagination() {
       {!hasMore && (
         <Typography
           variant="body2"
-          sx={{ textAlign: 'center', color: 'gray', marginTop: '20px' }}
+          sx={{ textAlign: "center", color: "gray", marginTop: "20px" }}
         >
           You have reached the end of the feed.
         </Typography>
