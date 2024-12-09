@@ -10,6 +10,7 @@ export default ProfileCards;
 export const MainCardContainer = styled(Card)(({theme }) => ({
   width: '100%',
   display: 'flex',
+  height:"300px",
   alignItems: 'flex-start',
   justifyContent: "start",
   flexDirection: 'column',

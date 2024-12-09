@@ -9,11 +9,21 @@ import CustomPagination from "../components/Cards/CustomPagination";
 import Grid from "@mui/material/Grid";
 import JobCard from "../components/Cards/JobCard";
 import WeatherCard from "../components/Cards/WeatherCard";
+import { useSelector } from "react-redux";
+import { Navigate } from "react-router-dom";
 
 function LandingPage() {
   const theme = useTheme();
+  const { newsdata, pagedata, limitdata } = useSelector((state) => state.news);
   // const BelowMobile = useMediaQuery(theme.breakpoints.up("xs"));
+  
   const Mobile = useMediaQuery(theme.breakpoints.between("xs", "sm"));
+ 
+
+  if (!newsdata) {
+    return <Navigate to="/pagenotfound" replace />;
+  }
+ 
   return (
     <BodyInnerContainer container columnGap={2} rowGap={2}>
       <LeftCardsSection item xs={12} md={3}>

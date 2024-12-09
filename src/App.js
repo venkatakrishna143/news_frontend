@@ -13,27 +13,30 @@ import Search from "./components/Search";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { useLocation } from "react-router-dom";
+import { motion, AnimatePresence } from "framer-motion";
+
 
 function App() {
-  const { pathname } = useLocation();
+  const {pathname} = useLocation();
+  
 
-  const NavCondition =
-    pathname === "/user/login" ||
-    pathname === "/user/register" ||
-    pathname === "/pagenotfound";
+  const NavCondition = pathname.includes("user")
+  
 
   return (
     <ReduxProvider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <LocalizationProvider dateAdapter={AdapterDayjs}>
           <ThemeProvider theme={customeStyles}>
+            <AnimatePresence>
             <MainContainer>
               {NavCondition ? null : <Navbar />}
               {/* <Search /> */}
               <BodyOuterContainer Nav={NavCondition}>
                 <PageRoutes />
               </BodyOuterContainer>
-            </MainContainer>
+              </MainContainer>
+              </AnimatePresence>
           </ThemeProvider>
         </LocalizationProvider>
       </PersistGate>

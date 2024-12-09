@@ -1,11 +1,13 @@
 import React from "react";
 import { Navigate, useRoutes } from "react-router-dom";
 import NotFound from "../pages/NotFound";
+import ForgotPassword from '../components/forms/ForgotPassword'
+import ChangePassword from "../components/forms/ChangePassword";
+import ResetPassword from "../components/forms/ResetPassword";
 
 // Lazy load pages
 const Home = React.lazy(() => import("../pages/LandingPage"));
-const Login = React.lazy(() => import("../pages/auth/AuthenticationPage"));
-const Register = React.lazy(() => import("../pages/auth/AuthenticationPage"));
+const AuthPage = React.lazy(() => import("../pages/auth/Authentication"));
 const Bookmarks = React.lazy(() => import("../pages/Bookmarks"));
 
 function PageRoutes() {
@@ -24,22 +26,29 @@ function PageRoutes() {
     },
 
     // Authentication routes
-    { path: "user", element: <Navigate to="user/login" replace /> },
+    { path: "user", element: <Navigate to="/user/login" replace /> },
     {
-      path: "user/login",
+      path: "user/:mode", // mode can be 'login' or 'register'
       element: (
-        <React.Suspense fallback={<div>Loading Login Page...</div>}>
-          <Login />
+        <React.Suspense fallback={<div>Loading Authentication Page...</div>}>
+          <AuthPage />
         </React.Suspense>
       ),
     },
+
     {
-      path: "user/register",
-      element: (
-        <React.Suspense fallback={<div>Loading Register Page...</div>}>
-          <Register />
-        </React.Suspense>
-      ),
+      path: "user/forgot-password",
+      element:<ForgotPassword />
+    },
+
+    {
+      path: "user/change-password",
+      element:<ChangePassword />
+    },
+
+    {
+      path: "user/reset-password",
+      element:<ResetPassword />
     },
 
     // Bookmarks page
@@ -53,8 +62,11 @@ function PageRoutes() {
     },
 
     // 404 - Page Not Found
-    { path: "*", element: <NotFound /> },
-    // { path: "/pagenotfound", element: <NotFound /> },
+    { path: "*", element: <Navigate to="/pagenotfound" replace /> },
+    {
+      path: "pagenotfound",
+      element: <NotFound />,
+    },
   ]);
 }
 
