@@ -9,7 +9,12 @@ import {
 } from "@mui/material";
 import React from "react";
 import Grid from "@mui/material/Grid";
-import { LoginContainer, MainContainer, NavgationLink, NavgationLink1 } from "./RegisterForm";
+import {
+  LoginContainer,
+  MainContainer,
+  NavgationLink,
+  NavgationLink1,
+} from "./RegisterForm";
 import { useParams } from "react-router-dom";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
@@ -79,7 +84,7 @@ function LoginForm() {
           Forgot Password
         </NavgationLink1>
 
-        <Button variant="contained" fullWidth>
+        <Button variant="contained" type="submit" fullWidth>
           Sign In
         </Button>
       </Stack>

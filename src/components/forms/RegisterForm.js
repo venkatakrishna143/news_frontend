@@ -81,7 +81,7 @@ function RegisterForm() {
         <TextField fullWidth label="Username" size="small" />
         <TextField fullWidth label="Password" size="small" />
 
-        <Button variant="contained" fullWidth>
+        <Button variant="contained" fullWidth type="submit">
           Sign Up
         </Button>
       </Stack>
