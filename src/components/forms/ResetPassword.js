@@ -2,12 +2,21 @@ import React from "react";
 import { StyledLoginContainer } from "../../pages/auth/Authentication";
 import { motion } from "framer-motion";
 import Grid from "@mui/material/Grid";
-import { Button, Stack, TextField, Typography } from "@mui/material";
+import {
+  Button,
+  Stack,
+  TextField,
+  Typography,
+  useMediaQuery,
+  useTheme,
+} from "@mui/material";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 
 function ResetPassword() {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.between("xs", "md"));
   const defaultValues = {
     email: "",
     password: "",
@@ -56,7 +65,7 @@ function ResetPassword() {
         container
         spacing={2}
         sx={{
-          width: "30%",
+          width: isMobile ? "90%" : "40%",
           height: "auto",
           bgcolor: "background.main",
           borderRadius: 3,

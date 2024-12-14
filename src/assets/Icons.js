@@ -13,7 +13,13 @@ import {
   FiSliders,
   FiPlus,
   FiMenu,
+  FiSettings,
+  FiPower,
+  FiMail,
+  FiEye,
+  FiEyeOff,
 } from "react-icons/fi";
+import { FaBookmark, FaRegBookmark } from "react-icons/fa6";
 
 export const Home = styled(FiHome)(({ theme }) => ({
   fontSize: "22px",
@@ -25,7 +31,7 @@ export const Home = styled(FiHome)(({ theme }) => ({
 export const SearchIcon = styled(FiSearch)(({ theme }) => ({
   //  Responsive
   fontSize: "24px",
-  cursor:'pointer',
+  cursor: "pointer",
   [theme.breakpoints.between("xs", "sm")]: {},
 }));
 
@@ -111,6 +117,51 @@ export const MenuBars = styled(FiMenu)(({ theme }) => ({
 export const CloseMenu = styled(FiX)(({ theme }) => ({
   fontSize: "28px",
   color: "white",
+
+  //  Responsive
+
+  [theme.breakpoints.between("xs", "sm")]: {},
+}));
+
+export const SavedNews = styled(FaBookmark)(({ theme }) => ({
+  //  Responsive
+
+  [theme.breakpoints.between("xs", "sm")]: {},
+}));
+
+export const UnSavedNews = styled(FaRegBookmark)(({ theme }) => ({
+  //  Responsive
+
+  [theme.breakpoints.between("xs", "sm")]: {},
+}));
+
+export const Settings = styled(FiSettings)(({ theme }) => ({
+  //  Responsive
+
+  [theme.breakpoints.between("xs", "sm")]: {},
+}));
+
+export const Login = styled(FiPower)(({ theme }) => ({
+  //  Responsive
+
+  [theme.breakpoints.between("xs", "sm")]: {},
+}));
+
+export const Mail = styled(FiMail)(({ theme }) => ({
+  //  Responsive
+
+  [theme.breakpoints.between("xs", "sm")]: {},
+}));
+
+export const EyeOpen = styled(FiEye)(({ theme }) => ({
+  //  Responsive
+  cursor:"pointer",
+
+  [theme.breakpoints.between("xs", "sm")]: {},
+}));
+
+export const EyeClose = styled(FiEyeOff)(({ theme }) => ({
+  cursor:"pointer",
 
   //  Responsive
 

@@ -19,7 +19,7 @@ import CustomPagination from "./CustomPagination";
 import { useDispatch, useSelector } from "react-redux";
 // import { newsData } from "../../redux/slices/News";
 import { getNews, getnewsbyId, getnewsCategories } from "../../api/News";
-import { Add, Close } from "../../assets/Icons";
+import { Add, Close, SavedNews, UnSavedNews } from "../../assets/Icons";
 import { useParams } from "react-router-dom";
 import ScrollPagination from "./ScrollPagination";
 import { useTheme } from "@emotion/react";
@@ -30,11 +30,14 @@ import AgoTimeStamp from "../AgoTimeStamp";
 import { appendNewsData, PageData } from "../../redux/slices/News";
 import { resetAppState } from "../../redux/store";
 import NewsImage from "../../assets/images/news.jpg";
+import {useAuth} from "../../pages/auth/Authenticate";
 
 function NewsCards() {
   const { id } = useParams();
   // console.log(id);
   const theme = useTheme();
+
+  const { isAuthenticated } = useAuth();
 
   const Mobile = useMediaQuery(theme.breakpoints.between("xs", "md"));
   const [newsidData, setnewsidData] = useState([]);
@@ -197,14 +200,25 @@ function NewsCards() {
 
                 <AgoTimeStamp time={item.news_published_at} />
               </Stack>
-              <Button
-                variant="outlined"
-                color="secondary"
-                startIcon={<Add />}
-                size="small"
-              >
-                Follow
-              </Button>
+              {isAuthenticated ? (
+                <Button
+                  variant="contained"
+                  color="secondary"
+                  startIcon={<SavedNews />}
+                  size="small"
+                >
+                  Saved
+                </Button>
+              ) : (
+                <Button
+                  variant="contained"
+                  color="primary"
+                  startIcon={<UnSavedNews />}
+                  size="small"
+                >
+                  Favorite
+                </Button>
+              )}
             </Stack>
             {/* <Typography variant="body1" sx={{ fontWeight: "bolder" }}>
               {item.news_title}

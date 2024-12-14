@@ -28,14 +28,14 @@ function LandingPage() {
     <BodyInnerContainer container columnGap={2} rowGap={2}>
       <LeftCardsSection item xs={12} md={3}>
         <ProfileCards />
-        <JobCard />
+        {/* <JobCard /> */}
       </LeftCardsSection>
 
       <NewsCards />
       {/* {Mobile ? <ResponsivePagination /> : null} */}
 
       <RightCardSection item xs={12} md={3} sx={{ px: "6px" }}>
-        <TrendingNews />
+        {/* <TrendingNews /> */}
         <WeatherCard />
       </RightCardSection>
     </BodyInnerContainer>

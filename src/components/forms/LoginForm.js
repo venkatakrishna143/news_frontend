@@ -6,6 +6,7 @@ import {
   Typography,
   TextField,
   Button,
+  InputAdornment,
 } from "@mui/material";
 import React from "react";
 import Grid from "@mui/material/Grid";
@@ -17,8 +18,9 @@ import {
 } from "./RegisterForm";
 import { useParams } from "react-router-dom";
 import * as yup from "yup";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import Password from "../FormComponents/Password";
 
 function LoginForm() {
   const { mode } = useParams();
@@ -26,8 +28,8 @@ function LoginForm() {
   const isMobile = useMediaQuery(theme.breakpoints.between("xs", "md"));
 
   const defaultValues = {
-    email: "",
-    password: "",
+    uemail: "",
+    upassword: "",
   };
 
   const schema = yup.object({
@@ -78,8 +80,25 @@ function LoginForm() {
         spacing={2}
         sx={{ width: "100%" }}
       >
-        <TextField fullWidth label="Email" size="small" />
-        <TextField fullWidth label="Password" size="small" />
+        <TextField
+          fullWidth
+          label="Email"
+          size="small"
+          autoComplete="off"
+          {...register("uemail")}
+        />
+        <Controller
+          name="upassword"
+          control={control}
+          render={({ field }) => (
+            <Password
+              {...field}
+              label="Password"
+              control={control}
+              errors={errors}
+            />
+          )}
+        />
         <NavgationLink1 to="/user/forgot-password">
           Forgot Password
         </NavgationLink1>

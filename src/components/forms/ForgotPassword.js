@@ -2,7 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { StyledLoginContainer } from "../../pages/auth/Authentication";
 import Grid from "@mui/material/Grid";
-import { Button, Stack, TextField, Typography } from "@mui/material";
+import { Button, Stack, TextField, Typography, useMediaQuery, useTheme } from "@mui/material";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -11,6 +11,9 @@ import { NavgationLink, NavgationLink1 } from "./RegisterForm";
 
 function ForgotPassword() {
   const navigate = useNavigate();
+
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.between("xs", "md"));
 
   const defaultValues = {
     email: "",
@@ -61,7 +64,7 @@ function ForgotPassword() {
         spacing={2}
         onSubmit={handleSubmit(onSubmit)}
         sx={{
-          width: "30%",
+          width: isMobile ? "90%" : "40%",
           height: "auto",
           bgcolor: "background.main",
           borderRadius: 3,

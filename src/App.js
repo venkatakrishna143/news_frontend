@@ -14,30 +14,32 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-
+import Authenticate from "./pages/auth/Authenticate";
 
 function App() {
-  const {pathname} = useLocation();
-  
+  const { pathname } = useLocation();
 
-  const NavCondition = pathname.includes("user")
-  
+  const NavCondition = pathname.includes("user");
+
+  const pathdata = pathname === "/pagenotfound";
 
   return (
     <ReduxProvider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <LocalizationProvider dateAdapter={AdapterDayjs}>
-          <ThemeProvider theme={customeStyles}>
-            <AnimatePresence>
-            <MainContainer>
-              {NavCondition ? null : <Navbar />}
-              {/* <Search /> */}
-              <BodyOuterContainer Nav={NavCondition}>
-                <PageRoutes />
-              </BodyOuterContainer>
-              </MainContainer>
+          <Authenticate>
+            <ThemeProvider theme={customeStyles}>
+              <AnimatePresence>
+                <MainContainer>
+                  {NavCondition || pathdata ? null : <Navbar />}
+                  {/* <Search /> */}
+                  <BodyOuterContainer NavCon={NavCondition || pathdata}>
+                    <PageRoutes />
+                  </BodyOuterContainer>
+                </MainContainer>
               </AnimatePresence>
-          </ThemeProvider>
+            </ThemeProvider>
+          </Authenticate>
         </LocalizationProvider>
       </PersistGate>
     </ReduxProvider>
@@ -60,9 +62,9 @@ const MainContainer = styled(Box)(({ theme }) => ({
   position: "relative",
 }));
 
-const BodyOuterContainer = styled(Box)(({ theme, Nav }) => ({
+const BodyOuterContainer = styled(Box)(({ theme, NavCon }) => ({
   width: "100%",
-  height: Nav ? "100vh" : "calc(100vh - 80px)",
+  height: NavCon ? "100vh" : "calc(100vh - 80px)",
   backgroundColor: theme.palette.background.main,
   // color: theme.palette.background.main,
   display: "flex",

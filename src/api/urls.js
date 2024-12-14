@@ -1,4 +1,6 @@
-export const apiurl = process.env.REACT_APP_API_URL;
+export const apiurl = process.env.REACT_APP_API_URL1;
+
+export const userapiurl = process.env.REACT_APP_API_URL2
 
 export const newslinks = {
   categories: `${apiurl}categories`,
@@ -9,9 +11,12 @@ export const newslinks = {
 
 export const apilinks = {
   auth: {
-    register: `${apiurl}user/signup`,
-    vregister: `${apiurl}user/ValidateRegister`,
-    login: `${apiurl}user/login`,
+    register: `${userapiurl}user/signup`,
+    vregister: `${userapiurl}user/ValidateRegister`,
+    login: `${userapiurl}user/login`,
+    fpassword: `${userapiurl}user/forgotpassword`,
+    rpassword: `${userapiurl}user/resetpassword`,
+    cpassword: `${userapiurl}user/changepassword`,
   },
   news: {
     categories: `${apiurl}categories`,

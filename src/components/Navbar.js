@@ -3,6 +3,7 @@ import { Nav, NavHeader } from "../theme/Resuable/NavComponents";
 import {
   Avatar,
   Stack,
+  styled,
   Typography,
   useMediaQuery,
   useTheme,
@@ -10,6 +11,7 @@ import {
 import Search from "./Search";
 import NavMenu from "./NavMenu";
 import { Close, CloseMenu, MenuBars, SearchIcon } from "../assets/Icons";
+import AvatarMenu from "./AvatarMenu";
 
 function Navbar() {
   //  MediaQueries For Themes
@@ -34,6 +36,18 @@ function Navbar() {
   const handleSearchClose = () => {
     setClick(false);
   };
+
+  // Avatar Menu
+
+  const [openDropDown, setOpenDropDown] = useState(false);
+
+  const handleMenu = () => {
+    setOpenDropDown(!openDropDown);
+  };
+
+  const handleCloseMenu = () => {
+    setOpenDropDown(false)
+  }
 
   return (
     <NavHeader>
@@ -66,6 +80,7 @@ function Navbar() {
 
         <NavMenu click={toggle} closeMenu={handleClose} />
         <Search toggle={click} closeSearch={handleSearchClose} />
+        <AvatarMenu  toggle={openDropDown} closeMenu={handleCloseMenu}/>
 
         <Stack
           direction="row"
@@ -75,7 +90,7 @@ function Navbar() {
           sx={{ p: 1 }}
         >
           <SearchIcon onClick={handleSearchOpen} />
-          <Avatar sx={{ width: 30, height: 30 }} />
+          <AvatarStyle onClick={handleMenu} />
         </Stack>
       </Nav>
     </NavHeader>
@@ -83,3 +98,9 @@ function Navbar() {
 }
 
 export default Navbar;
+
+const AvatarStyle = styled(Avatar)(({ theme }) => ({
+  width: 40,
+  height: 40,
+  cursor: "pointer",
+}));

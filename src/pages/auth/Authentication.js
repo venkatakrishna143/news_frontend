@@ -82,7 +82,7 @@ const AuthenticationPage = () => {
         spacing={1}
         sx={{
           width: "65%",
-          height: "80%",
+          height: "90%",
           bgcolor: "background.main",
           borderRadius: 3,
           position: "relative",
@@ -122,10 +122,12 @@ const AuthenticationPage = () => {
             </Typography>
 
             {mode === "login" ? (
-              <Stack   direction="column"
-              alignItems="center"
-              justifyContent="center"
-                spacing={2}>
+              <Stack
+                direction="column"
+                alignItems="center"
+                justifyContent="center"
+                spacing={2}
+              >
                 <Typography
                   variant={isMobile ? "body2" : "h6"}
                   sx={{ fontWeight: "normal", textAlign: "center" }}
@@ -133,14 +135,14 @@ const AuthenticationPage = () => {
                   Stay Informed with E-Vartalu !
                 </Typography>
                 <Typography
-                variant={isMobile ? "body2" : "body1"}
-                sx={{ fontWeight: "normal", textAlign: "center" }}
-              >
-                Explore news, trends, and updates
-                all in one place. Join us now and connect with a community where
-                knowledge meets innovation!
-              </Typography>
-                </Stack>
+                  variant={isMobile ? "body2" : "body1"}
+                  sx={{ fontWeight: "normal", textAlign: "center" }}
+                >
+                  Explore news, trends, and updates all in one place. Join us
+                  now and connect with a community where knowledge meets
+                  innovation!
+                </Typography>
+              </Stack>
             ) : (
               <Stack
                 direction="column"
@@ -183,17 +185,7 @@ const AuthenticationPage = () => {
             )}
           </Stack>
         )}
-        {/* {mode === "register" ? <RegisterForm /> : <LoginForm />} */}
 
-        {/* {isMobile ? null : mode === "login" ? (
-          <LoginForm />
-        ) : (
-          <Stack component={Grid} item xs={12} md={5.8}>
-            Text
-          </Stack>
-        )} */}
-
-        {/* <LoginForm /> */}
         <LoginForm />
         <RegisterForm />
       </Stack>

@@ -10,26 +10,46 @@ import {
 import React from "react";
 import Grid from "@mui/material/Grid";
 import * as yup from "yup";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
 import usePagination from "@mui/material/usePagination/usePagination";
+import Password from "../FormComponents/Password";
+import { Register } from "../../api/Auth";
 
 function RegisterForm() {
   const { mode } = useParams();
   const theme = useTheme();
+  const Navigate = useNavigate()
   const isMobile = useMediaQuery(theme.breakpoints.between("xs", "md"));
 
   const defaultValues = {
-    email: "",
-    password: "",
+    uemail: "",
     username: "",
     phoneno: "",
+    upassword: "",
+    cupassword: "",
   };
 
   const schema = yup.object({
-    search: yup.string().required("Search field is required"),
+    uemail: yup
+      .string()
+      .required("Email is Required !")
+      .email("Please enter valid Email Id !"),
+    username: yup.string().required("Please enter valid User Name !"),
+    phoneno: yup.string(),
+    upassword: yup
+      .string()
+      .matches(
+        /^(?=.*[A-Z])(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/,
+        "Password must be at least 8 characters long, include at least one uppercase letter, and one special character."
+      )
+      .required("Password is required"),
+    cupassword: yup
+      .string()
+      .oneOf([yup.ref("upassword"), null], "Passwords must match")
+      .required("Confirm password is required"),
   });
 
   const {
@@ -44,13 +64,24 @@ function RegisterForm() {
   });
 
   const onSubmit = (data) => {
-    // console.log(data);
+    console.log(data);
+    Register(data)
+      .then((res) => {
+        console.log(res);
+        const success = res.data.success
+        if (success) {
+          Navigate("/user/resend-verification")
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
   return (
     <MainContainer
       item
       xs={12}
-      md={5.8}
+      md={5.95}
       component="form"
       onSubmit={handleSubmit(onSubmit)}
       currentmode={mode}
@@ -76,10 +107,38 @@ function RegisterForm() {
         spacing={1.5}
         sx={{ width: "100%" }}
       >
-        <TextField fullWidth label="Email" size="small" />
-        <TextField fullWidth label="Mobile" size="small" />
-        <TextField fullWidth label="Username" size="small" />
-        <TextField fullWidth label="Password" size="small" />
+        <TextField
+          fullWidth
+          label="Email"
+          size="small"
+          {...register("uemail")}
+        />
+        <TextField
+          fullWidth
+          label="Mobile"
+          size="small"
+          {...register("phoneno")}
+        />
+        <TextField
+          fullWidth
+          label="Username"
+          size="small"
+          {...register("username")}
+        />
+        <Stack
+          direction="column"
+          alignItems="center"
+          justifyContent="center"
+          sx={{ width: "100%" }}
+          spacing={2}
+        >
+          <Password label="Password" name="upassword" control={control} />
+          <Password
+            label="Confirm Password"
+            name="cupassword"
+            control={control}
+          />
+        </Stack>
 
         <Button variant="contained" fullWidth type="submit">
           Sign Up
@@ -96,7 +155,7 @@ export default RegisterForm;
 export const MainContainer = styled(Grid)(({ theme, currentmode }) => ({
   // border: "1px solid Blue",
   height: "95%",
-  padding: "10px",
+  padding: "8px",
   display: "flex",
   alignItems: "flex-start",
   justifyContent: "space-evenly",
@@ -133,6 +192,7 @@ export const NavgationLink = styled(Link)(({ theme }) => ({
   width: "100%",
   textAlign: "center",
   marginTop: "10px",
+  fontFamily: theme.typography.fontFamily,
 }));
 
 export const NavgationLink1 = styled(Link)(({ theme }) => ({

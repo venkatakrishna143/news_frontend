@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { MainCardContainer } from './ProfileCards'; // Assuming this is your styled component
+import { MainCardContainer, WeatherCardContainer } from './ProfileCards'; // Assuming this is your styled component
 
 function WeatherCard() {
   const [cityId, setCityId] = useState(null); // State for dynamic city ID
@@ -72,7 +72,7 @@ function WeatherCard() {
   }, [cityId]); // Re-run effect when cityId changes
 
   return (
-    <MainCardContainer>
+    <WeatherCardContainer>
       {locationError ? (
         <p>{locationError}</p>
       ) : cityId ? (
@@ -80,7 +80,7 @@ function WeatherCard() {
       ) : (
         <p>Loading weather data...</p>
       )}
-    </MainCardContainer>
+    </WeatherCardContainer>
   );
 }
 
