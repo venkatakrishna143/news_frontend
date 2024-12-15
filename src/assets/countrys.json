@@ -1,0 +1,1212 @@
+[
+  {
+    "countryname": "Afghanistan",
+    "countrydialcode": "+93",
+    "countryacode": "AF"
+  },
+  {
+    "countryname": "Aland Islands",
+    "countrydialcode": "+358",
+    "countryacode": "AX"
+  },
+  {
+    "countryname": "Albania",
+    "countrydialcode": "+355",
+    "countryacode": "AL"
+  },
+  {
+    "countryname": "Algeria",
+    "countrydialcode": "+213",
+    "countryacode": "DZ"
+  },
+  {
+    "countryname": "AmericanSamoa",
+    "countrydialcode": "+1684",
+    "countryacode": "AS"
+  },
+  {
+    "countryname": "Andorra",
+    "countrydialcode": "+376",
+    "countryacode": "AD"
+  },
+  {
+    "countryname": "Angola",
+    "countrydialcode": "+244",
+    "countryacode": "AO"
+  },
+  {
+    "countryname": "Anguilla",
+    "countrydialcode": "+1264",
+    "countryacode": "AI"
+  },
+  {
+    "countryname": "Antarctica",
+    "countrydialcode": "+672",
+    "countryacode": "AQ"
+  },
+  {
+    "countryname": "Antigua and Barbuda",
+    "countrydialcode": "+1268",
+    "countryacode": "AG"
+  },
+  {
+    "countryname": "Argentina",
+    "countrydialcode": "+54",
+    "countryacode": "AR"
+  },
+  {
+    "countryname": "Armenia",
+    "countrydialcode": "+374",
+    "countryacode": "AM"
+  },
+  {
+    "countryname": "Aruba",
+    "countrydialcode": "+297",
+    "countryacode": "AW"
+  },
+  {
+    "countryname": "Australia",
+    "countrydialcode": "+61",
+    "countryacode": "AU"
+  },
+  {
+    "countryname": "Austria",
+    "countrydialcode": "+43",
+    "countryacode": "AT"
+  },
+  {
+    "countryname": "Azerbaijan",
+    "countrydialcode": "+994",
+    "countryacode": "AZ"
+  },
+  {
+    "countryname": "Bahamas",
+    "countrydialcode": "+1242",
+    "countryacode": "BS"
+  },
+  {
+    "countryname": "Bahrain",
+    "countrydialcode": "+973",
+    "countryacode": "BH"
+  },
+  {
+    "countryname": "Bangladesh",
+    "countrydialcode": "+880",
+    "countryacode": "BD"
+  },
+  {
+    "countryname": "Barbados",
+    "countrydialcode": "+1246",
+    "countryacode": "BB"
+  },
+  {
+    "countryname": "Belarus",
+    "countrydialcode": "+375",
+    "countryacode": "BY"
+  },
+  {
+    "countryname": "Belgium",
+    "countrydialcode": "+32",
+    "countryacode": "BE"
+  },
+  {
+    "countryname": "Belize",
+    "countrydialcode": "+501",
+    "countryacode": "BZ"
+  },
+  {
+    "countryname": "Benin",
+    "countrydialcode": "+229",
+    "countryacode": "BJ"
+  },
+  {
+    "countryname": "Bermuda",
+    "countrydialcode": "+1441",
+    "countryacode": "BM"
+  },
+  {
+    "countryname": "Bhutan",
+    "countrydialcode": "+975",
+    "countryacode": "BT"
+  },
+  {
+    "countryname": "Bolivia, Plurinational State of",
+    "countrydialcode": "+591",
+    "countryacode": "BO"
+  },
+  {
+    "countryname": "Bosnia and Herzegovina",
+    "countrydialcode": "+387",
+    "countryacode": "BA"
+  },
+  {
+    "countryname": "Botswana",
+    "countrydialcode": "+267",
+    "countryacode": "BW"
+  },
+  {
+    "countryname": "Brazil",
+    "countrydialcode": "+55",
+    "countryacode": "BR"
+  },
+  {
+    "countryname": "British Indian Ocean Territory",
+    "countrydialcode": "+246",
+    "countryacode": "IO"
+  },
+  {
+    "countryname": "Brunei Darussalam",
+    "countrydialcode": "+673",
+    "countryacode": "BN"
+  },
+  {
+    "countryname": "Bulgaria",
+    "countrydialcode": "+359",
+    "countryacode": "BG"
+  },
+  {
+    "countryname": "Burkina Faso",
+    "countrydialcode": "+226",
+    "countryacode": "BF"
+  },
+  {
+    "countryname": "Burundi",
+    "countrydialcode": "+257",
+    "countryacode": "BI"
+  },
+  {
+    "countryname": "Cambodia",
+    "countrydialcode": "+855",
+    "countryacode": "KH"
+  },
+  {
+    "countryname": "Cameroon",
+    "countrydialcode": "+237",
+    "countryacode": "CM"
+  },
+  {
+    "countryname": "Canada",
+    "countrydialcode": "+1",
+    "countryacode": "CA"
+  },
+  {
+    "countryname": "Cape Verde",
+    "countrydialcode": "+238",
+    "countryacode": "CV"
+  },
+  {
+    "countryname": "Cayman Islands",
+    "countrydialcode": "+ 345",
+    "countryacode": "KY"
+  },
+  {
+    "countryname": "Central African Republic",
+    "countrydialcode": "+236",
+    "countryacode": "CF"
+  },
+  {
+    "countryname": "Chad",
+    "countrydialcode": "+235",
+    "countryacode": "TD"
+  },
+  {
+    "countryname": "Chile",
+    "countrydialcode": "+56",
+    "countryacode": "CL"
+  },
+  {
+    "countryname": "China",
+    "countrydialcode": "+86",
+    "countryacode": "CN"
+  },
+  {
+    "countryname": "Christmas Island",
+    "countrydialcode": "+61",
+    "countryacode": "CX"
+  },
+  {
+    "countryname": "Cocos (Keeling) Islands",
+    "countrydialcode": "+61",
+    "countryacode": "CC"
+  },
+  {
+    "countryname": "Colombia",
+    "countrydialcode": "+57",
+    "countryacode": "CO"
+  },
+  {
+    "countryname": "Comoros",
+    "countrydialcode": "+269",
+    "countryacode": "KM"
+  },
+  {
+    "countryname": "Congo",
+    "countrydialcode": "+242",
+    "countryacode": "CG"
+  },
+  {
+    "countryname": "Congo, The Democratic Republic of the Congo",
+    "countrydialcode": "+243",
+    "countryacode": "CD"
+  },
+  {
+    "countryname": "Cook Islands",
+    "countrydialcode": "+682",
+    "countryacode": "CK"
+  },
+  {
+    "countryname": "Costa Rica",
+    "countrydialcode": "+506",
+    "countryacode": "CR"
+  },
+  {
+    "countryname": "Cote d'Ivoire",
+    "countrydialcode": "+225",
+    "countryacode": "CI"
+  },
+  {
+    "countryname": "Croatia",
+    "countrydialcode": "+385",
+    "countryacode": "HR"
+  },
+  {
+    "countryname": "Cuba",
+    "countrydialcode": "+53",
+    "countryacode": "CU"
+  },
+  {
+    "countryname": "Cyprus",
+    "countrydialcode": "+357",
+    "countryacode": "CY"
+  },
+  {
+    "countryname": "Czech Republic",
+    "countrydialcode": "+420",
+    "countryacode": "CZ"
+  },
+  {
+    "countryname": "Denmark",
+    "countrydialcode": "+45",
+    "countryacode": "DK"
+  },
+  {
+    "countryname": "Djibouti",
+    "countrydialcode": "+253",
+    "countryacode": "DJ"
+  },
+  {
+    "countryname": "Dominica",
+    "countrydialcode": "+1767",
+    "countryacode": "DM"
+  },
+  {
+    "countryname": "Dominican Republic",
+    "countrydialcode": "+1849",
+    "countryacode": "DO"
+  },
+  {
+    "countryname": "Ecuador",
+    "countrydialcode": "+593",
+    "countryacode": "EC"
+  },
+  {
+    "countryname": "Egypt",
+    "countrydialcode": "+20",
+    "countryacode": "EG"
+  },
+  {
+    "countryname": "El Salvador",
+    "countrydialcode": "+503",
+    "countryacode": "SV"
+  },
+  {
+    "countryname": "Equatorial Guinea",
+    "countrydialcode": "+240",
+    "countryacode": "GQ"
+  },
+  {
+    "countryname": "Eritrea",
+    "countrydialcode": "+291",
+    "countryacode": "ER"
+  },
+  {
+    "countryname": "Estonia",
+    "countrydialcode": "+372",
+    "countryacode": "EE"
+  },
+  {
+    "countryname": "Ethiopia",
+    "countrydialcode": "+251",
+    "countryacode": "ET"
+  },
+  {
+    "countryname": "Falkland Islands (Malvinas)",
+    "countrydialcode": "+500",
+    "countryacode": "FK"
+  },
+  {
+    "countryname": "Faroe Islands",
+    "countrydialcode": "+298",
+    "countryacode": "FO"
+  },
+  {
+    "countryname": "Fiji",
+    "countrydialcode": "+679",
+    "countryacode": "FJ"
+  },
+  {
+    "countryname": "Finland",
+    "countrydialcode": "+358",
+    "countryacode": "FI"
+  },
+  {
+    "countryname": "France",
+    "countrydialcode": "+33",
+    "countryacode": "FR"
+  },
+  {
+    "countryname": "French Guiana",
+    "countrydialcode": "+594",
+    "countryacode": "GF"
+  },
+  {
+    "countryname": "French Polynesia",
+    "countrydialcode": "+689",
+    "countryacode": "PF"
+  },
+  {
+    "countryname": "Gabon",
+    "countrydialcode": "+241",
+    "countryacode": "GA"
+  },
+  {
+    "countryname": "Gambia",
+    "countrydialcode": "+220",
+    "countryacode": "GM"
+  },
+  {
+    "countryname": "Georgia",
+    "countrydialcode": "+995",
+    "countryacode": "GE"
+  },
+  {
+    "countryname": "Germany",
+    "countrydialcode": "+49",
+    "countryacode": "DE"
+  },
+  {
+    "countryname": "Ghana",
+    "countrydialcode": "+233",
+    "countryacode": "GH"
+  },
+  {
+    "countryname": "Gibraltar",
+    "countrydialcode": "+350",
+    "countryacode": "GI"
+  },
+  {
+    "countryname": "Greece",
+    "countrydialcode": "+30",
+    "countryacode": "GR"
+  },
+  {
+    "countryname": "Greenland",
+    "countrydialcode": "+299",
+    "countryacode": "GL"
+  },
+  {
+    "countryname": "Grenada",
+    "countrydialcode": "+1473",
+    "countryacode": "GD"
+  },
+  {
+    "countryname": "Guadeloupe",
+    "countrydialcode": "+590",
+    "countryacode": "GP"
+  },
+  {
+    "countryname": "Guam",
+    "countrydialcode": "+1671",
+    "countryacode": "GU"
+  },
+  {
+    "countryname": "Guatemala",
+    "countrydialcode": "+502",
+    "countryacode": "GT"
+  },
+  {
+    "countryname": "Guernsey",
+    "countrydialcode": "+44",
+    "countryacode": "GG"
+  },
+  {
+    "countryname": "Guinea",
+    "countrydialcode": "+224",
+    "countryacode": "GN"
+  },
+  {
+    "countryname": "Guinea-Bissau",
+    "countrydialcode": "+245",
+    "countryacode": "GW"
+  },
+  {
+    "countryname": "Guyana",
+    "countrydialcode": "+595",
+    "countryacode": "GY"
+  },
+  {
+    "countryname": "Haiti",
+    "countrydialcode": "+509",
+    "countryacode": "HT"
+  },
+  {
+    "countryname": "Holy See (Vatican City State)",
+    "countrydialcode": "+379",
+    "countryacode": "VA"
+  },
+  {
+    "countryname": "Honduras",
+    "countrydialcode": "+504",
+    "countryacode": "HN"
+  },
+  {
+    "countryname": "Hong Kong",
+    "countrydialcode": "+852",
+    "countryacode": "HK"
+  },
+  {
+    "countryname": "Hungary",
+    "countrydialcode": "+36",
+    "countryacode": "HU"
+  },
+  {
+    "countryname": "Iceland",
+    "countrydialcode": "+354",
+    "countryacode": "IS"
+  },
+  {
+    "countryname": "India",
+    "countrydialcode": "+91",
+    "countryacode": "IN"
+  },
+  {
+    "countryname": "Indonesia",
+    "countrydialcode": "+62",
+    "countryacode": "ID"
+  },
+  {
+    "countryname": "Iran, Islamic Republic of Persian Gulf",
+    "countrydialcode": "+98",
+    "countryacode": "IR"
+  },
+  {
+    "countryname": "Iraq",
+    "countrydialcode": "+964",
+    "countryacode": "IQ"
+  },
+  {
+    "countryname": "Ireland",
+    "countrydialcode": "+353",
+    "countryacode": "IE"
+  },
+  {
+    "countryname": "Isle of Man",
+    "countrydialcode": "+44",
+    "countryacode": "IM"
+  },
+  {
+    "countryname": "Israel",
+    "countrydialcode": "+972",
+    "countryacode": "IL"
+  },
+  {
+    "countryname": "Italy",
+    "countrydialcode": "+39",
+    "countryacode": "IT"
+  },
+  {
+    "countryname": "Jamaica",
+    "countrydialcode": "+1876",
+    "countryacode": "JM"
+  },
+  {
+    "countryname": "Japan",
+    "countrydialcode": "+81",
+    "countryacode": "JP"
+  },
+  {
+    "countryname": "Jersey",
+    "countrydialcode": "+44",
+    "countryacode": "JE"
+  },
+  {
+    "countryname": "Jordan",
+    "countrydialcode": "+962",
+    "countryacode": "JO"
+  },
+  {
+    "countryname": "Kazakhstan",
+    "countrydialcode": "+77",
+    "countryacode": "KZ"
+  },
+  {
+    "countryname": "Kenya",
+    "countrydialcode": "+254",
+    "countryacode": "KE"
+  },
+  {
+    "countryname": "Kiribati",
+    "countrydialcode": "+686",
+    "countryacode": "KI"
+  },
+  {
+    "countryname": "Korea, Democratic People's Republic of Korea",
+    "countrydialcode": "+850",
+    "countryacode": "KP"
+  },
+  {
+    "countryname": "Korea, Republic of South Korea",
+    "countrydialcode": "+82",
+    "countryacode": "KR"
+  },
+  {
+    "countryname": "Kuwait",
+    "countrydialcode": "+965",
+    "countryacode": "KW"
+  },
+  {
+    "countryname": "Kyrgyzstan",
+    "countrydialcode": "+996",
+    "countryacode": "KG"
+  },
+  {
+    "countryname": "Laos",
+    "countrydialcode": "+856",
+    "countryacode": "LA"
+  },
+  {
+    "countryname": "Latvia",
+    "countrydialcode": "+371",
+    "countryacode": "LV"
+  },
+  {
+    "countryname": "Lebanon",
+    "countrydialcode": "+961",
+    "countryacode": "LB"
+  },
+  {
+    "countryname": "Lesotho",
+    "countrydialcode": "+266",
+    "countryacode": "LS"
+  },
+  {
+    "countryname": "Liberia",
+    "countrydialcode": "+231",
+    "countryacode": "LR"
+  },
+  {
+    "countryname": "Libyan Arab Jamahiriya",
+    "countrydialcode": "+218",
+    "countryacode": "LY"
+  },
+  {
+    "countryname": "Liechtenstein",
+    "countrydialcode": "+423",
+    "countryacode": "LI"
+  },
+  {
+    "countryname": "Lithuania",
+    "countrydialcode": "+370",
+    "countryacode": "LT"
+  },
+  {
+    "countryname": "Luxembourg",
+    "countrydialcode": "+352",
+    "countryacode": "LU"
+  },
+  {
+    "countryname": "Macao",
+    "countrydialcode": "+853",
+    "countryacode": "MO"
+  },
+  {
+    "countryname": "Macedonia",
+    "countrydialcode": "+389",
+    "countryacode": "MK"
+  },
+  {
+    "countryname": "Madagascar",
+    "countrydialcode": "+261",
+    "countryacode": "MG"
+  },
+  {
+    "countryname": "Malawi",
+    "countrydialcode": "+265",
+    "countryacode": "MW"
+  },
+  {
+    "countryname": "Malaysia",
+    "countrydialcode": "+60",
+    "countryacode": "MY"
+  },
+  {
+    "countryname": "Maldives",
+    "countrydialcode": "+960",
+    "countryacode": "MV"
+  },
+  {
+    "countryname": "Mali",
+    "countrydialcode": "+223",
+    "countryacode": "ML"
+  },
+  {
+    "countryname": "Malta",
+    "countrydialcode": "+356",
+    "countryacode": "MT"
+  },
+  {
+    "countryname": "Marshall Islands",
+    "countrydialcode": "+692",
+    "countryacode": "MH"
+  },
+  {
+    "countryname": "Martinique",
+    "countrydialcode": "+596",
+    "countryacode": "MQ"
+  },
+  {
+    "countryname": "Mauritania",
+    "countrydialcode": "+222",
+    "countryacode": "MR"
+  },
+  {
+    "countryname": "Mauritius",
+    "countrydialcode": "+230",
+    "countryacode": "MU"
+  },
+  {
+    "countryname": "Mayotte",
+    "countrydialcode": "+262",
+    "countryacode": "YT"
+  },
+  {
+    "countryname": "Mexico",
+    "countrydialcode": "+52",
+    "countryacode": "MX"
+  },
+  {
+    "countryname": "Micronesia, Federated States of Micronesia",
+    "countrydialcode": "+691",
+    "countryacode": "FM"
+  },
+  {
+    "countryname": "Moldova",
+    "countrydialcode": "+373",
+    "countryacode": "MD"
+  },
+  {
+    "countryname": "Monaco",
+    "countrydialcode": "+377",
+    "countryacode": "MC"
+  },
+  {
+    "countryname": "Mongolia",
+    "countrydialcode": "+976",
+    "countryacode": "MN"
+  },
+  {
+    "countryname": "Montenegro",
+    "countrydialcode": "+382",
+    "countryacode": "ME"
+  },
+  {
+    "countryname": "Montserrat",
+    "countrydialcode": "+1664",
+    "countryacode": "MS"
+  },
+  {
+    "countryname": "Morocco",
+    "countrydialcode": "+212",
+    "countryacode": "MA"
+  },
+  {
+    "countryname": "Mozambique",
+    "countrydialcode": "+258",
+    "countryacode": "MZ"
+  },
+  {
+    "countryname": "Myanmar",
+    "countrydialcode": "+95",
+    "countryacode": "MM"
+  },
+  {
+    "countryname": "Namibia",
+    "countrydialcode": "+264",
+    "countryacode": "NA"
+  },
+  {
+    "countryname": "Nauru",
+    "countrydialcode": "+674",
+    "countryacode": "NR"
+  },
+  {
+    "countryname": "Nepal",
+    "countrydialcode": "+977",
+    "countryacode": "NP"
+  },
+  {
+    "countryname": "Netherlands",
+    "countrydialcode": "+31",
+    "countryacode": "NL"
+  },
+  {
+    "countryname": "Netherlands Antilles",
+    "countrydialcode": "+599",
+    "countryacode": "AN"
+  },
+  {
+    "countryname": "New Caledonia",
+    "countrydialcode": "+687",
+    "countryacode": "NC"
+  },
+  {
+    "countryname": "New Zealand",
+    "countrydialcode": "+64",
+    "countryacode": "NZ"
+  },
+  {
+    "countryname": "Nicaragua",
+    "countrydialcode": "+505",
+    "countryacode": "NI"
+  },
+  {
+    "countryname": "Niger",
+    "countrydialcode": "+227",
+    "countryacode": "NE"
+  },
+  {
+    "countryname": "Nigeria",
+    "countrydialcode": "+234",
+    "countryacode": "NG"
+  },
+  {
+    "countryname": "Niue",
+    "countrydialcode": "+683",
+    "countryacode": "NU"
+  },
+  {
+    "countryname": "Norfolk Island",
+    "countrydialcode": "+672",
+    "countryacode": "NF"
+  },
+  {
+    "countryname": "Northern Mariana Islands",
+    "countrydialcode": "+1670",
+    "countryacode": "MP"
+  },
+  {
+    "countryname": "Norway",
+    "countrydialcode": "+47",
+    "countryacode": "NO"
+  },
+  {
+    "countryname": "Oman",
+    "countrydialcode": "+968",
+    "countryacode": "OM"
+  },
+  {
+    "countryname": "Pakistan",
+    "countrydialcode": "+92",
+    "countryacode": "PK"
+  },
+  {
+    "countryname": "Palau",
+    "countrydialcode": "+680",
+    "countryacode": "PW"
+  },
+  {
+    "countryname": "Palestinian Territory, Occupied",
+    "countrydialcode": "+970",
+    "countryacode": "PS"
+  },
+  {
+    "countryname": "Panama",
+    "countrydialcode": "+507",
+    "countryacode": "PA"
+  },
+  {
+    "countryname": "Papua New Guinea",
+    "countrydialcode": "+675",
+    "countryacode": "PG"
+  },
+  {
+    "countryname": "Paraguay",
+    "countrydialcode": "+595",
+    "countryacode": "PY"
+  },
+  {
+    "countryname": "Peru",
+    "countrydialcode": "+51",
+    "countryacode": "PE"
+  },
+  {
+    "countryname": "Philippines",
+    "countrydialcode": "+63",
+    "countryacode": "PH"
+  },
+  {
+    "countryname": "Pitcairn",
+    "countrydialcode": "+872",
+    "countryacode": "PN"
+  },
+  {
+    "countryname": "Poland",
+    "countrydialcode": "+48",
+    "countryacode": "PL"
+  },
+  {
+    "countryname": "Portugal",
+    "countrydialcode": "+351",
+    "countryacode": "PT"
+  },
+  {
+    "countryname": "Puerto Rico",
+    "countrydialcode": "+1939",
+    "countryacode": "PR"
+  },
+  {
+    "countryname": "Qatar",
+    "countrydialcode": "+974",
+    "countryacode": "QA"
+  },
+  {
+    "countryname": "Romania",
+    "countrydialcode": "+40",
+    "countryacode": "RO"
+  },
+  {
+    "countryname": "Russia",
+    "countrydialcode": "+7",
+    "countryacode": "RU"
+  },
+  {
+    "countryname": "Rwanda",
+    "countrydialcode": "+250",
+    "countryacode": "RW"
+  },
+  {
+    "countryname": "Reunion",
+    "countrydialcode": "+262",
+    "countryacode": "RE"
+  },
+  {
+    "countryname": "Saint Barthelemy",
+    "countrydialcode": "+590",
+    "countryacode": "BL"
+  },
+  {
+    "countryname": "Saint Helena, Ascension and Tristan Da Cunha",
+    "countrydialcode": "+290",
+    "countryacode": "SH"
+  },
+  {
+    "countryname": "Saint Kitts and Nevis",
+    "countrydialcode": "+1869",
+    "countryacode": "KN"
+  },
+  {
+    "countryname": "Saint Lucia",
+    "countrydialcode": "+1758",
+    "countryacode": "LC"
+  },
+  {
+    "countryname": "Saint Martin",
+    "countrydialcode": "+590",
+    "countryacode": "MF"
+  },
+  {
+    "countryname": "Saint Pierre and Miquelon",
+    "countrydialcode": "+508",
+    "countryacode": "PM"
+  },
+  {
+    "countryname": "Saint Vincent and the Grenadines",
+    "countrydialcode": "+1784",
+    "countryacode": "VC"
+  },
+  {
+    "countryname": "Samoa",
+    "countrydialcode": "+685",
+    "countryacode": "WS"
+  },
+  {
+    "countryname": "San Marino",
+    "countrydialcode": "+378",
+    "countryacode": "SM"
+  },
+  {
+    "countryname": "Sao Tome and Principe",
+    "countrydialcode": "+239",
+    "countryacode": "ST"
+  },
+  {
+    "countryname": "Saudi Arabia",
+    "countrydialcode": "+966",
+    "countryacode": "SA"
+  },
+  {
+    "countryname": "Senegal",
+    "countrydialcode": "+221",
+    "countryacode": "SN"
+  },
+  {
+    "countryname": "Serbia",
+    "countrydialcode": "+381",
+    "countryacode": "RS"
+  },
+  {
+    "countryname": "Seychelles",
+    "countrydialcode": "+248",
+    "countryacode": "SC"
+  },
+  {
+    "countryname": "Sierra Leone",
+    "countrydialcode": "+232",
+    "countryacode": "SL"
+  },
+  {
+    "countryname": "Singapore",
+    "countrydialcode": "+65",
+    "countryacode": "SG"
+  },
+  {
+    "countryname": "Slovakia",
+    "countrydialcode": "+421",
+    "countryacode": "SK"
+  },
+  {
+    "countryname": "Slovenia",
+    "countrydialcode": "+386",
+    "countryacode": "SI"
+  },
+  {
+    "countryname": "Solomon Islands",
+    "countrydialcode": "+677",
+    "countryacode": "SB"
+  },
+  {
+    "countryname": "Somalia",
+    "countrydialcode": "+252",
+    "countryacode": "SO"
+  },
+  {
+    "countryname": "South Africa",
+    "countrydialcode": "+27",
+    "countryacode": "ZA"
+  },
+  {
+    "countryname": "South Sudan",
+    "countrydialcode": "+211",
+    "countryacode": "SS"
+  },
+  {
+    "countryname": "South Georgia and the South Sandwich Islands",
+    "countrydialcode": "+500",
+    "countryacode": "GS"
+  },
+  {
+    "countryname": "Spain",
+    "countrydialcode": "+34",
+    "countryacode": "ES"
+  },
+  {
+    "countryname": "Sri Lanka",
+    "countrydialcode": "+94",
+    "countryacode": "LK"
+  },
+  {
+    "countryname": "Sudan",
+    "countrydialcode": "+249",
+    "countryacode": "SD"
+  },
+  {
+    "countryname": "Surilabel",
+    "countrydialcode": "+597",
+    "countryacode": "SR"
+  },
+  {
+    "countryname": "Svalbard and Jan Mayen",
+    "countrydialcode": "+47",
+    "countryacode": "SJ"
+  },
+  {
+    "countryname": "Swaziland",
+    "countrydialcode": "+268",
+    "countryacode": "SZ"
+  },
+  {
+    "countryname": "Sweden",
+    "countrydialcode": "+46",
+    "countryacode": "SE"
+  },
+  {
+    "countryname": "Switzerland",
+    "countrydialcode": "+41",
+    "countryacode": "CH"
+  },
+  {
+    "countryname": "Syrian Arab Republic",
+    "countrydialcode": "+963",
+    "countryacode": "SY"
+  },
+  {
+    "countryname": "Taiwan",
+    "countrydialcode": "+886",
+    "countryacode": "TW"
+  },
+  {
+    "countryname": "Tajikistan",
+    "countrydialcode": "+992",
+    "countryacode": "TJ"
+  },
+  {
+    "countryname": "Tanzania, United Republic of Tanzania",
+    "countrydialcode": "+255",
+    "countryacode": "TZ"
+  },
+  {
+    "countryname": "Thailand",
+    "countrydialcode": "+66",
+    "countryacode": "TH"
+  },
+  {
+    "countryname": "Timor-Leste",
+    "countrydialcode": "+670",
+    "countryacode": "TL"
+  },
+  {
+    "countryname": "Togo",
+    "countrydialcode": "+228",
+    "countryacode": "TG"
+  },
+  {
+    "countryname": "Tokelau",
+    "countrydialcode": "+690",
+    "countryacode": "TK"
+  },
+  {
+    "countryname": "Tonga",
+    "countrydialcode": "+676",
+    "countryacode": "TO"
+  },
+  {
+    "countryname": "Trinidad and Tobago",
+    "countrydialcode": "+1868",
+    "countryacode": "TT"
+  },
+  {
+    "countryname": "Tunisia",
+    "countrydialcode": "+216",
+    "countryacode": "TN"
+  },
+  {
+    "countryname": "Turkey",
+    "countrydialcode": "+90",
+    "countryacode": "TR"
+  },
+  {
+    "countryname": "Turkmenistan",
+    "countrydialcode": "+993",
+    "countryacode": "TM"
+  },
+  {
+    "countryname": "Turks and Caicos Islands",
+    "countrydialcode": "+1649",
+    "countryacode": "TC"
+  },
+  {
+    "countryname": "Tuvalu",
+    "countrydialcode": "+688",
+    "countryacode": "TV"
+  },
+  {
+    "countryname": "Uganda",
+    "countrydialcode": "+256",
+    "countryacode": "UG"
+  },
+  {
+    "countryname": "Ukraine",
+    "countrydialcode": "+380",
+    "countryacode": "UA"
+  },
+  {
+    "countryname": "United Arab Emirates",
+    "countrydialcode": "+971",
+    "countryacode": "AE"
+  },
+  {
+    "countryname": "United Kingdom",
+    "countrydialcode": "+44",
+    "countryacode": "GB"
+  },
+  {
+    "countryname": "United States",
+    "countrydialcode": "+1",
+    "countryacode": "US"
+  },
+  {
+    "countryname": "Uruguay",
+    "countrydialcode": "+598",
+    "countryacode": "UY"
+  },
+  {
+    "countryname": "Uzbekistan",
+    "countrydialcode": "+998",
+    "countryacode": "UZ"
+  },
+  {
+    "countryname": "Vanuatu",
+    "countrydialcode": "+678",
+    "countryacode": "VU"
+  },
+  {
+    "countryname": "Venezuela, Bolivarian Republic of Venezuela",
+    "countrydialcode": "+58",
+    "countryacode": "VE"
+  },
+  {
+    "countryname": "Vietnam",
+    "countrydialcode": "+84",
+    "countryacode": "VN"
+  },
+  {
+    "countryname": "Virgin Islands, British",
+    "countrydialcode": "+1284",
+    "countryacode": "VG"
+  },
+  {
+    "countryname": "Virgin Islands, U.S.",
+    "countrydialcode": "+1340",
+    "countryacode": "VI"
+  },
+  {
+    "countryname": "Wallis and Futuna",
+    "countrydialcode": "+681",
+    "countryacode": "WF"
+  },
+  {
+    "countryname": "Yemen",
+    "countrydialcode": "+967",
+    "countryacode": "YE"
+  },
+  {
+    "countryname": "Zambia",
+    "countrydialcode": "+260",
+    "countryacode": "ZM"
+  },
+  {
+    "countryname": "Zimbabwe",
+    "countrydialcode": "+263",
+    "countryacode": "ZW"
+  }
+]

@@ -20,7 +20,7 @@ import { useDispatch, useSelector } from "react-redux";
 // import { newsData } from "../../redux/slices/News";
 import { getNews, getnewsbyId, getnewsCategories } from "../../api/News";
 import { Add, Close, SavedNews, UnSavedNews } from "../../assets/Icons";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import ScrollPagination from "./ScrollPagination";
 import { useTheme } from "@emotion/react";
 import ResponsivePagination from "./ResponsivePagination";
@@ -38,6 +38,8 @@ function NewsCards() {
   const theme = useTheme();
 
   const { isAuthenticated } = useAuth();
+
+  const Navigate = useNavigate()
 
   const Mobile = useMediaQuery(theme.breakpoints.between("xs", "md"));
   const [newsidData, setnewsidData] = useState([]);
@@ -93,6 +95,11 @@ function NewsCards() {
         });
     }
   }, []);
+
+
+  const handleSaveNews = () => {
+    isAuthenticated ? Navigate("/user/saved-news") : Navigate("/user/login") 
+  }
 
   const handleViewNews = (id) => {
     // console.log(id);
@@ -214,7 +221,8 @@ function NewsCards() {
                   variant="contained"
                   color="primary"
                   startIcon={<UnSavedNews />}
-                  size="small"
+                    size="small"
+                    onClick={handleSaveNews}
                 >
                   Favorite
                 </Button>
@@ -282,18 +290,16 @@ const News = styled(Grid)(({ theme }) => ({
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  flexDirection: "column ",
-  gap: 2,
-  position: "relative",
-  left: "320px",
+  flexDirection: "column",
+  gap: "16px", // Adjust the spacing between cards
   flexGrow: 1,
+  margin: "0 auto", // Centers the content horizontally
+  position: "relative",
+  width: "100%", // Ensures full-width responsiveness
+  maxWidth: "800px", // Optional: limit the max width for better aesthetics
 
-  [theme.breakpoints.between("xs", "md")]: {
-    left: 0,
-  },
-
-  [theme.breakpoints.between("md", "lg")]: {
-    left: "230px",
+  [theme.breakpoints.down("sm")]: {
+    padding: "8px",
   },
 }));
 

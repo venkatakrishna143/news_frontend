@@ -11,24 +11,25 @@ import JobCard from "../components/Cards/JobCard";
 import WeatherCard from "../components/Cards/WeatherCard";
 import { useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
+import { useAuth } from "./auth/Authenticate";
 
 function LandingPage() {
   const theme = useTheme();
+  const {isAuthenticated} = useAuth()
   const { newsdata, pagedata, limitdata } = useSelector((state) => state.news);
   // const BelowMobile = useMediaQuery(theme.breakpoints.up("xs"));
-  
+
   const Mobile = useMediaQuery(theme.breakpoints.between("xs", "sm"));
- 
 
   if (!newsdata) {
     return <Navigate to="/pagenotfound" replace />;
   }
- 
+
   return (
     <BodyInnerContainer container columnGap={1} rowGap={1}>
       <LeftCardsSection item xs={12} md={3}>
-        <ProfileCards />
-        {/* <JobCard /> */}
+        {isAuthenticated ? <ProfileCards /> : null}
+        <JobCard />
       </LeftCardsSection>
 
       <NewsCards />
@@ -45,7 +46,6 @@ function LandingPage() {
 export default LandingPage;
 
 const LeftCardsSection = styled(Grid)(({ theme }) => ({
-  // padding: "10px",
   position: "fixed",
   left: "5%",
   display: "flex",
@@ -54,9 +54,7 @@ const LeftCardsSection = styled(Grid)(({ theme }) => ({
   width: "100%",
   flexDirection: "column",
   gap: "8px",
-  flexShrink:0,
-  // border: "1px solid blue",
-  // height: "200px",
+  flexShrink: 0,
   [theme.breakpoints.between("xs", "md")]: {
     position: "relative",
     left: 0,
@@ -64,7 +62,6 @@ const LeftCardsSection = styled(Grid)(({ theme }) => ({
 }));
 
 const RightCardSection = styled(Grid)(({ theme }) => ({
-  // padding: "10px",
   position: "fixed",
   right: "5%",
   display: "flex",
@@ -74,8 +71,6 @@ const RightCardSection = styled(Grid)(({ theme }) => ({
   flexDirection: "column",
   gap: "8px",
   flexShrink: 0,
-  // border: "1px solid blue",
-  // height: "200px",
   [theme.breakpoints.between("xs", "md")]: {
     position: "relative",
     right: 0,

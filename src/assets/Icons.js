@@ -18,6 +18,8 @@ import {
   FiMail,
   FiEye,
   FiEyeOff,
+  FiLink,
+  FiLink2,
 } from "react-icons/fi";
 import { FaBookmark, FaRegBookmark } from "react-icons/fa6";
 
@@ -161,6 +163,14 @@ export const EyeOpen = styled(FiEye)(({ theme }) => ({
 }));
 
 export const EyeClose = styled(FiEyeOff)(({ theme }) => ({
+  cursor:"pointer",
+
+  //  Responsive
+
+  [theme.breakpoints.between("xs", "sm")]: {},
+}));
+
+export const NewTab = styled(FiLink2)(({ theme }) => ({
   cursor:"pointer",
 
   //  Responsive

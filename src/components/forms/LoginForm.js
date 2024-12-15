@@ -65,10 +65,10 @@ function LoginForm() {
         alignItems={isMobile ? "center" : "flex-start"}
         justifyContent="left"
         spacing={1}
-        sx={{ width: "100%" }}
+        sx={{ width: "100%",mb:"10px" }}
       >
         <Typography variant="h5" sx={{ fontWeight: "bold" }}>
-          Get Started
+          Welcome Back !
         </Typography>
 
         <Typography variant="body2">Log in your account now!</Typography>

@@ -7,7 +7,10 @@ import {
 } from "@mui/material";
 import React, { useState } from "react";
 import LoginForm from "../../components/forms/LoginForm";
-import RegisterForm from "../../components/forms/RegisterForm";
+import RegisterForm, {
+  LoginContainer,
+  MainContainer,
+} from "../../components/forms/RegisterForm";
 import Grid from "@mui/material/Grid";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { useTheme } from "@emotion/react";
@@ -81,8 +84,8 @@ const AuthenticationPage = () => {
         container
         spacing={1}
         sx={{
-          width: "65%",
-          height: "90%",
+          width:isMobile ? "90%" : "65%",
+          height: isMobile ? "auto" : "90%",
           bgcolor: "background.main",
           borderRadius: 3,
           position: "relative",
@@ -185,9 +188,20 @@ const AuthenticationPage = () => {
             )}
           </Stack>
         )}
+        {mode === "login" ? (
+          <Stack direction="row" alignItems="center" sx={{ width: "100%" }}>
+            <LoginForm />
+            {isMobile ? null : <LoginContainer item xs={12} md={5.95} />}
+          </Stack>
+        ) : null}
 
-        <LoginForm />
-        <RegisterForm />
+        {mode === "register" ? (
+          <Stack direction="row" alignItems="center" sx={{ width: "100%" }}>
+            {isMobile ? null : <LoginContainer item xs={12} md={5.95} />}
+            
+            <RegisterForm />
+          </Stack>
+        ) : null}
       </Stack>
     </StyledLoginContainer>
   );

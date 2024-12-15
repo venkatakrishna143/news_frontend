@@ -21,7 +21,7 @@ import { Register } from "../../api/Auth";
 function RegisterForm() {
   const { mode } = useParams();
   const theme = useTheme();
-  const Navigate = useNavigate()
+  const Navigate = useNavigate();
   const isMobile = useMediaQuery(theme.breakpoints.between("xs", "md"));
 
   const defaultValues = {
@@ -68,9 +68,9 @@ function RegisterForm() {
     Register(data)
       .then((res) => {
         console.log(res);
-        const success = res.data.success
+        const success = res.data.success;
         if (success) {
-          Navigate("/user/resend-verification")
+          Navigate("/user/resend-verification");
         }
       })
       .catch((err) => {
@@ -161,7 +161,7 @@ export const MainContainer = styled(Grid)(({ theme, currentmode }) => ({
   justifyContent: "space-evenly",
   flexDirection: "column",
   gap: "10px",
-  zIndex: currentmode === "login" ? "-1" : 0,
+  // zIndex: currentmode === "login" ? "-1" : 0,
   [theme.breakpoints.between("xs", "md")]: {
     justifyContent: "space-between",
     height: "auto",
@@ -178,7 +178,7 @@ export const LoginContainer = styled(Grid)(({ theme, currentmode }) => ({
   justifyContent: "space-evenly",
   flexDirection: "column",
   gap: "10px",
-  zIndex: currentmode === "register" ? "-1" : 0,
+  // zIndex: currentmode === "register" ? "-1" : 0,
   [theme.breakpoints.between("xs", "md")]: {
     justifyContent: "space-between",
     height: "auto",

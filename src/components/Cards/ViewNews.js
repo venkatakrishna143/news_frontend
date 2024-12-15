@@ -8,19 +8,46 @@ import {
   styled,
   Typography,
   useMediaQuery,
+  useTheme,
 } from "@mui/material";
 import React from "react";
-import { Add, Close } from "../../assets/Icons";
-import { useTheme } from "@emotion/react";
+import { Add, Close, NewTab, SavedNews, UnSavedNews } from "../../assets/Icons";
 import AgoTimeStamp from "../AgoTimeStamp";
-import { Link } from "react-router-dom";
-// import { ImageComponent } from "./NewsCards";
+import { Link, useNavigate } from "react-router-dom";
 import NewsImage from "../../assets/images/news.jpg";
+import { useAuth } from "../../pages/auth/Authenticate";
+import Countries from "../../assets/countrys.json";
 
 function ViewNews({ news, openDialog, closeDialog }) {
   const theme = useTheme();
+  const { isAuthenticated } = useAuth();
+    const Navigate = useNavigate()
+  
 
   const Mobile = useMediaQuery(theme.breakpoints.between("xs", "sm"));
+
+  const handleDate = (dt) => {
+    console.log(dt);
+    const date = new Date(dt);
+    const options = { day: "2-digit", month: "long", year: "numeric" };
+    return date.toLocaleDateString("en-US", options);
+  };
+
+  const handleCountryName = (country) => {
+    if (!country) return null;
+
+    console.log(country);
+    const code = country.toUpperCase();
+    console.log(code);
+    const countryName = Countries.find((item) => item.countryacode === code);
+    console.log(countryName);
+    return countryName.countryname || null; // Return `null` explicitly if no match is found
+  };
+
+  const handleSaveNews = () => {
+    isAuthenticated ? Navigate("/user/saved-news") : Navigate("/user/login");
+  };
+
   return (
     <Dialog
       open={openDialog}
@@ -188,14 +215,26 @@ function ViewNews({ news, openDialog, closeDialog }) {
                   </Stack>
                   <AgoTimeStamp time={news.news_published_at} />
                 </Stack>
-                <Button
-                  variant="text"
-                  color="secondary"
-                  startIcon={<Add />}
-                  size="small"
-                >
-                  Follow
-                </Button>
+                {isAuthenticated ? (
+                  <Button
+                    variant="contained"
+                    color="secondary"
+                    startIcon={<SavedNews />}
+                    size="small"
+                  >
+                    Saved
+                  </Button>
+                ) : (
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    startIcon={<UnSavedNews />}
+                    size="small"
+                    onClick={handleSaveNews}
+                  >
+                    Favorite
+                  </Button>
+                )}
               </Stack>
             </DialogTitle>
 
@@ -203,7 +242,12 @@ function ViewNews({ news, openDialog, closeDialog }) {
               direction="column"
               alignItems="left"
               justifyContent="left"
-              sx={{ width: "100%", height: "inherit", overflowY: "scroll" }}
+              sx={{
+                width: "100%",
+                height: "inherit",
+                overflowY: "scroll",
+                position: "relative",
+              }}
             >
               <Typography
                 variant="body1"
@@ -223,15 +267,87 @@ function ViewNews({ news, openDialog, closeDialog }) {
                 direction="row"
                 alignItems="center"
                 justifyContent="left"
-                spacing={1}
+                spacing={0.5}
+                sx={{ width: "auto", padding: "10px" }}
               >
-                {/* <Typography variant="body1">
+                <NewsUrl to={news.news_url } target="blank">
                   Source
-                </Typography>
-                <Typography>
-                  :
-                </Typography> */}
-                <Link to={news.news_url}>Source</Link>
+                </NewsUrl>
+                <NewTab />
+              </Stack>
+
+              <Typography
+                variant="body1"
+                sx={{ color: "primary.main", fontWeight: "normal", p: "4px" }}
+              >
+                {news.news_content}
+              </Typography>
+
+              <Stack
+                direction="column"
+                alignItems="center"
+                justifyContent="center"
+                spacing={2}
+                sx={{
+                  width: "100%",
+                  padding: "10px",
+                  position: Mobile ? "relative" : "absolute",
+                  bottom: 0,
+                }}
+              >
+                <Stack
+                  direction="row"
+                  alignItems="center"
+                  spacing={1}
+                  justifyContent={Mobile ? "center" :"flex-end"}
+                  sx={{ width: "100%" }}
+                >
+                  <Typography variant="body2" sx={{ fontWeight: "bolder" }}>
+                    Source
+                  </Typography>
+                  <Typography variant="body2" sx={{ fontWeight: "bolder" }}>
+                    :
+                  </Typography>
+                  <Typography
+                    variant="body2"
+                    sx={{ fontWeight: "normal", textTransform: "capitalize" }}
+                  >
+                    {news.news_source ? news.news_source : "Anonymous"}
+                  </Typography>
+                </Stack>
+
+                <Stack
+                  direction={Mobile ?"column" :"row"}
+                  alignItems="center"
+                  spacing={1}
+                  justifyContent="space-between"
+                  sx={{ width: "100%" }}
+                >
+                  <Stack
+                    direction="row"
+                    alignItems="flex-start"
+                    spacing={1}
+                    justifyContent="center"
+                    // sx={{width:"100%"}}
+                  >
+                    <Typography variant="body2" sx={{ fontWeight: "bolder" }}>
+                      Published on
+                    </Typography>
+                    <Typography variant="body2" sx={{ fontWeight: "bolder" }}>
+                      :
+                    </Typography>
+                    <Typography variant="body2" sx={{ fontWeight: "normal" }}>
+                      {handleDate(news.news_published_at)}
+                    </Typography>
+                  </Stack>
+
+                  <Typography
+                    variant="body2"
+                    sx={{ fontWeight: "normal", textTransform: "capitalize",textAlign:"left" }}
+                  >
+                    {handleCountryName(news.news_country)}
+                  </Typography>
+                </Stack>
               </Stack>
             </Stack>
           </Stack>
@@ -253,4 +369,14 @@ const ImageComponent = styled("img")(({ theme }) => ({
     height: "200px",
     objectFit: "scale-down",
   },
+}));
+
+const NewsUrl = styled(Link)(({ theme }) => ({
+  textDecoration: "none",
+  color: theme.palette.primary.main,
+  fontFamily: theme.typography.fontFamily,
+
+  // objectFit: "contain", // Image will scale to fit, leaving empty space if necessary
+
+  [theme.breakpoints.between("xs", "md")]: {},
 }));
