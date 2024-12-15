@@ -25,7 +25,7 @@ function LandingPage() {
   }
  
   return (
-    <BodyInnerContainer container columnGap={2} rowGap={2}>
+    <BodyInnerContainer container columnGap={1} rowGap={1}>
       <LeftCardsSection item xs={12} md={3}>
         <ProfileCards />
         {/* <JobCard /> */}
@@ -54,6 +54,7 @@ const LeftCardsSection = styled(Grid)(({ theme }) => ({
   width: "100%",
   flexDirection: "column",
   gap: "8px",
+  flexShrink:0,
   // border: "1px solid blue",
   // height: "200px",
   [theme.breakpoints.between("xs", "md")]: {
@@ -72,6 +73,7 @@ const RightCardSection = styled(Grid)(({ theme }) => ({
   width: "100%",
   flexDirection: "column",
   gap: "8px",
+  flexShrink: 0,
   // border: "1px solid blue",
   // height: "200px",
   [theme.breakpoints.between("xs", "md")]: {

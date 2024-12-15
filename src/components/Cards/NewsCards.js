@@ -286,6 +286,7 @@ const News = styled(Grid)(({ theme }) => ({
   gap: 2,
   position: "relative",
   left: "320px",
+  flexGrow: 1,
 
   [theme.breakpoints.between("xs", "md")]: {
     left: 0,
