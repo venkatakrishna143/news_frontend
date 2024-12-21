@@ -39,11 +39,11 @@ export const VRegister = async (data) => {
 
 // Passwords
 
-export const forgotPassword = async (data) => {
+export const forgotPassword = async (emaildata) => {
   const response = await api.post(
     apilinks.auth.fpassword,
     JSON.stringify({
-      email: data.uemail,
+      email: emaildata,
     }),
     {
       headers: {

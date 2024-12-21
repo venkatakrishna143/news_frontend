@@ -19,12 +19,17 @@ import Authenticate from "./pages/auth/Authenticate";
 function App() {
   const { pathname } = useLocation();
   const { uid, Eemail } = useParams();
-  const NavCondition = pathname.includes("user");
+  // const NavCondition = pathname.includes("user");
 
   const pathdata =
     pathname === "/pagenotfound" ||
     pathname === "/user/resend-verifcation" ||
-    pathname.includes('accountverify');
+    pathname.includes("accountverify") ||
+    pathname === "/user/login" ||
+    pathname === "/user/register" ||
+    pathname === "/user/resend-verification" ||
+    pathname === "/user/forgot-password" ||
+    pathname === "/user/reset-password";
 
   return (
     <ReduxProvider store={store}>
@@ -34,9 +39,9 @@ function App() {
             <ThemeProvider theme={customeStyles}>
               <AnimatePresence>
                 <MainContainer>
-                  {NavCondition || pathdata ? null : <Navbar />}
+                  {pathdata ? null : <Navbar />}
                   {/* <Search /> */}
-                  <BodyOuterContainer NavCon={NavCondition || pathdata}>
+                  <BodyOuterContainer NavCon={pathdata}>
                     <PageRoutes />
                   </BodyOuterContainer>
                 </MainContainer>

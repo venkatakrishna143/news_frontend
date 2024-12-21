@@ -16,15 +16,19 @@ import {
   NavgationLink,
   NavgationLink1,
 } from "./RegisterForm";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import * as yup from "yup";
 import { Controller, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import Password from "../FormComponents/Password";
+import { useAuth } from "../../pages/auth/Authenticate";
 
 function LoginForm() {
-  const { mode } = useParams();
+  const { mode, id } = useParams();
   const theme = useTheme();
+  const { login } = useAuth();
+  const navigate = useNavigate();
+
   const isMobile = useMediaQuery(theme.breakpoints.between("xs", "md"));
 
   const defaultValues = {
@@ -33,7 +37,8 @@ function LoginForm() {
   };
 
   const schema = yup.object({
-    search: yup.string().required("Search field is required"),
+    uemail: yup.string().required("Email is Required !"),
+    upassword: yup.string().required("Password is Required !"),
   });
 
   const {
@@ -49,6 +54,17 @@ function LoginForm() {
 
   const onSubmit = (data) => {
     // console.log(data);
+    login(data)
+      .then((res) => {
+        console.log(res);
+        const success = res.data.success;
+        if (success) {
+          navigate(`/user/username/home`);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
   return (
     <LoginContainer
@@ -65,7 +81,7 @@ function LoginForm() {
         alignItems={isMobile ? "center" : "flex-start"}
         justifyContent="left"
         spacing={1}
-        sx={{ width: "100%",mb:"10px" }}
+        sx={{ width: "100%", mb: "10px" }}
       >
         <Typography variant="h5" sx={{ fontWeight: "bold" }}>
           Welcome Back !

@@ -10,6 +10,7 @@ import ProtectedRoute from "../pages/auth/ProtectedRoute";
 import Settings from "../pages/Settings";
 import AccountVerify from "../components/forms/AccountVerify";
 import ResendPrompt from "../components/PromptPages/ResendPrompt";
+import PasswordAccountVerify from "../components/forms/PasswordAccountVerify";
 
 // Lazy load pages
 const Home = React.lazy(() => import("../pages/LandingPage"));
@@ -39,7 +40,8 @@ function PageRoutes() {
   return useRoutes([
     // Root route redirects to "/home"
     { path: "/", element: <Navigate to="/home" replace /> },
-    { path: 'accountverify/:uid/:Eemail', element: <AccountVerify /> },
+    { path: "accountverify/:uid/:Eemail", element: <AccountVerify /> },
+    { path: "resetpassword/:uid/:Eemail", element: <PasswordAccountVerify /> },
 
     // Public routes
     {
@@ -51,13 +53,23 @@ function PageRoutes() {
         { path: "forgot-password", element: <ForgotPassword /> },
         { path: "change-password", element: <ChangePassword /> },
         { path: "reset-password", element: <ResetPassword /> },
-      
       ],
     },
 
     // Protected routes
     {
       path: "user/saved-news",
+      element: (
+        <React.Suspense fallback={<div>Loading Bookmarks...</div>}>
+          <ProtectedRoute>
+            <Home />
+          </ProtectedRoute>
+        </React.Suspense>
+      ),
+    },
+
+    {
+      path: "user/username/:id",
       element: (
         <React.Suspense fallback={<div>Loading Bookmarks...</div>}>
           <ProtectedRoute>

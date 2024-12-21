@@ -2,43 +2,56 @@ import React from "react";
 import { motion } from "framer-motion";
 import { StyledLoginContainer } from "../../pages/auth/Authentication";
 import Grid from "@mui/material/Grid";
-import { Button, Stack, TextField, Typography, useMediaQuery, useTheme } from "@mui/material";
+import {
+  Button,
+  Stack,
+  TextField,
+  Typography,
+  useMediaQuery,
+  useTheme,
+} from "@mui/material";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useNavigate } from "react-router-dom";
-import { NavgationLink, NavgationLink1 } from "./RegisterForm";
+import { NavgationLink } from "./RegisterForm";
+import { forgotPassword } from "../../api/Auth";
 
 function ForgotPassword() {
   const navigate = useNavigate();
-
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.between("xs", "md"));
 
   const defaultValues = {
     email: "",
-    password: "",
-    username: "",
-    phoneno: "",
   };
 
   const schema = yup.object({
-    search: yup.string().required("Search field is required"),
+    email: yup.string().required("Email is required").email("Invalid Email Id"),
   });
 
   const {
     register,
     handleSubmit,
-    control,
-    reset,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(schema),
     defaultValues,
   });
 
-  const onSubmit = (data) => {
-    // console.log(data);
+  const onSubmit = (formData) => {
+    console.log("Submitted Data:", formData); // Ensure formData is logged correctly
+
+    forgotPassword(formData.email)
+      .then((response) => {
+        console.log("API Response:", response.data);
+        if (response.data.success) {
+          navigate("/user/resend-verification");
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
   };
 
   return (
@@ -50,9 +63,9 @@ function ForgotPassword() {
       initial={{ backgroundPosition: "0% 50%" }}
       animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }}
       transition={{
-        duration: 8, // Time to complete one full cycle of the animation
-        repeat: Infinity, // Repeat infinitely
-        ease: "linear", // Smooth, continuous animation
+        duration: 8,
+        repeat: Infinity,
+        ease: "linear",
       }}
     >
       <Stack
@@ -60,30 +73,33 @@ function ForgotPassword() {
         alignItems="center"
         justifyContent="center"
         component="form"
-        container
         spacing={2}
         onSubmit={handleSubmit(onSubmit)}
         sx={{
           width: isMobile ? "90%" : "40%",
-          height: "auto",
           bgcolor: "background.main",
           borderRadius: 3,
-          position: "relative",
-          p: "20px",
+          p: 3,
         }}
       >
         <Typography variant="h6" fontWeight="bold">
           Forgot Password
         </Typography>
 
-        <TextField label="Email" fullWidth />
+        <TextField
+          label="Email"
+          fullWidth
+          {...register("email")}
+          error={!!errors.email}
+          helperText={errors.email?.message}
+        />
 
         <Button variant="contained" fullWidth type="submit">
-          submit
+          Submit
         </Button>
 
         <NavgationLink to="/user/register">
-          Don't have an account ? Register Here !
+          Don't have an account? Register Here!
         </NavgationLink>
       </Stack>
     </StyledLoginContainer>

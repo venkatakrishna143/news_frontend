@@ -8,11 +8,13 @@ import { getNews, getnewsCategories } from "../api/News";
 import { appendNewsData, newsData, resetState } from "../redux/slices/News";
 import { useLocation } from "react-router-dom";
 import { resetAppState } from "../redux/store";
-
 function NavMenu({ click, closeMenu }) {
   const theme = useTheme();
   const { pathname } = useLocation();
   const { pagedata, limitdata } = useSelector((state) => state.news);
+  const { isAuthenticated } = useSelector((state) => state.auth);
+
+  console.log(isAuthenticated)
 
   // console.log(pathname)
 
@@ -64,7 +66,14 @@ function NavMenu({ click, closeMenu }) {
     <NavList toggle={click}>
       {NavData.map((item) => (
         <NavItem key={item.id}>
-          <NavLinks to={item.path} onClick={() => handleAPICall(item.apiid)}>
+          <NavLinks
+            to={
+              isAuthenticated
+                ? `${item.authenticatedpath}/username/${item.apiid}`
+                : item.path
+            }
+            onClick={() => handleAPICall(item.apiid)}
+          >
             {item.icon}
             {item.title}
           </NavLinks>

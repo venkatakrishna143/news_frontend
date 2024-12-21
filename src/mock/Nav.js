@@ -13,6 +13,7 @@ export const NavData = [
     icon: <Home />,
     apiid: "home",
     path: "/home",
+    authenticatedpath:"/user"
   },
   {
     id: 2,
@@ -20,6 +21,7 @@ export const NavData = [
     icon: <Sport />,
     apiid: "sports",
     path: "/sports",
+    authenticatedpath:"/user"
   },
   {
     id: 3,
@@ -27,6 +29,7 @@ export const NavData = [
     icon: <Health />,
     apiid: "health",
     path: "/heath",
+    authenticatedpath:"/user"
   },
   {
     id: 4,
@@ -34,6 +37,7 @@ export const NavData = [
     icon: <Science />,
     apiid: "science",
     path: "/science",
+    authenticatedpath:"/user"
   },
    
   {
@@ -42,6 +46,7 @@ export const NavData = [
     icon: <Business />,
     apiid: "business",
     path: "/business",
+    authenticatedpath:"/user"
   },
   {
     id: 6,
@@ -49,6 +54,7 @@ export const NavData = [
     icon: <Entertainment />,
     apiid: "entertainment",
     path: "/entertainment",
+    authenticatedpath:"/user"
   },
   {
     id: 7,
@@ -56,6 +62,7 @@ export const NavData = [
     icon: <Technology />,
     apiid: "technology",
     path: "/technology",
+    authenticatedpath:"/user"
   },
   {
     id: 8,
@@ -63,5 +70,6 @@ export const NavData = [
     icon: <Notification />,
     apiid: "notifications",
     path: "/notifications",
+    authenticatedpath:"/user"
   },
 ];

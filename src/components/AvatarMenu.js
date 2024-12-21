@@ -3,36 +3,44 @@ import { Login, SavedNews, Settings } from "../assets/Icons";
 import { Stack, styled, Typography } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../pages/auth/Authenticate";
-
-const Menu = [
-  {
-    id: 1,
-    title: "Saved News",
-    path: "/user/saved-news",
-    icon: <SavedNews />,
-  },
-  {
-    id: 2,
-    title: "Settings",
-    path: "/user/Settings",
-    icon: <Settings />,
-  },
-  {
-    id: 3,
-    title: "Login",
-    path: "/user/login",
-    icon: <Login />,
-  },
-];
+import { useSelector } from "react-redux";
 
 function AvatarMenu({ toggle, closeMenu }) {
   const Navigate = useNavigate();
-
-  const { isAuthenticated } = useAuth();
+  const { logout } = useAuth();
+  const { isAuthenticated } = useSelector((state) => state.auth);
+  const Menu = [
+    {
+      id: 1,
+      title: "Saved News",
+      path: "/user/saved-news",
+      icon: <SavedNews />,
+    },
+    {
+      id: 2,
+      title: "Settings",
+      path: "/user/settings",
+      icon: <Settings />,
+    },
+    // {
+    //   id: 3,
+    //   title: isAuthenticated ? "Logout" : "Login",
+    //   path: "/home",
+    //   icon: <Login />,
+    // },
+  ];
 
   const handleNavigate = (path) => {
     Navigate(path);
     closeMenu;
+  };
+
+  const handleLogout = () => {
+    logout();
+  };
+
+  const handleLogin = () => {
+    Navigate('/user/login')
   };
   return (
     <Stack
@@ -66,6 +74,30 @@ function AvatarMenu({ toggle, closeMenu }) {
           </Navlink>
         </NavItem>
       ))}
+
+      {isAuthenticated ? (
+        <Stack direction="row" alignItems="center" spacing={1}>
+          <Login />
+          <Typography
+            variant="body1"
+            sx={{ fontWeight: "Normal",cursor:"pointer" }}
+            onClick={handleLogout}
+          >
+            Logout
+          </Typography>
+        </Stack>
+      ) : (
+        <Stack direction="row" alignItems="center" spacing={1}>
+          <Login />
+          <Typography
+            variant="body1"
+            sx={{ fontWeight: "Normal",cursor:"pointer" }}
+            onClick={handleLogin}
+          >
+            Login
+          </Typography>
+        </Stack>
+      )}
     </Stack>
   );
 }
