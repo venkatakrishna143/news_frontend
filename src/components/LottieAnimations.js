@@ -1,8 +1,12 @@
 import React from "react";
 import { Stack } from "@mui/material";
 import { DotLottieReact } from "@lottiefiles/dotlottie-react";
+import { useLocation } from "react-router-dom";
 
 function LottieAnimations({ animationData }) {
+  const { pathname } = useLocation();
+
+  const notfound = pathname === "/pagenotfound";
   return (
     <Stack
       direction="column"
@@ -15,8 +19,8 @@ function LottieAnimations({ animationData }) {
         loop
         src={animationData}
         style={{
-          width: "300px",
-          height: "300px",
+          width: notfound ? "100%" : "300px",
+          height: notfound ? "500px" : "300px",
           border: "none",
           overflow: "hidden",
         }}
