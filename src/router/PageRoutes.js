@@ -8,6 +8,7 @@ import ResendPrompt from "../components/PromptPages/ResendPrompt";
 import AuthenticationPage from "../pages/auth/Authentication";
 import ProtectedRoute from "../pages/auth/ProtectedRoute";
 import Settings from "../pages/Settings";
+import AccountVerify from "../components/forms/accountVerify";
 
 // Lazy load pages
 const Home = React.lazy(() => import("../pages/LandingPage"));
@@ -48,6 +49,7 @@ function PageRoutes() {
         { path: "forgot-password", element: <ForgotPassword /> },
         { path: "change-password", element: <ChangePassword /> },
         { path: "reset-password", element: <ResetPassword /> },
+        { path: 'accountverify/:uid/:Eemail', element: <AccountVerify /> },
       ],
     },
 
