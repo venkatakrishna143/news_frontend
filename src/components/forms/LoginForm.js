@@ -59,7 +59,7 @@ function LoginForm() {
       onSubmit={handleSubmit(onSubmit)}
       currentmode={mode}
     >
-      {isMobile ? <Stack sx={{ width: "100%" }}>Logo</Stack> : null}
+      {/* {isMobile ? <Stack sx={{ width: "100%" }}>Logo</Stack> : null} */}
       <Stack
         direction="column"
         alignItems={isMobile ? "center" : "flex-start"}

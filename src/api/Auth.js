@@ -25,7 +25,7 @@ export const VRegister = async (data) => {
     apilinks.auth.vregister,
     JSON.stringify({
       Eemail: data.email,
-      uid: data.userid,
+      uid: data.uid,
     }),
     {
       headers: {
@@ -36,7 +36,6 @@ export const VRegister = async (data) => {
   );
   return response;
 };
-
 
 // Passwords
 

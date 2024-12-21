@@ -12,16 +12,19 @@ import { PersistGate } from "redux-persist/integration/react";
 import Search from "./components/Search";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { useLocation } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import Authenticate from "./pages/auth/Authenticate";
 
 function App() {
   const { pathname } = useLocation();
-
+  const { uid, Eemail } = useParams();
   const NavCondition = pathname.includes("user");
 
-  const pathdata = pathname === "/pagenotfound";
+  const pathdata =
+    pathname === "/pagenotfound" ||
+    pathname === "/user/resend-verifcation" ||
+    pathname.includes('accountverify');
 
   return (
     <ReduxProvider store={store}>

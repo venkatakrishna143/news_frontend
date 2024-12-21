@@ -12,7 +12,7 @@ export const newslinks = {
 export const apilinks = {
   auth: {
     register: `${userapiurl}user/signup`,
-    vregister: `${userapiurl}user/ValidateRegister`,
+    vregister: `${userapiurl}users/validateregister`,
     login: `${userapiurl}user/login`,
     fpassword: `${userapiurl}user/forgotpassword`,
     rpassword: `${userapiurl}user/resetpassword`,

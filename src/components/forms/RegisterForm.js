@@ -86,7 +86,7 @@ function RegisterForm() {
       onSubmit={handleSubmit(onSubmit)}
       currentmode={mode}
     >
-      {isMobile ? <Stack sx={{ width: "100%" }}>Logo</Stack> : null}
+      {/* {isMobile ? <Stack sx={{ width: "100%" }}>Logo</Stack> : null} */}
       <Stack
         direction="column"
         alignItems={isMobile ? "center" : "flex-start"}
@@ -169,7 +169,7 @@ export const MainContainer = styled(Grid)(({ theme, currentmode }) => ({
   },
 }));
 
-export const LoginContainer = styled(Grid)(({ theme, currentmode }) => ({
+export const  LoginContainer = styled(Grid)(({ theme, currentmode }) => ({
   // border: "1px solid Blue",
   height: "95%",
   padding: "10px",

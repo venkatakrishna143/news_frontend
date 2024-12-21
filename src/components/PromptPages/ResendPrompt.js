@@ -1,12 +1,20 @@
+import {
+  Button,
+  Stack,
+  Typography,
+  useMediaQuery,
+  useTheme,
+} from "@mui/material";
 import React from "react";
+import LottieAnimations from "../LottieAnimations";
+import { AnimationsList } from "../../mock/AnimationsList";
 import { StyledLoginContainer } from "../../pages/auth/Authentication";
 import { motion } from "framer-motion";
-import { Card, Stack, useMediaQuery, useTheme } from "@mui/material";
 
 function ResendPrompt() {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.between("xs", "md"));
-
+  const MediumScreen = useMediaQuery(theme.breakpoints.between("md", "lg"));
   return (
     <StyledLoginContainer
       direction="row"
@@ -25,15 +33,24 @@ function ResendPrompt() {
         direction="column"
         alignItems="center"
         justifyContent="center"
-        component={Card}
+        spacing={2}
         sx={{
-          width: isMobile ? "90%" : "50%",
+          width: isMobile ? "90%" : MediumScreen ? "65%" : "45%",
           height: "auto",
           bgcolor: "background.main",
-          padding: "20px",
+          textAlign: "center",
+          p: "16px",
+          borderRadius: 2,
         }}
       >
-        ResendPrompt
+        <LottieAnimations animationData={AnimationsList.emailsent} />
+
+        <Typography variant="body1" sx={{ width: "90%" }}>
+          Please check your inbox and click the verify button to confirm your
+          Email address!
+        </Typography>
+
+        <Button variant="contained">Resend Email !</Button>
       </Stack>
     </StyledLoginContainer>
   );

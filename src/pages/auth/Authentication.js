@@ -11,15 +11,20 @@ import RegisterForm, {
   LoginContainer,
   MainContainer,
 } from "../../components/forms/RegisterForm";
+import { Player } from "lottie-react";
+
 import Grid from "@mui/material/Grid";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { useTheme } from "@emotion/react";
 import { motion } from "framer-motion";
+import { AnimationsList } from "../../mock/AnimationsList";
+import LottieAnimations from "../../components/LottieAnimations";
 
 const AuthenticationPage = () => {
   const { pathname } = useLocation();
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.between("xs", "md"));
+  const MediumScreen = useMediaQuery(theme.breakpoints.between("md", "lg"));
 
   const condition = pathname === "/user/register";
   const { mode } = useParams(); // Get the current mode ('login' or 'register')
@@ -59,23 +64,7 @@ const AuthenticationPage = () => {
         ease: "linear", // Smooth, continuous animation
       }}
     >
-      {/* <Stack
-        direction="column"
-        alignItems="center"
-        justifyContent="center"
-        sx={{
-          width: "40%",
-          position: "absolute",
-          height: "90%",
-          bgcolor: "background.main",
-          left: condition ? "50%" : "130px",
-          borderRadius: 2,
-          transition: "all 0.5s ease",
-          // left:"50%"
-        }}
-      >
-        Text
-      </Stack> */}
+      
       <Stack
         direction="row"
         alignItems="center"
@@ -84,121 +73,79 @@ const AuthenticationPage = () => {
         container
         spacing={1}
         sx={{
-          width:isMobile ? "90%" : "65%",
+          width: isMobile ? "90%" : MediumScreen ? "75%" : "65%",
           height: isMobile ? "auto" : "90%",
           bgcolor: "background.main",
           borderRadius: 3,
           position: "relative",
         }}
       >
-        {isMobile ? null : (
-          <Stack
-            direction="column"
-            alignItems="center"
-            justifyContent="center"
-            spacing={2}
-            component={Grid}
-            item
-            xs={12}
-            md={5.9}
-            sx={{
-              bgcolor: "primary.main",
-              width: "65%",
-              height: isMobile ? "auto" : "100%",
-              padding: "8px",
-              borderRadius: 3,
-              color: "background.main",
-              // border: "1px solid blue",
-              position: "absolute",
-              zIndex: 1,
-              left: mode === "register" ? "0" : null,
-
-              right: mode === "login" ? "0" : null,
-              transition: " all 0.5s ease",
-            }}
-          >
-            <Typography
-              variant={isMobile ? "body1" : "h6"}
-              sx={{ fontWeight: "bold", width: "auto" }}
-            >
-              Official News
-            </Typography>
-
-            {mode === "login" ? (
-              <Stack
-                direction="column"
-                alignItems="center"
-                justifyContent="center"
-                spacing={2}
+      
+        {mode === "login" ? (
+          <Stack direction="row" alignItems="center" sx={{ width: "100%" }}>
+            {isMobile ? null : (
+              <Grid
+                item
+                xs={12}
+                md={5.95}
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  flexDirection: "column",
+                }}
               >
+                <LottieAnimations animationData={AnimationsList.login} />
+
                 <Typography
-                  variant={isMobile ? "body2" : "h6"}
-                  sx={{ fontWeight: "normal", textAlign: "center" }}
-                >
-                  Stay Informed with E-Vartalu !
-                </Typography>
-                <Typography
-                  variant={isMobile ? "body2" : "body1"}
-                  sx={{ fontWeight: "normal", textAlign: "center" }}
-                >
-                  Explore news, trends, and updates all in one place. Join us
-                  now and connect with a community where knowledge meets
-                  innovation!
-                </Typography>
-              </Stack>
-            ) : (
-              <Stack
-                direction="column"
-                alignItems="center"
-                justifyContent="center"
-                spacing={2}
-              >
-                <Typography
-                  variant={isMobile ? "body2" : "h6"}
-                  sx={{ fontWeight: "normal", textAlign: "center" }}
-                >
-                  Welcome back to E-Vartalu !
-                </Typography>
-                <Typography
-                  variant={isMobile ? "body2" : "body1"}
-                  sx={{ fontWeight: "normal", textAlign: "center" }}
+                  variant="body1"
+                  sx={{
+                    fontWeight: "normal",
+                    textAlign: "center",
+                    width: "80%",
+                  }}
                 >
                   Log in to explore the latest news, trends, and updates. Stay
                   connected and informed with your favorite platform!
                 </Typography>
-              </Stack>
+              </Grid>
             )}
 
-            {mode === "login" ? (
-              <Button
-                variant="outlined"
-                color="secondary"
-                onClick={handleRegisterNavigate}
-              >
-                Sign up
-              </Button>
-            ) : (
-              <Button
-                variant="outlined"
-                color="secondary"
-                onClick={handleLoginNavigate}
-              >
-                Sign in
-              </Button>
-            )}
-          </Stack>
-        )}
-        {mode === "login" ? (
-          <Stack direction="row" alignItems="center" sx={{ width: "100%" }}>
             <LoginForm />
-            {isMobile ? null : <LoginContainer item xs={12} md={5.95} />}
           </Stack>
         ) : null}
 
         {mode === "register" ? (
           <Stack direction="row" alignItems="center" sx={{ width: "100%" }}>
-            {isMobile ? null : <LoginContainer item xs={12} md={5.95} />}
-            
+            {isMobile ? null : (
+              <Grid
+                item
+                xs={12}
+                md={5.95}
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  flexDirection: "column",
+                }}
+              >
+                <LottieAnimations animationData={AnimationsList.register} />
+
+                <Typography
+                  variant="body1"
+                  sx={{
+                    fontWeight: "normal",
+                    textAlign: "center",
+                    width: "80%",
+                  }}
+                >
+                  Explore news, trends, and updates all in one place. Join us
+                  now and connect with a community where knowledge meets
+                  innovation!
+                </Typography>
+              </Grid>
+            )}
+
             <RegisterForm />
           </Stack>
         ) : null}

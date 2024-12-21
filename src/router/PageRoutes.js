@@ -4,11 +4,12 @@ import NotFound from "../pages/NotFound";
 import ForgotPassword from "../components/forms/ForgotPassword";
 import ChangePassword from "../components/forms/ChangePassword";
 import ResetPassword from "../components/forms/ResetPassword";
-import ResendPrompt from "../components/PromptPages/ResendPrompt";
+// import ResendPrompt from "../components/PromptPages/ResendPrompt";
 import AuthenticationPage from "../pages/auth/Authentication";
 import ProtectedRoute from "../pages/auth/ProtectedRoute";
 import Settings from "../pages/Settings";
-import AccountVerify from "../components/forms/accountVerify";
+import AccountVerify from "../components/forms/AccountVerify";
+import ResendPrompt from "../components/PromptPages/ResendPrompt";
 
 // Lazy load pages
 const Home = React.lazy(() => import("../pages/LandingPage"));
@@ -38,6 +39,7 @@ function PageRoutes() {
   return useRoutes([
     // Root route redirects to "/home"
     { path: "/", element: <Navigate to="/home" replace /> },
+    { path: 'accountverify/:uid/:Eemail', element: <AccountVerify /> },
 
     // Public routes
     {
@@ -49,7 +51,7 @@ function PageRoutes() {
         { path: "forgot-password", element: <ForgotPassword /> },
         { path: "change-password", element: <ChangePassword /> },
         { path: "reset-password", element: <ResetPassword /> },
-        { path: 'accountverify/:uid/:Eemail', element: <AccountVerify /> },
+      
       ],
     },
 
