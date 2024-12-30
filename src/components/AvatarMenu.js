@@ -22,7 +22,7 @@ function AvatarMenu({ toggle, closeMenu }) {
   const showError = ErrorBar();
   const { isAuthenticated, userdata ,tokendata} = useSelector((state) => state.auth);
   const { pagedata, limitdata } = useSelector((state) => state.news);
-  const Mobile = useMediaQuery(theme.breakpoints.between("xs", "sm"));
+  const Mobile = useMediaQuery(theme.breakpoints.between("xs", "md"));
   const Menu = [
     {
       id: 1,

@@ -235,7 +235,7 @@ function NewsCards() {
       </Stack>
       {newsdata.length !== 0 ? (
         newsdata.map((item, index) => {
-          const isBookmarked =  bookmarks.includes(item.id) 
+          const isBookmarked = bookmarks?  bookmarks.includes(item.id) : []
           console.log(isBookmarked,'Bookmarks')
           return (
             <Card
@@ -287,7 +287,7 @@ function NewsCards() {
                   <AgoTimeStamp time={item.news_published_at} />
                 </Stack>
   
-                {isBookmarked  ? (
+                {/* {isBookmarked  ? (
                   <Button
                     variant="contained"
                     color="primary"
@@ -307,7 +307,17 @@ function NewsCards() {
                   >
                     Save
                   </Button>
-                )}
+                )} */}
+
+<Button
+                    variant="contained"
+                    color="primary"
+                    startIcon={<UnSavedNews />}
+                    size="small"
+                    onClick={() => handleSaveNews(item.news_id)}
+                  >
+                    Save
+                  </Button>
               </Stack>
               {/* <Typography variant="body1" sx={{ fontWeight: "bolder" }}>
                 {item.news_title}

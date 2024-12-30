@@ -68,9 +68,10 @@ function LoginForm() {
       .then((res) => {
         console.log(res);
         const success = res.data.success;
+        const user = res.data.user.name
         if (success) {
           showSuccess(res.data.message);
-          navigate(`/user/${userdata.name}/home`);
+          navigate(`/user/${user}/home`);
         } else {
           showError(res.data.message);
         }
