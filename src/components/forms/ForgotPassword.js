@@ -16,6 +16,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useNavigate } from "react-router-dom";
 import { NavgationLink } from "./RegisterForm";
 import { forgotPassword } from "../../api/Auth";
+import TextInput from "../FormComponents/TextInput";
 
 function ForgotPassword() {
   const navigate = useNavigate();
@@ -86,12 +87,11 @@ function ForgotPassword() {
           Forgot Password
         </Typography>
 
-        <TextField
+        <TextInput
           label="Email"
-          fullWidth
-          {...register("email")}
-          error={!!errors.email}
-          helperText={errors.email?.message}
+          name="email"
+          control={control}
+          errors={errors}
         />
 
         <Button variant="contained" fullWidth type="submit">

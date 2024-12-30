@@ -1,6 +1,6 @@
 import React from "react";
 import { Login, SavedNews, Settings } from "../assets/Icons";
-import { Stack, styled, Typography } from "@mui/material";
+import { Stack, styled, Typography, useMediaQuery, useTheme } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../pages/auth/Authenticate";
 import { useSelector } from "react-redux";
@@ -8,7 +8,9 @@ import { useSelector } from "react-redux";
 function AvatarMenu({ toggle, closeMenu }) {
   const Navigate = useNavigate();
   const { logout } = useAuth();
+  const theme = useTheme()
   const { isAuthenticated } = useSelector((state) => state.auth);
+  const Mobile = useMediaQuery(theme.breakpoints.between("xs","sm"))
   const Menu = [
     {
       id: 1,
@@ -56,7 +58,7 @@ function AvatarMenu({ toggle, closeMenu }) {
         py: "10px",
         position: "absolute",
         top: toggle ? "80px" : "-2000%",
-        right: "60px",
+        right: Mobile ? 0 : "60px",
         bgcolor: "primary.main",
         transition: "all 0.5s ease",
         zIndex: "-1",
@@ -68,8 +70,8 @@ function AvatarMenu({ toggle, closeMenu }) {
         </Typography>
       ) : null}
       {Menu.map((item) => (
-        <NavItem>
-          <Navlink to={item.path}>
+        <NavItem key={item.id}>
+          <Navlink to={item.path} onClick={closeMenu  }>
             {item.icon} {item.title}
           </Navlink>
         </NavItem>

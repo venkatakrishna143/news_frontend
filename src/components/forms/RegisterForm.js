@@ -17,11 +17,17 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import usePagination from "@mui/material/usePagination/usePagination";
 import Password from "../FormComponents/Password";
 import { Register } from "../../api/Auth";
+import { useSnackbar } from "notistack";
+import SuccessBar from "../SnackBars/SuccessBar";
+import ErrorBar from "../SnackBars/ErrorBar";
+import TextInput from "../FormComponents/TextInput";
 
 function RegisterForm() {
   const { mode } = useParams();
   const theme = useTheme();
   const Navigate = useNavigate();
+  const showSuccess = SuccessBar();
+  const showError = ErrorBar();
   const isMobile = useMediaQuery(theme.breakpoints.between("xs", "md"));
 
   const defaultValues = {
@@ -70,7 +76,10 @@ function RegisterForm() {
         console.log(res);
         const success = res.data.success;
         if (success) {
+          showSuccess(res.data.message);
           Navigate("/user/resend-verification");
+        } else {
+          showError(res.data.message);
         }
       })
       .catch((err) => {
@@ -98,7 +107,9 @@ function RegisterForm() {
           Get Started
         </Typography>
 
-        <Typography variant="body2">Create your account now !</Typography>
+       
+          <Typography variant="body2">Create your account now !</Typography>
+      
       </Stack>
       <Stack
         direction="column"
@@ -107,36 +118,43 @@ function RegisterForm() {
         spacing={1.5}
         sx={{ width: "100%" }}
       >
-        <TextField
-          fullWidth
+        <TextInput
           label="Email"
-          size="small"
-          {...register("uemail")}
+          name="uemail"
+          control={control}
+          errors={errors}
         />
-        <TextField
-          fullWidth
+        <TextInput
           label="Mobile"
-          size="small"
-          {...register("phoneno")}
+          name="phoneno"
+          control={control}
+          errors={errors}
         />
-        <TextField
-          fullWidth
+        <TextInput
           label="Username"
-          size="small"
-          {...register("username")}
+          name="username"
+          control={control}
+          errors={errors}
         />
+
         <Stack
           direction="column"
           alignItems="center"
           justifyContent="center"
           sx={{ width: "100%" }}
-          spacing={2}
+          spacing={1.5}
         >
-          <Password label="Password" name="upassword" control={control} />
+          <Password
+            label="Password"
+            name="upassword"
+            control={control}
+            errors={errors}
+          />
           <Password
             label="Confirm Password"
             name="cupassword"
             control={control}
+            errors={errors}
           />
         </Stack>
 
@@ -154,7 +172,7 @@ export default RegisterForm;
 
 export const MainContainer = styled(Grid)(({ theme, currentmode }) => ({
   // border: "1px solid Blue",
-  height: "95%",
+  height: "auto",
   padding: "8px",
   display: "flex",
   alignItems: "flex-start",
@@ -169,7 +187,7 @@ export const MainContainer = styled(Grid)(({ theme, currentmode }) => ({
   },
 }));
 
-export const  LoginContainer = styled(Grid)(({ theme, currentmode }) => ({
+export const LoginContainer = styled(Grid)(({ theme, currentmode }) => ({
   // border: "1px solid Blue",
   height: "95%",
   padding: "10px",
@@ -191,7 +209,7 @@ export const NavgationLink = styled(Link)(({ theme }) => ({
   textDecoration: "none",
   width: "100%",
   textAlign: "center",
-  marginTop: "10px",
+  marginTop: "8px",
   fontFamily: theme.typography.fontFamily,
 }));
 

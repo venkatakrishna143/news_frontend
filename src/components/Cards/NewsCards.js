@@ -214,7 +214,7 @@ function NewsCards() {
                 size="small"
                 onClick={handleSaveNews}
               >
-                Favorite
+                Save
               </Button>
             </Stack>
             {/* <Typography variant="body1" sx={{ fontWeight: "bolder" }}>

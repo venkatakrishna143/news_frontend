@@ -15,6 +15,7 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { useLocation, useParams } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import Authenticate from "./pages/auth/Authenticate";
+import { SnackbarProvider } from "notistack";
 
 function App() {
   const { pathname } = useLocation();
@@ -29,7 +30,7 @@ function App() {
     pathname === "/user/register" ||
     pathname === "/user/resend-verification" ||
     pathname === "/user/forgot-password" ||
-    pathname === "/user/reset-password";
+    pathname === "/user/reset-password"|| pathname.includes("resetpassword")
 
   return (
     <ReduxProvider store={store}>
@@ -37,6 +38,7 @@ function App() {
         <LocalizationProvider dateAdapter={AdapterDayjs}>
           <Authenticate>
             <ThemeProvider theme={customeStyles}>
+              <SnackbarProvider maxSnack={3}>
               <AnimatePresence>
                 <MainContainer>
                   {pathdata ? null : <Navbar />}
@@ -45,7 +47,8 @@ function App() {
                     <PageRoutes />
                   </BodyOuterContainer>
                 </MainContainer>
-              </AnimatePresence>
+                </AnimatePresence>
+                </SnackbarProvider>
             </ThemeProvider>
           </Authenticate>
         </LocalizationProvider>

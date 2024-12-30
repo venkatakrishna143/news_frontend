@@ -232,7 +232,7 @@ function ViewNews({ news, openDialog, closeDialog }) {
                     size="small"
                     onClick={handleSaveNews}
                   >
-                    Favorite
+                    Save
                   </Button>
                 )}
               </Stack>

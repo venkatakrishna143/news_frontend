@@ -22,12 +22,18 @@ import { Controller, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import Password from "../FormComponents/Password";
 import { useAuth } from "../../pages/auth/Authenticate";
+import ErrorBar from "../SnackBars/ErrorBar";
+import SuccessBar from "../SnackBars/SuccessBar";
+import TextInput from "../FormComponents/TextInput";
 
 function LoginForm() {
   const { mode, id } = useParams();
   const theme = useTheme();
   const { login } = useAuth();
   const navigate = useNavigate();
+
+  const showSuccess = SuccessBar();
+  const showError = ErrorBar();
 
   const isMobile = useMediaQuery(theme.breakpoints.between("xs", "md"));
 
@@ -37,7 +43,7 @@ function LoginForm() {
   };
 
   const schema = yup.object({
-    uemail: yup.string().required("Email is Required !"),
+    uemail: yup.string().required("Email is Required !").email("Please enter valid Email Id !"),
     upassword: yup.string().required("Password is Required !"),
   });
 
@@ -59,7 +65,10 @@ function LoginForm() {
         console.log(res);
         const success = res.data.success;
         if (success) {
+          showSuccess(res.data.message);
           navigate(`/user/username/home`);
+        } else {
+          showError(res.data.message);
         }
       })
       .catch((err) => {
@@ -96,25 +105,13 @@ function LoginForm() {
         spacing={2}
         sx={{ width: "100%" }}
       >
-        <TextField
-          fullWidth
-          label="Email"
-          size="small"
-          autoComplete="off"
-          {...register("uemail")}
-        />
-        <Controller
-          name="upassword"
-          control={control}
-          render={({ field }) => (
-            <Password
-              {...field}
-              label="Password"
-              control={control}
-              errors={errors}
-            />
-          )}
-        />
+         <TextInput
+        label="Email"
+        name="uemail"
+        control={control}
+        errors={errors}
+      />
+        <Password label="Password" name="upassword" control={control} errors={errors} />
         <NavgationLink1 to="/user/forgot-password">
           Forgot Password
         </NavgationLink1>

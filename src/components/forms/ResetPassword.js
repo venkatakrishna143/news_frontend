@@ -1,6 +1,6 @@
 import React from "react";
 import { StyledLoginContainer } from "../../pages/auth/Authentication";
-import { motion } from "framer-motion";
+import { motion, useScroll } from "framer-motion";
 import Grid from "@mui/material/Grid";
 import {
   Button,
@@ -13,20 +13,42 @@ import {
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useSelector } from "react-redux";
+import { resetPassword } from "../../api/Auth";
+import Password from "../FormComponents/Password";
+import { useNavigate } from "react-router-dom";
+import SuccessBar from "../SnackBars/SuccessBar";
+import ErrorBar from "../SnackBars/ErrorBar";
 
 function ResetPassword() {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.between("xs", "md"));
+
+  const Navigate = useNavigate();
+
+  const { enemail, euid } = useSelector((state) => state.auth.encrypted);
+
   const defaultValues = {
-    email: "",
     password: "",
-    username: "",
-    phoneno: "",
+    cpassword: "",
   };
 
   const schema = yup.object({
-    search: yup.string().required("Search field is required"),
+    password: yup
+      .string()
+      .matches(
+        /^(?=.*[A-Z])(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/,
+        "Password must be at least 8 characters long, include at least one uppercase letter, and one special character."
+      )
+      .required("Password is required"),
+    cpassword: yup
+      .string()
+      .oneOf([yup.ref("password"), null], "Passwords must match")
+      .required("Confirm password is required"),
   });
+
+  const showSuccess = SuccessBar();
+  const showError = ErrorBar();
 
   const {
     register,
@@ -41,6 +63,27 @@ function ResetPassword() {
 
   const onSubmit = (data) => {
     // console.log(data);
+    let apidata = {
+      uemail: enemail,
+      uid: euid,
+      npassword: data.cpassword,
+    };
+
+    // console.log(apidata);
+    resetPassword(apidata)
+      .then((res) => {
+        // console.log(res);
+        const success = res.data.success;
+        if (success) {
+          showSuccess(res.data.message);
+          Navigate("/user/login");
+        } else {
+          showError(res.data.message);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
   return (
     <StyledLoginContainer
@@ -73,12 +116,16 @@ function ResetPassword() {
           p: "20px",
         }}
       >
-        <Typography variant="h6" fontWeight="bold">
+        <Typography variant="h6" fontWeight="bold"> 
           Reset Password
         </Typography>
-        <TextField label="New Password" fullWidth />
+        <Password label="New Password" name="password" control={control} />
 
-        <TextField label="Confirm New Password" fullWidth />
+        <Password
+          label="Confirm New Password"
+          name="cpassword"
+          control={control}
+        />
 
         <Button variant="contained" fullWidth type="submit">
           Reset Password

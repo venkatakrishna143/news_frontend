@@ -74,7 +74,7 @@ const AuthenticationPage = () => {
         spacing={1}
         sx={{
           width: isMobile ? "90%" : MediumScreen ? "75%" : "65%",
-          height: isMobile ? "auto" : "90%",
+          height: isMobile ? "auto" : "95%",
           bgcolor: "background.main",
           borderRadius: 3,
           position: "relative",

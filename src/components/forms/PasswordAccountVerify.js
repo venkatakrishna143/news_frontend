@@ -33,23 +33,23 @@ const PasswordAccountVerify = () => {
       euid: uid,
     };
 
-    dispatch(encrypedtedDetails());
+    dispatch(encrypedtedDetails(data));
 
-    // VRegister(data)
-    //   .then((res) => {
-    //     // console.log(res);
-    //     const statuscode = res.status;
-    //     if (statuscode === 200) {
-    //       setAccountVerified(true);
-    //     }
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
+    VRegister(data)
+      .then((res) => {
+        // console.log(res);
+        const statuscode = res.status;
+        if (statuscode === 200) {
+          setAccountVerified(true);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }, [uid, Eemail, navigate]);
 
   const handleNaviagte = () => {
-    navigate("/user/login");
+    navigate("/user/reset-password");
   };
 
   return (
@@ -102,7 +102,7 @@ const PasswordAccountVerify = () => {
               onClick={handleNaviagte}
               startIcon={<Login />}
             >
-              Login
+              Reset Password
             </Button>{" "}
           </>
         ) : (

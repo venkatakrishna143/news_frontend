@@ -10,8 +10,9 @@ import { useSelector, useDispatch } from "react-redux";
 const AuthContext = createContext();
 
 function Authenticate({ children }) {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  // const [isAuthenticated, setIsAuthenticated] = useState(false);
   const token = useSelector((state) => state.auth.tokendata);
+  const {isAuthenticated} = useSelector((state)=>state.auth)
   const dispatch = useDispatch();
 
   // Function to handle user login
@@ -35,7 +36,7 @@ function Authenticate({ children }) {
         const authToken = response.data.token;
         dispatch(setTokenData(authToken)); // Dispatch token data to Redux store
         // localStorage.setItem("authToken", authToken); // Save token to localStorage
-        setIsAuthenticated(true);
+        // setIsAuthenticated(true);
         dispatch(setAuthenticated(true)); // Update Redux state for authentication
       }
 
@@ -48,16 +49,16 @@ function Authenticate({ children }) {
 
   // Function to check if the user is authenticated
   const checkAuthentication = () => {
-    const token = localStorage.getItem("authToken");
+    // const token = token
     const isLoggedIn = !!token; // Check if token exists
-    setIsAuthenticated(isLoggedIn);
+    // setIsAuthenticated(isLoggedIn);
     dispatch(setAuthenticated(isLoggedIn)); // Update Redux state
   };
 
   // Function to handle logout
   const logout = () => {
     localStorage.removeItem("authToken");
-    setIsAuthenticated(false);
+    // setIsAuthenticated(false);
     dispatch(setAuthenticated(false)); // Reset Redux authentication state
   };
 
