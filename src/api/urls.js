@@ -25,8 +25,8 @@ export const apilinks = {
     allnews: `${apiurl}getallnews`,
   },
   bookmarks: {
-    create: `${apiurl}user/createbookmark`,
-    get: `${apiurl}user/getbookmarks`,
-    delete: `${apiurl}user/deletebookmarks`,
+    create: `${userapiurl}user/createbookmark`,
+    get: `${userapiurl}user/getbookmarks`,
+    delete: `${userapiurl}user/deletebookmarks`,
   },
 };

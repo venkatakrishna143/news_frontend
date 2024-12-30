@@ -27,19 +27,32 @@ import ResponsivePagination from "./ResponsivePagination";
 import Title from "../Title";
 import ViewNews from "./ViewNews";
 import AgoTimeStamp from "../AgoTimeStamp";
-import { appendNewsData, PageData } from "../../redux/slices/News";
+import {
+  appendNewsData,
+  PageData,
+  resetNewsState,
+} from "../../redux/slices/News";
+import { resetState } from "../../redux/slices/Auth";
 import { resetAppState } from "../../redux/store";
 import NewsImage from "../../assets/images/news.jpg";
 import { useAuth } from "../../pages/auth/Authenticate";
+import { cBookmark, getBookmarks } from "../../api/Bookmark";
+import SuccessBar from "../SnackBars/SuccessBar";
+import ErrorBar from "../SnackBars/ErrorBar";
 
 function NewsCards() {
   const { id } = useParams();
+
   // console.log(id);
   const theme = useTheme();
 
-  const { isAuthenticated } = useAuth();
+  const [bookmarks, setBookmarks] = useState([]);
+
+  const { isAuthenticated, tokendata } = useSelector((state) => state.auth);
 
   const Navigate = useNavigate();
+  const showSuccess = SuccessBar();
+  const showError = ErrorBar();
 
   const Mobile = useMediaQuery(theme.breakpoints.between("xs", "md"));
   const [newsidData, setnewsidData] = useState([]);
@@ -79,6 +92,16 @@ function NewsCards() {
         .catch((err) => {
           console.error("Error fetching news data:", err);
         });
+    } else if (id === "saved-news" && isAuthenticated) {
+      resetAppState();
+      getBookmarks(pagedata, limitdata, tokendata) // Assuming API expects 1-based page numbers
+        .then((res) => {
+          const data = res.data.data || [];
+          dispatch(appendNewsData(data));
+        })
+        .catch((err) => {
+          console.error("Error fetching news data:", err);
+        });
     } else {
       getnewsCategories(apiOject)
         .then((res) => {
@@ -96,8 +119,43 @@ function NewsCards() {
     }
   }, []);
 
-  const handleSaveNews = () => {
-    isAuthenticated ? Navigate("/user/saved-news") : Navigate("/user/login");
+  useEffect(() => {
+    getBookmarks(pagedata, limitdata, tokendata) // Assuming API expects 1-based page numbers
+      .then((res) => {
+        console.log(res);
+        const data = res.data.data || [];
+        // dispatch(appendNewsData(data));
+        setBookmarks(res.data.data);
+      })
+      .catch((err) => {
+        console.error("Error fetching news data:", err);
+      });
+  }, []);
+  
+
+  const handleSaveNews = (id) => {
+    if (isAuthenticated) {
+      // Navigate to saved news and call the API
+      // Navigate("/user/saved-news");
+
+      cBookmark(id, tokendata)
+        .then((res) => {
+          const success = res.data.success;
+          if (success) {
+            showSuccess(res.data.message);
+            const data = res.data.newsfeed || [];
+            dispatch(appendNewsData(data));
+          } else {
+            showError(res.data.message);
+          }
+        })
+        .catch((err) => {
+          console.error("Error fetching news data:", err);
+        });
+    } else {
+      // Navigate to the login page
+      Navigate("/user/login");
+    }
   };
 
   const handleViewNews = (id) => {
@@ -117,6 +175,25 @@ function NewsCards() {
       });
   };
   //  View News
+
+  // Closing
+
+  useEffect(() => {
+    const handleAppClose = () => {
+      dispatch(resetNewsState());
+      dispatch(resetState());
+    };
+
+    // Attach event listener for unload
+    window.addEventListener("beforeunload", handleAppClose);
+
+    // Cleanup event listener on component unmount
+    return () => {
+      window.removeEventListener("beforeunload", handleAppClose);
+    };
+  }, [dispatch]);
+
+  
 
   return (
     <News item component={Card} xs={12} md={5.2}>
@@ -157,87 +234,103 @@ function NewsCards() {
         </Box>
       </Stack>
       {newsdata.length !== 0 ? (
-        newsdata.map((item, index) => (
-          <Card
-            key={item.news_id}
-            sx={{
-              width: "100%",
-              p: "10px",
-              border: "1px solid lightgray",
-              display: "flex",
-              alignItems: "flex-start",
-              justifyContent: "start",
-              flexDirection: "column",
-              mb: "10px",
-              cursor: "pointer",
-              height: "510px",
-              gap: "10px",
-            }}
-          >
-            <Stack
-              direction="row"
-              alignItems="flex-start"
-              justifyContent="space-between"
-              sx={{ width: "100%" }}
+        newsdata.map((item, index) => {
+          const isBookmarked =  bookmarks.includes(item.id) 
+          console.log(isBookmarked,'Bookmarks')
+          return (
+            <Card
+              key={item.news_id}
+              sx={{
+                width: "100%",
+                p: "10px",
+                border: "1px solid lightgray",
+                display: "flex",
+                alignItems: "flex-start",
+                justifyContent: "start",
+                flexDirection: "column",
+                mb: "10px",
+                cursor: "pointer",
+                height: "510px",
+                gap: "10px",
+              }}
             >
-              <Stack direction="column" alignItems="left">
-                <Stack direction="row" alignItems="center" spacing={1}>
-                  <Typography variant="body2" sx={{ fontWeight: "bolder" }}>
-                    Author
-                  </Typography>
-                  <Typography variant="body2" sx={{ fontWeight: "bolder" }}>
-                    :
-                  </Typography>
-                  <Typography variant="body2" sx={{ fontWeight: "normal" }}>
-                    {item.news_author ? item.news_author : "Anonymous"}
-                  </Typography>
-                </Stack>
-                <Stack direction="row" alignItems="center" spacing={1}>
-                  <Typography variant="body2" sx={{ fontWeight: "bolder" }}>
-                    Category
-                  </Typography>
-                  <Typography variant="body2" sx={{ fontWeight: "bolder" }}>
-                    :
-                  </Typography>
-                  <Typography variant="body2" sx={{ fontWeight: "normal" }}>
-                    {item.news_category ? item.news_category : "Anonymous"}
-                  </Typography>
-                </Stack>
-
-                <AgoTimeStamp time={item.news_published_at} />
-              </Stack>
-
-              <Button
-                variant="contained"
-                color="primary"
-                startIcon={<UnSavedNews />}
-                size="small"
-                onClick={handleSaveNews}
+              <Stack
+                direction="row"
+                alignItems="flex-start"
+                justifyContent="space-between"
+                sx={{ width: "100%" }}
               >
-                Save
-              </Button>
-            </Stack>
-            {/* <Typography variant="body1" sx={{ fontWeight: "bolder" }}>
-              {item.news_title}
-            </Typography> */}
-
-            <Title text={item.news_title} />
-            <Stack
-              direction="column"
-              alignItems="center"
-              justifyContent="center"
-              sx={{ width: "100%", height: "450px", p: "10px" }}
-              onClick={() => handleViewNews(item.news_id)}
-            >
-              <ImageComponent
-                src={
-                  item.news_url_to_image ? item.news_url_to_image : NewsImage
-                }
-                alt={item.news_title}
-              />
-            </Stack>
-          </Card>
-        ))
+                <Stack direction="column" alignItems="left">
+                  <Stack direction="row" alignItems="center" spacing={1}>
+                    <Typography variant="body2" sx={{ fontWeight: "bolder" }}>
+                      Author
+                    </Typography>
+                    <Typography variant="body2" sx={{ fontWeight: "bolder" }}>
+                      :
+                    </Typography>
+                    <Typography variant="body2" sx={{ fontWeight: "normal" }}>
+                      {item.news_author ? item.news_author : "Anonymous"}
+                    </Typography>
+                  </Stack>
+                  <Stack direction="row" alignItems="center" spacing={1}>
+                    <Typography variant="body2" sx={{ fontWeight: "bolder" }}>
+                      Category
+                    </Typography>
+                    <Typography variant="body2" sx={{ fontWeight: "bolder" }}>
+                      :
+                    </Typography>
+                    <Typography variant="body2" sx={{ fontWeight: "normal" }}>
+                      {item.news_category ? item.news_category : "Anonymous"}
+                    </Typography>
+                  </Stack>
+  
+                  <AgoTimeStamp time={item.news_published_at} />
+                </Stack>
+  
+                {isBookmarked  ? (
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    startIcon={<SavedNews />}
+                    size="small"
+                    onClick={() => handleSaveNews(item.news_id)}
+                  >
+                    Saved
+                  </Button>
+                ) : (
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    startIcon={<UnSavedNews />}
+                    size="small"
+                    onClick={() => handleSaveNews(item.news_id)}
+                  >
+                    Save
+                  </Button>
+                )}
+              </Stack>
+              {/* <Typography variant="body1" sx={{ fontWeight: "bolder" }}>
+                {item.news_title}
+              </Typography> */}
+  
+              <Title text={item.news_title} />
+              <Stack
+                direction="column"
+                alignItems="center"
+                justifyContent="center"
+                sx={{ width: "100%", height: "450px", p: "10px" }}
+                onClick={() => handleViewNews(item.news_id)}
+              >
+                <ImageComponent
+                  src={
+                    item.news_url_to_image ? item.news_url_to_image : NewsImage
+                  }
+                  alt={item.news_title}
+                />
+              </Stack>
+            </Card>
+          )
+        })
       ) : (
         <Typography>No News Found !</Typography>
       )}

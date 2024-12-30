@@ -12,11 +12,9 @@ function NavMenu({ click, closeMenu }) {
   const theme = useTheme();
   const { pathname } = useLocation();
   const { pagedata, limitdata } = useSelector((state) => state.news);
-  const { isAuthenticated } = useSelector((state) => state.auth);
+  const { isAuthenticated, userdata } = useSelector((state) => state.auth);
 
-  console.log(isAuthenticated)
-
-  // console.log(pathname)
+  console.log(pathname)
 
   const dispatch = useDispatch();
 
@@ -44,7 +42,7 @@ function NavMenu({ click, closeMenu }) {
         .catch((err) => {
           console.error("Error fetching news data:", err);
         });
-    } else {
+    }  else {
       resetAppState();
       getnewsCategories(apiOject)
         .then((res) => {
@@ -69,7 +67,7 @@ function NavMenu({ click, closeMenu }) {
           <NavLinks
             to={
               isAuthenticated
-                ? `${item.authenticatedpath}/username/${item.apiid}`
+                ? `${item.authenticatedpath}/${userdata.name}/${item.apiid}`
                 : item.path
             }
             onClick={() => handleAPICall(item.apiid)}

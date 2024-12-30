@@ -11,6 +11,7 @@ import Settings from "../pages/Settings";
 import AccountVerify from "../components/forms/AccountVerify";
 import ResendPrompt from "../components/PromptPages/ResendPrompt";
 import PasswordAccountVerify from "../components/forms/PasswordAccountVerify";
+import { useSelector } from "react-redux";
 
 // Lazy load pages
 const Home = React.lazy(() => import("../pages/LandingPage"));
@@ -37,6 +38,8 @@ const ValidateUserRoute = () => {
  * Handles all routing with protected and normal routes.
  */
 function PageRoutes() {
+  const { isAuthenticated, userdata } = useSelector((state) => state.auth);
+  
   return useRoutes([
     // Root route redirects to "/home"
     { path: "/", element: <Navigate to="/home" replace /> },
@@ -69,7 +72,7 @@ function PageRoutes() {
     },
 
     {
-      path: "user/username/:id",
+      path: `user/${userdata.name}/:id`,
       element: (
         <React.Suspense fallback={<div>Loading Bookmarks...</div>}>
           <ProtectedRoute>

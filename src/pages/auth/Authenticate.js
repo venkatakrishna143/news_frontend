@@ -4,6 +4,7 @@ import { apilinks } from "../../api/urls";
 import {
   setAuthenticated,
   tokendata as setTokenData,
+  userdata,
 } from "../../redux/slices/Auth";
 import { useSelector, useDispatch } from "react-redux";
 
@@ -37,6 +38,7 @@ function Authenticate({ children }) {
         dispatch(setTokenData(authToken)); // Dispatch token data to Redux store
         // localStorage.setItem("authToken", authToken); // Save token to localStorage
         // setIsAuthenticated(true);
+        dispatch(userdata(response.data.user))
         dispatch(setAuthenticated(true)); // Update Redux state for authentication
       }
 

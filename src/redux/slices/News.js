@@ -31,7 +31,7 @@ const slice = createSlice({
     resetPageData: (state) => {
       state.pagedata = initialState.pagedata; // Reset only pagedata
     },
-    resetState: () => initialState, // Reset the entire state to its initial values
+    resetNewsState: () => initialState, // Reset the entire state to its initial values
   },
 });
 
@@ -42,7 +42,7 @@ export const {
   DataLimit,
   CategorieData,
   resetPageData,
-  resetState, // Export the new action
+  resetNewsState, // Export the new action
 } = slice.actions;
 
 export default slice.reducer;

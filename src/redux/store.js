@@ -4,7 +4,7 @@ import thunk from "redux-thunk";
 import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import { apiurl } from "../api/urls";
-import { resetState } from "./slices/News";
+import { resetNewsState } from "./slices/News";
 
 const persistConfig = {
   key: "root",
@@ -28,7 +28,7 @@ const store = configureStore({
 
  const resetAppState = () => {
   // Reset in-memory Redux state
-  store.dispatch(resetState());
+  store.dispatch(resetNewsState());
 
   // Clear persisted storage
   persistor.purge();

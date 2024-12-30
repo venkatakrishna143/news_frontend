@@ -33,6 +33,7 @@ function ForgotPassword() {
 
   const {
     register,
+    control,
     handleSubmit,
     formState: { errors },
   } = useForm({

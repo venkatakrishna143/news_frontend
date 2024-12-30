@@ -25,12 +25,16 @@ import { useAuth } from "../../pages/auth/Authenticate";
 import ErrorBar from "../SnackBars/ErrorBar";
 import SuccessBar from "../SnackBars/SuccessBar";
 import TextInput from "../FormComponents/TextInput";
+import { useSelector } from "react-redux";
 
 function LoginForm() {
   const { mode, id } = useParams();
   const theme = useTheme();
   const { login } = useAuth();
   const navigate = useNavigate();
+
+  const { isAuthenticated, userdata } = useSelector((state) => state.auth);
+
 
   const showSuccess = SuccessBar();
   const showError = ErrorBar();
@@ -66,7 +70,7 @@ function LoginForm() {
         const success = res.data.success;
         if (success) {
           showSuccess(res.data.message);
-          navigate(`/user/username/home`);
+          navigate(`/user/${userdata.name}/home`);
         } else {
           showError(res.data.message);
         }

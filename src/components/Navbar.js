@@ -12,12 +12,16 @@ import Search from "./Search";
 import NavMenu from "./NavMenu";
 import { Close, CloseMenu, MenuBars, SearchIcon } from "../assets/Icons";
 import AvatarMenu from "./AvatarMenu";
+import { useSelector } from "react-redux";
 
 function Navbar() {
   //  MediaQueries For Themes
   const theme = useTheme();
   // const BelowMobile = useMediaQuery(theme.breakpoints.up("xs"));
   const Mobile = useMediaQuery(theme.breakpoints.between("xs", "lg"));
+
+  const { isAuthenticated,userdata } = useSelector((state) => state.auth);
+
 
   const [toggle, setToggle] = useState(false);
 
@@ -90,7 +94,7 @@ function Navbar() {
           sx={{ p: 1 }}
         >
           <SearchIcon onClick={handleSearchOpen} />
-          <AvatarStyle onClick={handleMenu} />
+          <AvatarStyle src={userdata.profilePic} onClick={handleMenu} />
         </Stack>
       </Nav>
     </NavHeader>

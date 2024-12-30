@@ -22,6 +22,8 @@ function App() {
   const { uid, Eemail } = useParams();
   // const NavCondition = pathname.includes("user");
 
+  
+
   const pathdata =
     pathname === "/pagenotfound" ||
     pathname === "/user/resend-verifcation" ||
